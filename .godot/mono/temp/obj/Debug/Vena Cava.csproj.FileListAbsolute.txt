@@ -1,0 +1,17 @@
+D:\Projects\Vena Cava\.godot\mono\temp\bin\Debug\Vena Cava.deps.json
+D:\Projects\Vena Cava\.godot\mono\temp\bin\Debug\Vena Cava.runtimeconfig.json
+D:\Projects\Vena Cava\.godot\mono\temp\bin\Debug\Vena Cava.dll
+D:\Projects\Vena Cava\.godot\mono\temp\bin\Debug\Vena Cava.pdb
+D:\Projects\Vena Cava\.godot\mono\temp\bin\Debug\GodotSharp.dll
+D:\Projects\Vena Cava\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.csproj.AssemblyReference.cache
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.AssemblyInfoInputs.cache
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.AssemblyInfo.cs
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.csproj.CoreCompileInputs.cache
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.csproj.CopyComplete
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.dll
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\refint\Vena Cava.dll
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.pdb
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\Vena Cava.genruntimeconfig.cache
+D:\Projects\Vena Cava\.godot\mono\temp\obj\Debug\ref\Vena Cava.dll

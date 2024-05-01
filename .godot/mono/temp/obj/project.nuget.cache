@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "oVO/yzZS1JYj4ThJragbEpxDh4VLv9+jYeIc3Z+u+A2vkdUrN4moB+jBgzzM8G7IBJhW8sqjIKcGSneHzttcfg==",
+  "success": true,
+  "projectFilePath": "D:\\Projects\\Vena Cava\\Vena Cava.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Tommy\\.nuget\\packages\\godot.sourcegenerators\\4.2.1\\godot.sourcegenerators.4.2.1.nupkg.sha512",
+    "C:\\Users\\Tommy\\.nuget\\packages\\godotsharp\\4.2.1\\godotsharp.4.2.1.nupkg.sha512",
+    "C:\\Users\\Tommy\\.nuget\\packages\\godotsharpeditor\\4.2.1\\godotsharpeditor.4.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}

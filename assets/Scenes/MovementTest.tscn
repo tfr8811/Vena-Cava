@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://drfi6euxvh1yx"]
+
+[ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_ussea"]
+[ext_resource type="PackedScene" uid="uid://csr4qumwfa4qg" path="res://assets/Scenes/liquor_outlet.tscn" id="2_k4sn4"]
+[ext_resource type="PackedScene" uid="uid://bb67rvws5ekus" path="res://assets/Scenes/Cop.tscn" id="3_irsah"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r1fmd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_aes0b"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_oj4tw"]
+vertices = PackedVector3Array(-11.5001, 6.75, -33.5, -11.5001, 6.75, -10.5, -0.500066, 7, -10.5, -0.500066, 7, -33.5, -6.00007, 10.75, -33.5, -6.00007, 10.75, -10.5, 17.4999, 0.5, -28.5, 20.7499, 0.5, -28.75, 20.9999, 0.5, -33.5, 0.499934, 0.5, -33.5, 0.499934, 0.5, -11.75, 17.4999, 0.5, -11.75, 17.4999, 0.5, -28.5, 0.499934, 0.5, -33.5, 20.9999, 0.5, -33.5, 20.7499, 0.5, -28.75, 22.4999, 0.5, -28.5, 43.4999, 0.5, -33.5, 22.4999, 0.5, -23.75, 18.7499, 0.5, -23.5, 18.7499, 0.5, -10.75, 22.4999, 0.5, -23.75, 18.7499, 0.5, -10.75, 43.4999, 0.5, -10.75, 43.4999, 0.5, -33.5, 43.4999, 0.5, -33.5, 22.4999, 0.5, -28.5, 22.4999, 0.5, -23.75, -3.50007, 0.5, -23.75, -4.00007, 0.5, -23.5, -0.750066, 0.5, -23.25, -11.2501, 0.5, -27, -10.7501, 0.5, -27, -10.7501, 0.5, -30.5, -11.2501, 0.5, -33.25, -7.75007, 0.5, -30.75, -6.75007, 0.5, -30.5, -3.75007, 0.5, -30.75, -0.750066, 0.5, -33.25, -11.2501, 0.5, -33.25, -11.2501, 0.5, -33.25, -10.7501, 0.5, -30.5, -7.75007, 0.5, -30.75, -7.50007, 0.5, -25.5, -6.75007, 0.5, -25.5, -6.75007, 0.5, -30.5, -7.75007, 0.5, -30.75, -3.75007, 0.5, -30.75, -3.50007, 0.5, -23.75, -0.750066, 0.5, -23.25, -0.750066, 0.5, -33.25, -9.75007, 2.5, -29.75, -9.75007, 2.5, -24.5, -8.50007, 2.5, -24.5, -8.50007, 2.5, -29.75, -5.75007, 2.5, -29.75, -5.75007, 2.5, -24.5, -4.50007, 2.5, -24.5, -4.50007, 2.5, -29.75, -9.50007, 0.5, -29.5, -9.50007, 0.5, -24.75, -8.75007, 0.5, -24.75, -8.75007, 0.5, -29.5, -5.50007, 0.5, -29.5, -5.50007, 0.5, -24.75, -4.75007, 0.5, -24.75, -4.75007, 0.5, -29.5, 18.4999, 6.25, -27.75, 18.4999, 6.25, -24.5, 21.4999, 6.25, -24.5, 21.4999, 6.25, -27.75, 18.7499, 0.5, -27.5, 18.7499, 0.5, -24.75, 21.2499, 0.5, -24.75, 21.2499, 0.5, -27.5, -6.50007, 0.5, -23.5, -6.75007, 0.5, -25.5, -7.50007, 0.5, -25.5, -7.75007, 0.5, -23.5, -0.750066, 0.5, -23.25, -4.00007, 0.5, -23.5, -6.50007, 0.5, -23.5, -9.50007, 0.5, -13.75, -11.2501, 0.5, -13.5, -11.2501, 0.5, -10.75, -0.750066, 0.5, -10.75, -10.5001, 0.5, -23.5, -10.7501, 0.5, -27, -11.2501, 0.5, -27, -11.2501, 0.5, -18.75, -6.50007, 0.5, -23.5, -7.75007, 0.5, -23.5, -9.50007, 0.5, -18.5, -9.50007, 0.5, -13.75, -0.750066, 0.5, -10.75, -0.750066, 0.5, -23.25, -10.5001, 0.5, -23.5, -11.2501, 0.5, -18.75, -9.50007, 0.5, -18.5, -7.75007, 0.5, -23.5, -11.2501, 1.25, -17.75, -10.5001, 1.25, -17.25, -10.5001, 1.25, -17.75, 0.499934, 0.5, -9.75003, -1.50007, 0.5, -9.50003, -1.50007, 0.5, 7.24997, 0.499934, 0.5, 7.49997, 17.7499, 0.5, -9.50003, 17.4999, 0.5, -11.75, 17.4999, 0.5, -11.75, 0.499934, 0.5, -11.75, 0.499934, 0.5, -9.75003, 25.4999, 0.5, 13.5, 25.4999, 0.5, -9.50003, 17.7499, 0.5, -9.50003, 0.499934, 0.5, 7.49997, 0.499934, 0.5, 13.5, -1.50007, 0.5, 7.24997, -1.50007, 0.5, -9.50003, -11.5001, 0.5, -9.50003, -11.5001, 0.5, 7.24997)
+polygons = [PackedInt32Array(3, 2, 4), PackedInt32Array(4, 2, 5), PackedInt32Array(4, 5, 1), PackedInt32Array(4, 1, 0), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(20, 19, 18), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 21, 24), PackedInt32Array(27, 26, 25), PackedInt32Array(28, 30, 29), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(38, 35, 39), PackedInt32Array(42, 41, 40), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 46), PackedInt32Array(48, 47, 49), PackedInt32Array(49, 47, 50), PackedInt32Array(54, 53, 51), PackedInt32Array(51, 53, 52), PackedInt32Array(58, 57, 55), PackedInt32Array(55, 57, 56), PackedInt32Array(62, 61, 59), PackedInt32Array(59, 61, 60), PackedInt32Array(66, 65, 63), PackedInt32Array(63, 65, 64), PackedInt32Array(70, 69, 67), PackedInt32Array(67, 69, 68), PackedInt32Array(74, 73, 71), PackedInt32Array(71, 73, 72), PackedInt32Array(76, 75, 77), PackedInt32Array(77, 75, 78), PackedInt32Array(81, 80, 79), PackedInt32Array(83, 82, 84), PackedInt32Array(84, 82, 85), PackedInt32Array(87, 86, 88), PackedInt32Array(88, 86, 89), PackedInt32Array(91, 90, 92), PackedInt32Array(92, 90, 93), PackedInt32Array(93, 90, 95), PackedInt32Array(93, 95, 94), PackedInt32Array(97, 96, 98), PackedInt32Array(98, 96, 99), PackedInt32Array(102, 101, 100), PackedInt32Array(104, 103, 105), PackedInt32Array(105, 103, 106), PackedInt32Array(106, 103, 107), PackedInt32Array(107, 103, 108), PackedInt32Array(111, 110, 109), PackedInt32Array(113, 112, 114), PackedInt32Array(114, 112, 115), PackedInt32Array(115, 112, 116), PackedInt32Array(120, 119, 117), PackedInt32Array(117, 119, 118)]
+
+[node name="MovementTest" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("head", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.38938, 0)
+script = ExtResource("1_ussea")
+head = NodePath("Head")
+camera = NodePath("Head/Camera3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_r1fmd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_aes0b")
+
+[node name="Head" type="Node3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606531, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Head"]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_oj4tw")
+
+[node name="Liquor Outlet" parent="NavigationRegion3D" instance=ExtResource("2_k4sn4")]
+
+[node name="Cop" parent="." instance=ExtResource("3_irsah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1393, 2.49066, -1.14021)
+playerPath = NodePath("../Player")

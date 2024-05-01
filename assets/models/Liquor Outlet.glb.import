@@ -1,0 +1,51 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://po2pnt6gjay7"
+path="res://.godot/imported/Liquor Outlet.glb-2290b4dd48f6096f711fa4f665a38e4f.scn"
+
+[deps]
+
+source_file="res://assets/models/Liquor Outlet.glb"
+dest_files=["res://.godot/imported/Liquor Outlet.glb-2290b4dd48f6096f711fa4f665a38e4f.scn"]
+
+[params]
+
+nodes/root_type="Node3D"
+nodes/root_name=""
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=false
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+import_script/path=""
+_subresources={
+"materials": {
+"shop 1": {
+"use_external/enabled": false,
+"use_external/path": "res://assets/models/Liquor_Outlet_Shop_Material.tres"
+},
+"tileset city 1": {
+"use_external/enabled": false,
+"use_external/path": "res://assets/models/Liquor_Outlet_City_Material.tres"
+}
+},
+"nodes": {
+"PATH:Cube": {
+"generate/physics": true,
+"physics/shape_type": 2
+}
+}
+}
+gltf/naming_version=1
+gltf/embedded_image_handling=1

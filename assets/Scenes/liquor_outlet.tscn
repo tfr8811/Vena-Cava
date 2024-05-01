@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://csr4qumwfa4qg"]
+
+[ext_resource type="PackedScene" uid="uid://po2pnt6gjay7" path="res://assets/models/Liquor Outlet.glb" id="1_x307f"]
+
+[node name="Liquor Outlet" instance=ExtResource("1_x307f")]
