@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody3D
+public partial class Player : CharacterBody3D, IDamageable
 {
     // movement
     const float GRAVITY = 10f;
@@ -10,9 +10,15 @@ public partial class Player : CharacterBody3D
     const float SPRINT_SPEED = 20f;
     private float speed;
 
+    // health
+    private int health = 10;
+
     // shooting
     const float SENSITIVITY = 0.001f;
-    const float BULLET_SPEED = 40.0f;
+    const float BULLET_SPEED = 120.0f;
+
+    private double maxFireDelay = 0.2;
+    private double fireDelay;
 
     // bob variables
     const double BOB_FREQ = 2.0;
@@ -59,13 +65,16 @@ public partial class Player : CharacterBody3D
 
     public override void _Process(double delta)
     {
-        
+        // decrease delay
+        if (fireDelay > 0)
+        {
+            fireDelay -= delta;
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
         // update the forward vector of the player
-
 
         // gravity
         if (!IsOnFloor())
@@ -125,7 +134,7 @@ public partial class Player : CharacterBody3D
             t_bob += delta * Velocity.Length();
             // make a copy of the camera transform, set its origin, then overwrite the camera's transform
             Transform3D temp_transform = camera.Transform;
-            temp_transform.Origin = _headbob(t_bob);
+            temp_transform.Origin = Headbob(t_bob);
             camera.Transform = temp_transform;
         }
 
@@ -135,17 +144,18 @@ public partial class Player : CharacterBody3D
         camera.Fov = (float) Mathf.Lerp(camera.Fov, targetFOV, delta * 8.0);
 
         // SHOOT
-        if (Input.IsActionJustPressed("Shoot"))
+        if (fireDelay <= 0 && Input.IsActionJustPressed("Shoot"))
         {
-            _SpawnBullet(BULLET_SPEED);
+            SpawnBullet(BULLET_SPEED);
+            fireDelay = maxFireDelay;
         }
 
-
+        GD.Print(Velocity.ToString());
         // apply the movement
         MoveAndSlide();
     }
 
-    private Vector3 _headbob(double time)
+    private Vector3 Headbob(double time)
     {
         Vector3 pos = new Vector3(
             (float)(Math.Sin(time * BOB_FREQ/2) * BOB_AMP), 
@@ -155,16 +165,27 @@ public partial class Player : CharacterBody3D
         return pos;
     }
 
-    private void _SpawnBullet(float speed)
+    private void SpawnBullet(float speed)
     {
         Bullet bullet = (Bullet)psBullet.Instantiate();
         GetNode("/root").AddChild(bullet);
         // set the position of the bullet in front of the player
         Vector3 pointVector = -camera.GlobalTransform.Basis.Z;
         bullet.GlobalPosition = camera.GlobalPosition;
-        bullet.GlobalPosition += pointVector * 2;
+        bullet.GlobalPosition += pointVector * 1f;
 
 
         bullet.Velocity = pointVector * speed;
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 2/6/2024
+    /// Damages the player by the amount specified
+    /// </summary>
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0) GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn"); ;
     }
 }

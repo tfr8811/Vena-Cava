@@ -9,6 +9,7 @@
 [node name="Cop" type="CharacterBody3D"]
 script = ExtResource("1_wycld")
 navPath = NodePath("NavigationAgent3D")
+sightPath = NodePath("RayCast3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_m5u7q")
@@ -17,3 +18,5 @@ mesh = SubResource("CapsuleMesh_m5u7q")
 shape = SubResource("CapsuleShape3D_7hmt8")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]

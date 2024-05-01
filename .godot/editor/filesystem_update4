@@ -5,3 +5,5 @@ res://assets/Scenes/Cop.tscn
 res://assets/Scripts/Bullet.cs
 res://assets/Scripts/Enemy.cs
 res://assets/Scripts/Player.cs
+res://assets/Scenes/GameOver.tscn
+res://assets/Scripts/Retry.cs
