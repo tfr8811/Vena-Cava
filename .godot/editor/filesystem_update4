@@ -1,7 +1,7 @@
 res://assets/Scenes/MovementTest.tscn
 res://assets/Scenes/Bullet.tscn
 res://assets/Scenes/liquor_outlet.tscn
-res://assets/Scripts/Bullet.cs
-res://assets/Scripts/Player.cs
 res://assets/Scenes/Cop.tscn
+res://assets/Scripts/Bullet.cs
 res://assets/Scripts/Enemy.cs
+res://assets/Scripts/Player.cs

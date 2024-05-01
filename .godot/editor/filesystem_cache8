@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1714586664
+::res://::1714593587
 icon.svg::CompressedTexture2D::646617214094459385::1704489464::1704489484::1::::<><>::
 ::res://assets/::1714336676
 ::res://assets/models/::1714338694
@@ -8,14 +8,14 @@ Liquor Outlet_shop 1.png::CompressedTexture2D::6454713075268326406::1704490384::
 Liquor Outlet_tileset city 1.png::CompressedTexture2D::6536440018024526889::1704490383::1704490386::1::::<><>::
 Liquor_Outlet_City_Material.tres::StandardMaterial3D::8509171787352749431::1714338194::0::1::::<><>::
 Liquor_Outlet_Shop_Material.tres::StandardMaterial3D::1410205094450027947::1714338083::0::1::::<><>::
-::res://assets/Scenes/::1714587474
-Bullet.tscn::PackedScene::2614222294143823016::1714587474::0::1::::<><>::res://assets/Scripts/Bullet.cs
-liquor_outlet.tscn::PackedScene::6073125410193457962::1714587474::0::1::::<><>::uid://po2pnt6gjay7::::res://assets/models/Liquor Outlet.glb
-MovementTest.tscn::PackedScene::8363335619312208791::1714587474::0::1::::<><>::res://assets/Scripts/Player.cs<>uid://csr4qumwfa4qg::::res://assets/Scenes/liquor_outlet.tscn
-Cop.tscn::PackedScene::2522579677806043938::1714587685::0::1::::<><>::
-Enemy.cs::CSharpScript::-1::1714587870::0::1::::<><>::
-::res://assets/Scripts/::1714516731
+::res://assets/Scenes/::1714593381
+Bullet.tscn::PackedScene::2614222294143823016::1714593381::0::1::::<><>::res://assets/Scripts/Bullet.cs
+Cop.tscn::PackedScene::2522579677806043938::1714593381::0::1::::<><>::res://assets/Scripts/Enemy.cs
+liquor_outlet.tscn::PackedScene::6073125410193457962::1714593381::0::1::::<><>::uid://po2pnt6gjay7::::res://assets/models/Liquor Outlet.glb
+MovementTest.tscn::PackedScene::8363335619312208791::1714593381::0::1::::<><>::res://assets/Scripts/Player.cs<>uid://csr4qumwfa4qg::::res://assets/Scenes/liquor_outlet.tscn<>uid://bb67rvws5ekus::::res://assets/Scenes/Cop.tscn
+::res://assets/Scripts/::1714593198
 Bullet.cs::CSharpScript::-1::1714516731::0::1::::<>CharacterBody3D<>::
-Player.cs::CSharpScript::-1::1714516625::0::1::::<>CharacterBody3D<>::
+Enemy.cs::CSharpScript::-1::1714593198::0::1::::<>CharacterBody3D<>::
+Player.cs::CSharpScript::-1::1714588296::0::1::::<>CharacterBody3D<>::
 ::res://Properties/::1714341180
 launchSettings.json::JSON::-1::1714341545::0::1::::<><>::

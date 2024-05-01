@@ -95,11 +95,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projects\\Vena Cava\\Vena Cava.csproj",
+      "projectUniqueName": "D:\\Projects\\Vena Cava\\Vena-Cava\\Vena Cava.csproj",
       "projectName": "Vena Cava",
-      "projectPath": "D:\\Projects\\Vena Cava\\Vena Cava.csproj",
+      "projectPath": "D:\\Projects\\Vena Cava\\Vena-Cava\\Vena Cava.csproj",
       "packagesPath": "C:\\Users\\Tommy\\.nuget\\packages\\",
-      "outputPath": "D:\\Projects\\Vena Cava\\.godot\\mono\\temp\\obj\\",
+      "outputPath": "D:\\Projects\\Vena Cava\\Vena-Cava\\.godot\\mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Users\\Tommy\\AppData\\Roaming\\Godot\\mono\\GodotNuGetFallbackFolder",
