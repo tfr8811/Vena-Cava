@@ -17,6 +17,7 @@ public partial class Player : CharacterBody3D, IDamageable
     const float SENSITIVITY = 0.001f;
     const float BULLET_SPEED = 120.0f;
 
+    // todo: use GD.Timer
     private double maxFireDelay = 0.2;
     private double fireDelay;
 
@@ -40,10 +41,15 @@ public partial class Player : CharacterBody3D, IDamageable
     // instance the bullet - Tom
     PackedScene psBullet = GD.Load<PackedScene>("res://assets/Scenes/Bullet.tscn");
 
+    // send out a signal when the player is hit
+    [Signal]
+    public delegate void playerHitEventHandler();
 
     public override void _Ready()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
+        // this line of code is required to prevent the player from flying into the stratosphere
+        Velocity = new Vector3(1, Velocity.Y, 1);
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -150,7 +156,6 @@ public partial class Player : CharacterBody3D, IDamageable
             fireDelay = maxFireDelay;
         }
 
-        GD.Print(Velocity.ToString());
         // apply the movement
         MoveAndSlide();
     }
@@ -186,6 +191,9 @@ public partial class Player : CharacterBody3D, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0) GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn"); ;
+        if (health <= 0) GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn");
+
+        // emit the player hit signal
+        EmitSignal("playerHit");
     }
 }

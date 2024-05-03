@@ -1,9 +1,10 @@
+ColorRect
+Control
 CollisionShape3D
 StaticBody3D
 Node3D
 MeshInstance3D
 Button
-Control
 RayCast3D
 NavigationRegion3D
 NavigationAgent3D

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+// todo: change from CharacterBody3D to Raycast3D
 public partial class Bullet : CharacterBody3D
 {
     // destroy the bullet after 3 seconds
@@ -17,7 +18,7 @@ public partial class Bullet : CharacterBody3D
 
         MoveAndSlide();
 
-        // TODO: handle collisions
+        // handle collisions
         for (int i = 0; i < GetSlideCollisionCount(); i++)
         {
             // the bullet will damage damageable colliders

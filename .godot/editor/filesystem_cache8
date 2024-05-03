@@ -1,5 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1714602351
+::res://::1714766071
 icon.svg::CompressedTexture2D::646617214094459385::1704489464::1704489484::1::::<><>::
 ::res://assets/::1714336676
 ::res://assets/models/::1714338694
@@ -8,17 +8,17 @@ Liquor Outlet_shop 1.png::CompressedTexture2D::6454713075268326406::1704490384::
 Liquor Outlet_tileset city 1.png::CompressedTexture2D::6536440018024526889::1704490383::1704490386::1::::<><>::
 Liquor_Outlet_City_Material.tres::StandardMaterial3D::8509171787352749431::1714338194::0::1::::<><>::
 Liquor_Outlet_Shop_Material.tres::StandardMaterial3D::1410205094450027947::1714338083::0::1::::<><>::
-::res://assets/Scenes/::1714602499
-Bullet.tscn::PackedScene::2614222294143823016::1714602183::0::1::::<><>::res://assets/Scripts/Bullet.cs
-Cop.tscn::PackedScene::2522579677806043938::1714602183::0::1::::<><>::res://assets/Scripts/Enemy.cs
-GameOver.tscn::PackedScene::4748052822917068506::1714602253::0::1::::<><>::
-liquor_outlet.tscn::PackedScene::6073125410193457962::1714602183::0::1::::<><>::uid://po2pnt6gjay7::::res://assets/models/Liquor Outlet.glb
-MovementTest.tscn::PackedScene::8363335619312208791::1714602183::0::1::::<><>::res://assets/Scripts/Player.cs<>uid://csr4qumwfa4qg::::res://assets/Scenes/liquor_outlet.tscn<>uid://bb67rvws5ekus::::res://assets/Scenes/Cop.tscn
-Retry.cs::CSharpScript::-1::1714602499::0::1::::<><>::
-::res://assets/Scripts/::1714602474
-Bullet.cs::CSharpScript::-1::1714602181::0::1::::<>CharacterBody3D<>::
-Enemy.cs::CSharpScript::-1::1714601179::0::1::::<>CharacterBody3D<>::
+::res://assets/Scenes/::1714761424
+Bullet.tscn::PackedScene::2614222294143823016::1714761424::0::1::::<><>::res://assets/Scripts/Bullet.cs
+Cop.tscn::PackedScene::2522579677806043938::1714761424::0::1::::<><>::res://assets/Scripts/Enemy.cs
+GameOver.tscn::PackedScene::4748052822917068506::1714761424::0::1::::<><>::res://assets/Scripts/Retry.cs
+liquor_outlet.tscn::PackedScene::6073125410193457962::1714761424::0::1::::<><>::uid://po2pnt6gjay7::::res://assets/models/Liquor Outlet.glb
+MovementTest.tscn::PackedScene::8363335619312208791::1714761424::0::1::::<><>::res://assets/Scripts/Player.cs<>uid://csr4qumwfa4qg::::res://assets/Scenes/liquor_outlet.tscn<>uid://bb67rvws5ekus::::res://assets/Scenes/Cop.tscn
+::res://assets/Scripts/::1714761439
+Bullet.cs::CSharpScript::-1::1714759712::0::1::::<>CharacterBody3D<>::
+Enemy.cs::CSharpScript::-1::1714603358::0::1::::<>CharacterBody3D<>::
 IDamageable.cs::CSharpScript::-1::1714600674::0::1::::<><>::
-Player.cs::CSharpScript::-1::1714602172::0::1::::<>CharacterBody3D<>::
+Player.cs::CSharpScript::-1::1714761439::0::1::::<>CharacterBody3D<>::
+Retry.cs::CSharpScript::-1::1714602813::0::1::::<>Button<>::
 ::res://Properties/::1714341180
 launchSettings.json::JSON::-1::1714341545::0::1::::<><>::
