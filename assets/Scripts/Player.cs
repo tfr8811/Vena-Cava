@@ -11,7 +11,16 @@ public partial class Player : CharacterBody3D, IDamageable
     private float speed;
 
     // health
+    private int maxHealth = 10;
+    public int MaxHealth
+    {
+        get { return this.health; }
+    }
     private int health = 10;
+    public int Health
+    {
+        get { return this.health; }
+    }
 
     // shooting
     const float SENSITIVITY = 0.001f;
@@ -76,6 +85,7 @@ public partial class Player : CharacterBody3D, IDamageable
         {
             fireDelay -= delta;
         }
+
     }
 
     public override void _PhysicsProcess(double delta)

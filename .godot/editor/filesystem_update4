@@ -3,9 +3,8 @@ res://assets/Scenes/Bullet.tscn
 res://assets/Scenes/liquor_outlet.tscn
 res://assets/Scenes/Cop.tscn
 res://assets/Scenes/GameOver.tscn
+res://assets/Scenes/GameManager.cs
 res://assets/Scripts/Bullet.cs
 res://assets/Scripts/Enemy.cs
 res://assets/Scripts/Player.cs
 res://assets/Scripts/Retry.cs
-res://assets/Scripts/World.cs
-res://assets/Scenes/GameManager.cs
