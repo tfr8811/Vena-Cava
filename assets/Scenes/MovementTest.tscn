@@ -28,12 +28,13 @@ player = NodePath("Player")
 healthBar = NodePath("CanvasLayer/UI/HealthBar")
 lipaseBar = NodePath("CanvasLayer/UI/LipaseBar")
 
-[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("head", "camera", "gunSprite")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2361, 0)
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("gunSprite", "ammoCounter", "head", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.671, 2.2361, -16.756)
 script = ExtResource("1_ussea")
+gunSprite = NodePath("Head/Gun/Pistol/CanvasLayer/Control/GunSprite")
+ammoCounter = NodePath("Head/Gun/Pistol/CanvasLayer/Control/AmmoLabel")
 head = NodePath("Head")
 camera = NodePath("Head/Camera3D")
-gunSprite = NodePath("Head/Gun/Pistol/CanvasLayer/Control/GunSprite")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_r1fmd")
@@ -56,7 +57,7 @@ navigation_mesh = SubResource("NavigationMesh_oj4tw")
 [node name="Liquor Outlet" parent="NavigationRegion3D" instance=ExtResource("2_k4sn4")]
 
 [node name="Cop" parent="." instance=ExtResource("3_irsah")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4976, 1, -14.8305)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.604, 1, -1.05938)
 playerPath = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

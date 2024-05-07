@@ -26,6 +26,19 @@ public partial class Player : CharacterBody3D, IDamageable
     const float SENSITIVITY = 0.001f;
     const float BULLET_SPEED = 120.0f;
 
+    // ammo
+    private int maxAmmo = 10;
+    private int ammo = 10;
+
+    // Gun info - TODO should refactor some of the player code to the gun
+    [Export]
+    private AnimatedSprite2D gunSprite;
+    [Export]
+    private Label ammoCounter;
+
+    // the player cant shoot during some actions such as reloading
+    private bool canShoot = true;
+
     // todo: use GD.Timer
     private double maxFireDelay = 0.2;
     private double fireDelay;
@@ -47,9 +60,6 @@ public partial class Player : CharacterBody3D, IDamageable
     [Export]
     private Camera3D camera;
 
-    [Export]
-    private AnimatedSprite2D gunSprite;
-
     // instance the bullet - Tom
     PackedScene psBullet = GD.Load<PackedScene>("res://assets/Scenes/Bullet.tscn");
 
@@ -63,6 +73,9 @@ public partial class Player : CharacterBody3D, IDamageable
         // this line of code is required to prevent the player from flying into the stratosphere
         Velocity = new Vector3(1, Velocity.Y, 1);
         gunSprite.Play("Idle");
+
+        // setup the ammoCounter
+        ammoCounter.Text = ammo.ToString();
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -164,11 +177,46 @@ public partial class Player : CharacterBody3D, IDamageable
         camera.Fov = (float) Mathf.Lerp(camera.Fov, targetFOV, delta * 8.0);
 
         // SHOOT
-        if (fireDelay <= 0 && Input.IsActionJustPressed("Shoot"))
+        if (canShoot && ammo > 0 && fireDelay <= 0 && Input.IsActionJustPressed("Shoot"))
         {
             gunSprite.Play("Shoot");
             SpawnBullet(BULLET_SPEED);
-            fireDelay = maxFireDelay;
+
+            // Here I can use can shoot or fire delay, for now, I'll use can shoot
+            canShoot = false;
+            // fireDelay = maxFireDelay;
+
+            // update the ammo
+            ammo -= 1;
+            ammoCounter.Text = ammo.ToString();
+        }
+
+        // shoot animation handler
+        if (gunSprite.Animation == "Shoot")
+        {
+            if (!gunSprite.IsPlaying())
+            {
+                gunSprite.Play("Idle");
+                canShoot = true;
+            }
+        }
+
+        // RELOAD
+        if (Input.IsActionJustPressed("Reload"))
+        {
+            gunSprite.Play("Reload");
+            canShoot = false;
+        }
+        // reload animation handler
+        if (gunSprite.Animation == "Reload")
+        {
+            if (!gunSprite.IsPlaying())
+            {
+                ammo = maxAmmo;
+                ammoCounter.Text = ammo.ToString();
+                gunSprite.Play("Idle");
+                canShoot = true;
+            }
         }
 
         // apply the movement

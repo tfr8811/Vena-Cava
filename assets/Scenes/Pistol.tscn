@@ -1,9 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnhcdoqsul3ob"]
+[gd_scene load_steps=16 format=3 uid="uid://dnhcdoqsul3ob"]
 
 [ext_resource type="Texture2D" uid="uid://b5tw3bt2brkxd" path="res://assets/Sprites/WEAPONS/PISTOL/PISTA0.PNG" id="1_5rdrc"]
+[ext_resource type="Texture2D" uid="uid://dyq4mtgcqf7gc" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0297.PNG" id="2_gl1b3"]
 [ext_resource type="Texture2D" uid="uid://dc1qah0shlpib" path="res://assets/Sprites/WEAPONS/PISTOL/PISTB0.PNG" id="2_w6r2k"]
 [ext_resource type="Texture2D" uid="uid://bv1a5rnjpabo7" path="res://assets/Sprites/WEAPONS/PISTOL/PISTC0.PNG" id="3_55ift"]
+[ext_resource type="Texture2D" uid="uid://b5kvi3fba7m3g" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0298.PNG" id="3_fpxgj"]
 [ext_resource type="Texture2D" uid="uid://dnfyx75o4ubn4" path="res://assets/Sprites/HUD/Ammo_Counter.png" id="4_lffm3"]
+[ext_resource type="Texture2D" uid="uid://xc310esc58l6" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0302.PNG" id="4_r833j"]
+[ext_resource type="Texture2D" uid="uid://druaghs0si2cx" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0303.PNG" id="5_417xy"]
+[ext_resource type="Texture2D" uid="uid://cyfsn8vcaynp4" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0304.PNG" id="6_70liu"]
+[ext_resource type="Texture2D" uid="uid://cjilnt47mbrkh" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0305.PNG" id="7_4fiq0"]
+[ext_resource type="Texture2D" uid="uid://crnpi4e4updih" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0306.PNG" id="8_ynjqe"]
+[ext_resource type="Texture2D" uid="uid://dykfvllgrlikc" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0307.PNG" id="9_2jndx"]
+[ext_resource type="Texture2D" uid="uid://cvdhv5yaq0vnx" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0308.PNG" id="10_xgmu1"]
+[ext_resource type="Texture2D" uid="uid://bil57ph1jcd24" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0309.PNG" id="11_rxl20"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_26jbt"]
 animations = [{
@@ -14,6 +24,41 @@ animations = [{
 "loop": true,
 "name": &"Idle",
 "speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gl1b3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fpxgj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_r833j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_417xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_70liu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4fiq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ynjqe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2jndx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_xgmu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rxl20")
+}],
+"loop": false,
+"name": &"Reload",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -72,3 +117,24 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_lffm3")
 flip_h = true
 flip_v = true
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -74.0
+offset_right = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.988235, 0.847059, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 45
+text = "50
+"
+horizontal_alignment = 1
+vertical_alignment = 1
