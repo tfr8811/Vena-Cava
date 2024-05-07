@@ -47,6 +47,9 @@ public partial class Player : CharacterBody3D, IDamageable
     [Export]
     private Camera3D camera;
 
+    [Export]
+    private AnimatedSprite2D gunSprite;
+
     // instance the bullet - Tom
     PackedScene psBullet = GD.Load<PackedScene>("res://assets/Scenes/Bullet.tscn");
 
@@ -59,6 +62,7 @@ public partial class Player : CharacterBody3D, IDamageable
         Input.MouseMode = Input.MouseModeEnum.Captured;
         // this line of code is required to prevent the player from flying into the stratosphere
         Velocity = new Vector3(1, Velocity.Y, 1);
+        gunSprite.Play("Idle");
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -162,6 +166,7 @@ public partial class Player : CharacterBody3D, IDamageable
         // SHOOT
         if (fireDelay <= 0 && Input.IsActionJustPressed("Shoot"))
         {
+            gunSprite.Play("Shoot");
             SpawnBullet(BULLET_SPEED);
             fireDelay = maxFireDelay;
         }

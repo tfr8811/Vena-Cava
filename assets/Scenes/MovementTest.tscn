@@ -1,12 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://drfi6euxvh1yx"]
+[gd_scene load_steps=14 format=3 uid="uid://drfi6euxvh1yx"]
 
-[ext_resource type="Script" path="res://assets/Scenes/GameManager.cs" id="1_1d5ay"]
+[ext_resource type="Script" path="res://assets/Scripts/GameManager.cs" id="1_1d5ay"]
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_ussea"]
 [ext_resource type="PackedScene" uid="uid://csr4qumwfa4qg" path="res://assets/Scenes/liquor_outlet.tscn" id="2_k4sn4"]
+[ext_resource type="PackedScene" uid="uid://dnhcdoqsul3ob" path="res://assets/Scenes/Pistol.tscn" id="3_5a4h0"]
 [ext_resource type="PackedScene" uid="uid://bb67rvws5ekus" path="res://assets/Scenes/Cop.tscn" id="3_irsah"]
-[ext_resource type="Texture2D" uid="uid://bm2yu22141fgx" path="res://assets/Sprites/Health_and_Lipase.png" id="5_st6xk"]
-[ext_resource type="Texture2D" uid="uid://dcvywwvvmt3ck" path="res://assets/Sprites/Health_Bar.png" id="6_cwiyx"]
-[ext_resource type="Texture2D" uid="uid://04lthd6ux1bv" path="res://assets/Sprites/Lipase_Bar.png" id="7_nls4b"]
+[ext_resource type="Texture2D" uid="uid://bm2yu22141fgx" path="res://assets/Sprites/HUD/Health_and_Lipase.png" id="5_st6xk"]
+[ext_resource type="Texture2D" uid="uid://dcvywwvvmt3ck" path="res://assets/Sprites/HUD/Health_Bar.png" id="6_cwiyx"]
+[ext_resource type="Texture2D" uid="uid://04lthd6ux1bv" path="res://assets/Sprites/HUD/Lipase_Bar.png" id="7_nls4b"]
+[ext_resource type="Texture2D" uid="uid://qkmbfxft8el8" path="res://assets/Sprites/HUD/Interaction_Icon.png" id="9_1p4m2"]
+[ext_resource type="Texture2D" uid="uid://uqvnaffh064k" path="res://assets/Sprites/HUD/Facecam.png" id="10_g8o6o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r1fmd"]
 
@@ -20,16 +23,17 @@ agent_radius = 1.0
 
 [node name="MovementTest" type="Node3D" node_paths=PackedStringArray("hitRect", "player", "healthBar", "lipaseBar")]
 script = ExtResource("1_1d5ay")
-hitRect = NodePath("UI/HitRect")
+hitRect = NodePath("CanvasLayer/UI/HitRect")
 player = NodePath("Player")
-healthBar = NodePath("UI/HealthBar")
-lipaseBar = NodePath("UI/LipaseBar")
+healthBar = NodePath("CanvasLayer/UI/HealthBar")
+lipaseBar = NodePath("CanvasLayer/UI/LipaseBar")
 
-[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("head", "camera")]
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("head", "camera", "gunSprite")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2361, 0)
 script = ExtResource("1_ussea")
 head = NodePath("Head")
 camera = NodePath("Head/Camera3D")
+gunSprite = NodePath("Head/Gun/Pistol/CanvasLayer/Control/GunSprite")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
 shape = SubResource("CapsuleShape3D_r1fmd")
@@ -42,6 +46,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606531, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
 
+[node name="Gun" type="Node3D" parent="Player/Head"]
+
+[node name="Pistol" parent="Player/Head/Gun" instance=ExtResource("3_5a4h0")]
+
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_oj4tw")
 
@@ -51,7 +59,9 @@ navigation_mesh = SubResource("NavigationMesh_oj4tw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4976, 1, -14.8305)
 playerPath = NodePath("../Player")
 
-[node name="UI" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,51 +70,80 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HitRect" type="ColorRect" parent="UI"]
+[node name="HitRect" type="ColorRect" parent="CanvasLayer/UI"]
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2
 color = Color(0.85098, 0.172549, 0.27451, 0.270588)
 
-[node name="TextureRect" type="TextureRect" parent="UI"]
+[node name="HealthAndLipase" type="TextureRect" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -150.0
+offset_top = -300.0
 offset_right = 450.0
-offset_bottom = 150.0
 grow_vertical = 0
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(0, 300)
 texture = ExtResource("5_st6xk")
 
-[node name="HealthBar" type="TextureProgressBar" parent="UI"]
+[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = -99.0
-offset_right = 359.0
-offset_bottom = -49.0
+offset_left = 38.0
+offset_top = -119.0
+offset_right = 365.0
+offset_bottom = -69.0
 grow_vertical = 0
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
 value = 100.0
 texture_progress = ExtResource("6_cwiyx")
 
-[node name="LipaseBar" type="TextureProgressBar" parent="UI"]
+[node name="LipaseBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = -51.0
-offset_right = 356.0
-offset_bottom = -3.0
+offset_left = 35.0
+offset_top = -61.0
+offset_right = 362.0
+offset_bottom = -13.0
 grow_vertical = 0
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.6, 0.6)
 value = 100.0
 texture_progress = ExtResource("7_nls4b")
+
+[node name="InteractionIcon" type="TextureRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(165, 165)
+texture = ExtResource("9_1p4m2")
+
+[node name="FaceCam" type="TextureRect" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -620.0
+offset_bottom = 909.0
+grow_horizontal = 0
+scale = Vector2(0.25, 0.25)
+pivot_offset = Vector2(620, 0)
+texture = ExtResource("10_g8o6o")
 
 [connection signal="playerHit" from="Player" to="." method="_on_player_player_hit"]
