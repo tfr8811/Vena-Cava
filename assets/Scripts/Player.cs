@@ -229,7 +229,7 @@ public partial class Player : CharacterBody3D, IDamageable
     }
 
     /// <summary>
-    /// Adapted from LegionGames
+    /// Roman Noodles (Adapted from LegionGames)
     /// 4/29/2024
     /// Returns the relative headbob position
     /// </summary>

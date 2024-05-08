@@ -194,7 +194,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
     }
 
     /// <summary>
-    /// Adapted from Impulse
+    /// Roman Noodles (Adapted from Impulse)
     /// 5/01/2024
     /// Checks if the player is in the line of sight of the enemy
     /// </summary>
