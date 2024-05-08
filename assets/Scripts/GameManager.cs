@@ -1,6 +1,11 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Roman Noodles
+/// 5/03/2024
+/// Manages the games UI overlay, will manage important variables and saving
+/// </summary>
 public partial class GameManager : Node3D
 {
     [Export]
@@ -26,10 +31,16 @@ public partial class GameManager : Node3D
     {
         if (hitRect.Color.A > 0)
         {
-            hitRect.Color = new Color(hitRect.Color.R, hitRect.Color.G, hitRect.Color.B, hitRect.Color.A - 0.01f);
+            // fade out the red tint effect
+            hitRect.Color = new Color(hitRect.Color.R, hitRect.Color.G, hitRect.Color.B, hitRect.Color.A - (float) delta);
         }
     }
 
+    /// <summary>
+    /// Roman Noodles
+    /// 5/03/2024
+    /// Event handler which tints the screen red when the player takes damage
+    /// </summary>
     public void _on_player_player_hit()
     {
         hitRect.Color = new Color(hitRect.Color.R, hitRect.Color.G, hitRect.Color.B, hitOpacity);

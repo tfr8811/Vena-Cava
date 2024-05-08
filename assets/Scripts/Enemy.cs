@@ -1,6 +1,12 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Roman Noodles
+/// 5/01/2024
+/// Controls and Manages the cop enemy
+/// </summary>
+
 public partial class Enemy : CharacterBody3D, IDamageable
 {
     // player reference
@@ -45,7 +51,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
     private int maxBulletCount = 8;
     private int bulletCount = 8;
 
-    // instance the bullet - Tom
+    // instance the bullet
     PackedScene psBullet = GD.Load<PackedScene>("res://assets/Scenes/Bullet.tscn");
 
     public override void _Ready()
@@ -169,6 +175,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
         }
     }
 
+    /// <summary>
+    /// Roman Noodles
+    /// 5/01/2024
+    /// Shoots a bullet in the direction the enemy is facing
+    /// </summary>
     public void SpawnBullet(float speed)
     {
         Bullet bullet = (Bullet)psBullet.Instantiate();
@@ -182,6 +193,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
         bullet.Velocity = pointVector * speed;
     }
 
+    /// <summary>
+    /// Adapted from Impulse
+    /// 5/01/2024
+    /// Checks if the player is in the line of sight of the enemy
+    /// </summary>
     public bool CheckCanSeePlayer(Vector3 relativeTargetVector)
     {
         bool inRadius = relativeTargetVector != Vector3.Zero && relativeTargetVector.Length() <= detectionRadius;

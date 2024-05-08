@@ -1,6 +1,11 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Roman Noodles
+/// 4/30/2024
+/// A shape that the player or enemies can launch at other bodies, damages target
+/// </summary>
 // todo: change from CharacterBody3D to Raycast3D
 public partial class Bullet : CharacterBody3D
 {

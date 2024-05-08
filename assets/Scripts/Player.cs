@@ -1,6 +1,11 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Roman Noodles
+/// 4/29/2024
+/// Controls and manages the player character
+/// </summary>
 public partial class Player : CharacterBody3D, IDamageable
 {
     // movement
@@ -223,6 +228,11 @@ public partial class Player : CharacterBody3D, IDamageable
         MoveAndSlide();
     }
 
+    /// <summary>
+    /// Adapted from LegionGames
+    /// 4/29/2024
+    /// Returns the relative headbob position
+    /// </summary>
     private Vector3 Headbob(double time)
     {
         Vector3 pos = new Vector3(
@@ -233,6 +243,11 @@ public partial class Player : CharacterBody3D, IDamageable
         return pos;
     }
 
+    /// <summary>
+    /// Roman Noodles
+    /// 4/30/2024
+    /// Shoots a bullet in the direction the player is facing
+    /// </summary>
     private void SpawnBullet(float speed)
     {
         Bullet bullet = (Bullet)psBullet.Instantiate();
