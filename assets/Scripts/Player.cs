@@ -201,8 +201,8 @@ public partial class Player : CharacterBody3D, IDamageable
             }
         }
 
-        // RELOAD
-        if (Input.IsActionJustPressed("Reload"))
+        // RELOAD - It's automatic rn but can also be done by pressing "R"
+        if ((canShoot && ammo == 0) || Input.IsActionJustPressed("Reload"))
         {
             gunSprite.Play("Reload");
             canShoot = false;

@@ -66,9 +66,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_55ift")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_5rdrc")
 }],
 "loop": false,
 "name": &"Shoot",
