@@ -51,6 +51,10 @@ public partial class Player : CharacterBody3D, IDamageable
     [Signal]
     public delegate void playerHitEventHandler();
 
+    // Audio
+    [Export]
+    private AudioStreamPlayer3D damageSound;
+
     public override void _Ready()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -178,8 +182,12 @@ public partial class Player : CharacterBody3D, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0) GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn");
-
+        if (health <= 0) { 
+            GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn"); 
+        } else
+        {
+            damageSound.Play();
+        }
         // emit the player hit signal
         EmitSignal("playerHit");
     }

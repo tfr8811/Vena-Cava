@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8v80bfkrhhla"]
+[gd_scene load_steps=3 format=3 uid="uid://b8v80bfkrhhla"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Retry.cs" id="1_p4ktu"]
+[ext_resource type="AudioStream" uid="uid://c0oq38mad58qf" path="res://assets/Audio/SFX/Player/Damage/game_over.wav" id="2_ueers"]
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -12,7 +13,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Retry" type="Button" parent="."]
+[node name="Retry" type="Button" parent="." node_paths=PackedStringArray("gameOverSound")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -27,3 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Retry"
 script = ExtResource("1_p4ktu")
+gameOverSound = NodePath("../GameOverSound")
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ueers")
