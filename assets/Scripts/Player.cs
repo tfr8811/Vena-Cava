@@ -12,7 +12,7 @@ public partial class Player : CharacterBody3D, IDamageable
     const float GRAVITY = 10f;
     const float JUMP_VELOCITY = 4.5f;
     const float WALK_SPEED = 10f;
-    const float SPRINT_SPEED = 20f;
+    const float SPRINT_SPEED = 15f;
     private float speed;
 
     // health

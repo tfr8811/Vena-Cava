@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bb67rvws5ekus"]
+[gd_scene load_steps=37 format=3 uid="uid://bb67rvws5ekus"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Enemy.cs" id="1_wycld"]
 [ext_resource type="Texture2D" uid="uid://d1ejsaqohb7t7" path="res://assets/Sprites/CHARACTERS/Cop/Death/IMG_0455.png" id="2_5340d"]
@@ -21,7 +21,6 @@
 [ext_resource type="AudioStream" uid="uid://brry21wlxlfum" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_DROP THE GUN.mp3" id="19_8injo"]
 [ext_resource type="AudioStream" uid="uid://dcbfoh11q0kry" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_HANDS UP 2.mp3" id="20_dlfx6"]
 [ext_resource type="AudioStream" uid="uid://bvh37svx7b3qt" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_HANDS UP.mp3" id="21_xvwt6"]
-[ext_resource type="AudioStream" uid="uid://fio8wlqddbeg" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_ON THE GROUND.mp3" id="22_tl2yc"]
 [ext_resource type="AudioStream" uid="uid://bppe7414bhxcy" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_STOP.mp3" id="23_7pufh"]
 [ext_resource type="AudioStream" uid="uid://ilvignhxstuy" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_UNDER ARREST 2.mp3" id="24_rqfhb"]
 [ext_resource type="AudioStream" uid="uid://cs2p1nj46spt0" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_UNDER ARREST.mp3" id="25_xtscf"]
@@ -117,21 +116,19 @@ animations = [{
 }]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_30ghv"]
-streams_count = 7
+streams_count = 6
 stream_0/stream = ExtResource("19_8injo")
 stream_0/weight = 1.0
 stream_1/stream = ExtResource("20_dlfx6")
 stream_1/weight = 1.0
 stream_2/stream = ExtResource("21_xvwt6")
 stream_2/weight = 1.0
-stream_3/stream = ExtResource("22_tl2yc")
+stream_3/stream = ExtResource("23_7pufh")
 stream_3/weight = 1.0
-stream_4/stream = ExtResource("23_7pufh")
+stream_4/stream = ExtResource("24_rqfhb")
 stream_4/weight = 1.0
-stream_5/stream = ExtResource("24_rqfhb")
+stream_5/stream = ExtResource("25_xtscf")
 stream_5/weight = 1.0
-stream_6/stream = ExtResource("25_xtscf")
-stream_6/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fcetk"]
 streams_count = 5
