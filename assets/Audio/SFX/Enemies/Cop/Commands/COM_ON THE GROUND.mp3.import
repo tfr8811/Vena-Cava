@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://fio8wlqddbeg"
+path="res://.godot/imported/COM_ON THE GROUND.mp3-263ddd4d071ad7694a0cd7da09ff3283.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_ON THE GROUND.mp3"
+dest_files=["res://.godot/imported/COM_ON THE GROUND.mp3-263ddd4d071ad7694a0cd7da09ff3283.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

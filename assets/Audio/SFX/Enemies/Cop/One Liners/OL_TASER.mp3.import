@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cnc1t1dpp1joa"
+path="res://.godot/imported/OL_TASER.mp3-e01732c09f5c8a04dbb2faa5ff1c1781.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/One Liners/OL_TASER.mp3"
+dest_files=["res://.godot/imported/OL_TASER.mp3-e01732c09f5c8a04dbb2faa5ff1c1781.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

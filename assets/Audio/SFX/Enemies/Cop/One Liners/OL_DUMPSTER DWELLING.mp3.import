@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bmgl232q46jb6"
+path="res://.godot/imported/OL_DUMPSTER DWELLING.mp3-d37326ac01da1f665bd7799da6a74ff7.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/One Liners/OL_DUMPSTER DWELLING.mp3"
+dest_files=["res://.godot/imported/OL_DUMPSTER DWELLING.mp3-d37326ac01da1f665bd7799da6a74ff7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

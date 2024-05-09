@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://e3r3mv0601qd"
+path="res://.godot/imported/CO_HE'S GOTA GUN.mp3-e7adf9a97d93ba1997a15ffa7cb96a09.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/Callouts/CO_HE'S GOTA GUN.mp3"
+dest_files=["res://.godot/imported/CO_HE'S GOTA GUN.mp3-e7adf9a97d93ba1997a15ffa7cb96a09.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

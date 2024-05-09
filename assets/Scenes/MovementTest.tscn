@@ -28,11 +28,9 @@ player = NodePath("Player")
 healthBar = NodePath("CanvasLayer/UI/HealthBar")
 lipaseBar = NodePath("CanvasLayer/UI/LipaseBar")
 
-[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("gunSprite", "ammoCounter", "head", "camera")]
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("head", "camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.671, 2.2361, -16.756)
 script = ExtResource("1_ussea")
-gunSprite = NodePath("Head/Gun/Pistol/CanvasLayer/Control/GunSprite")
-ammoCounter = NodePath("Head/Gun/Pistol/CanvasLayer/Control/AmmoLabel")
 head = NodePath("Head")
 camera = NodePath("Head/Camera3D")
 
@@ -47,9 +45,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606531, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
 
-[node name="Gun" type="Node3D" parent="Player/Head"]
+[node name="Gun" type="Node3D" parent="Player/Head/Camera3D"]
 
-[node name="Pistol" parent="Player/Head/Gun" instance=ExtResource("3_5a4h0")]
+[node name="Pistol" parent="Player/Head/Camera3D/Gun" instance=ExtResource("3_5a4h0")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_oj4tw")

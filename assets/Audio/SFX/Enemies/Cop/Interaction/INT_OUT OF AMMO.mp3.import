@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b0rh1gi2jib3t"
+path="res://.godot/imported/INT_OUT OF AMMO.mp3-093c4ef9e6b91bf812b4f5c7cecb6aff.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/Interaction/INT_OUT OF AMMO.mp3"
+dest_files=["res://.godot/imported/INT_OUT OF AMMO.mp3-093c4ef9e6b91bf812b4f5c7cecb6aff.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

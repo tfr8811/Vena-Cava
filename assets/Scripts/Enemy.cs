@@ -51,6 +51,16 @@ public partial class Enemy : CharacterBody3D, IDamageable
     private int maxBulletCount = 8;
     private int bulletCount = 8;
 
+    // Sounds
+    [Export]
+    private AudioStreamPlayer3D commandRandomizer;
+    [Export]
+    private AudioStreamPlayer3D damageRandomizer;
+    [Export]
+    private AudioStreamPlayer3D shootSound;
+    [Export]
+    private AudioStreamPlayer3D reloadSound;
+
     // instance the bullet
     PackedScene psBullet = GD.Load<PackedScene>("res://assets/Scenes/Bullet.tscn");
 
@@ -97,6 +107,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
                     // this enemy has noticed the player, and therefore, their detection radius should increase due to vigilance
                     if (!hasSeenPlayer)
                     {
+                        commandRandomizer.Play();
                         hasSeenPlayer = true;
                     }
                     navAgent.TargetPosition = player.GlobalTransform.Origin;
@@ -119,6 +130,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
                     {
                         // SHOOT THE BULLET
                         enemySprite.Play("Shoot");
+                        shootSound.Play();
                         bulletCount -= 1;
                         SpawnBullet(BULLET_SPEED);
                         canShoot = false;
@@ -129,6 +141,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
                 {
                     // start the reload delay and reload the gun
                     enemySprite.Play("Reload");
+                    reloadSound.Play();
                     canShoot = false;
                     canMove = false;
                 }
@@ -218,6 +231,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
     /// </summary>
     public void TakeDamage(int damage)
     {
+        damageRandomizer.Play();
         health -= damage;
         if (health <= 0) enemySprite.Play("Death");
     }

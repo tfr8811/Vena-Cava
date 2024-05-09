@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnhcdoqsul3ob"]
+[gd_scene load_steps=20 format=3 uid="uid://dnhcdoqsul3ob"]
 
 [ext_resource type="Texture2D" uid="uid://b5tw3bt2brkxd" path="res://assets/Sprites/WEAPONS/PISTOL/PISTA0.PNG" id="1_5rdrc"]
+[ext_resource type="Script" path="res://assets/Scripts/Gun.cs" id="1_gfwv8"]
 [ext_resource type="Texture2D" uid="uid://dyq4mtgcqf7gc" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0297.PNG" id="2_gl1b3"]
 [ext_resource type="Texture2D" uid="uid://dc1qah0shlpib" path="res://assets/Sprites/WEAPONS/PISTOL/PISTB0.PNG" id="2_w6r2k"]
 [ext_resource type="Texture2D" uid="uid://bv1a5rnjpabo7" path="res://assets/Sprites/WEAPONS/PISTOL/PISTC0.PNG" id="3_55ift"]
@@ -14,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://dykfvllgrlikc" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0307.PNG" id="9_2jndx"]
 [ext_resource type="Texture2D" uid="uid://cvdhv5yaq0vnx" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0308.PNG" id="10_xgmu1"]
 [ext_resource type="Texture2D" uid="uid://bil57ph1jcd24" path="res://assets/Sprites/WEAPONS/PISTOL/IMG_0309.PNG" id="11_rxl20"]
+[ext_resource type="AudioStream" uid="uid://c2447r8h66btu" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL_FIRE_2.wav" id="16_d6ifk"]
+[ext_resource type="AudioStream" uid="uid://dtf65vv66q2be" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL RELOAD.wav" id="17_00157"]
+[ext_resource type="AudioStream" uid="uid://bs3qtxr28wpeh" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL_EQUIP.wav" id="18_prw4v"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_26jbt"]
 animations = [{
@@ -72,7 +76,13 @@ animations = [{
 "speed": 20.0
 }]
 
-[node name="Pistol" type="Node3D"]
+[node name="Pistol" type="Node3D" node_paths=PackedStringArray("gunSprite", "ammoCounter", "shootSound", "reloadSound", "equipSound")]
+script = ExtResource("1_gfwv8")
+gunSprite = NodePath("CanvasLayer/Control/GunSprite")
+ammoCounter = NodePath("CanvasLayer/Control/AmmoLabel")
+shootSound = NodePath("ShootSound")
+reloadSound = NodePath("ReloadSound")
+equipSound = NodePath("EquipSound")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -135,3 +145,12 @@ text = "50
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("16_d6ifk")
+
+[node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("17_00157")
+
+[node name="EquipSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("18_prw4v")

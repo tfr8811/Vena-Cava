@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cd6bpxmvpl6nj"
+path="res://.godot/imported/OL_WOOO.mp3-be1d14ad018c7c596132d71ff66e7e36.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/One Liners/OL_WOOO.mp3"
+dest_files=["res://.godot/imported/OL_WOOO.mp3-be1d14ad018c7c596132d71ff66e7e36.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

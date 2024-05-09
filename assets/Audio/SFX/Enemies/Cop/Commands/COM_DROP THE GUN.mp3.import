@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://brry21wlxlfum"
+path="res://.godot/imported/COM_DROP THE GUN.mp3-c3d3a248ee03b7d522b0d60b51812bcc.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_DROP THE GUN.mp3"
+dest_files=["res://.godot/imported/COM_DROP THE GUN.mp3-c3d3a248ee03b7d522b0d60b51812bcc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

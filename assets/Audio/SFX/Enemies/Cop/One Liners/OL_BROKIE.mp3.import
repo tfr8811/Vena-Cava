@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://rwpntopmpyx7"
+path="res://.godot/imported/OL_BROKIE.mp3-6bfa145d0b7c6eb2f800bc92ef7eeb53.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/One Liners/OL_BROKIE.mp3"
+dest_files=["res://.godot/imported/OL_BROKIE.mp3-6bfa145d0b7c6eb2f800bc92ef7eeb53.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

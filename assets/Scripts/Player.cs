@@ -27,26 +27,8 @@ public partial class Player : CharacterBody3D, IDamageable
         get { return this.health; }
     }
 
-    // shooting
+
     const float SENSITIVITY = 0.001f;
-    const float BULLET_SPEED = 120.0f;
-
-    // ammo
-    private int maxAmmo = 10;
-    private int ammo = 10;
-
-    // Gun info - TODO should refactor some of the player code to the gun
-    [Export]
-    private AnimatedSprite2D gunSprite;
-    [Export]
-    private Label ammoCounter;
-
-    // the player cant shoot during some actions such as reloading
-    private bool canShoot = true;
-
-    // todo: use GD.Timer
-    private double maxFireDelay = 0.2;
-    private double fireDelay;
 
     // bob variables
     const double BOB_FREQ = 2.0;
@@ -65,9 +47,6 @@ public partial class Player : CharacterBody3D, IDamageable
     [Export]
     private Camera3D camera;
 
-    // instance the bullet - Tom
-    PackedScene psBullet = GD.Load<PackedScene>("res://assets/Scenes/Bullet.tscn");
-
     // send out a signal when the player is hit
     [Signal]
     public delegate void playerHitEventHandler();
@@ -76,11 +55,7 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
         // this line of code is required to prevent the player from flying into the stratosphere
-        Velocity = new Vector3(1, Velocity.Y, 1);
-        gunSprite.Play("Idle");
-
-        // setup the ammoCounter
-        ammoCounter.Text = ammo.ToString();
+        // Velocity = new Vector3(1, Velocity.Y, 1);
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -102,11 +77,6 @@ public partial class Player : CharacterBody3D, IDamageable
 
     public override void _Process(double delta)
     {
-        // decrease delay
-        if (fireDelay > 0)
-        {
-            fireDelay -= delta;
-        }
 
     }
 
@@ -181,49 +151,6 @@ public partial class Player : CharacterBody3D, IDamageable
         double targetFOV = BASE_FOV + FOV_CHANGE * velocityClamped;
         camera.Fov = (float) Mathf.Lerp(camera.Fov, targetFOV, delta * 8.0);
 
-        // SHOOT
-        if (canShoot && ammo > 0 && fireDelay <= 0 && Input.IsActionJustPressed("Shoot"))
-        {
-            gunSprite.Play("Shoot");
-            SpawnBullet(BULLET_SPEED);
-
-            // Here I can use can shoot or fire delay, for now, I'll use can shoot
-            canShoot = false;
-            // fireDelay = maxFireDelay;
-
-            // update the ammo
-            ammo -= 1;
-            ammoCounter.Text = ammo.ToString();
-        }
-
-        // shoot animation handler
-        if (gunSprite.Animation == "Shoot")
-        {
-            if (!gunSprite.IsPlaying())
-            {
-                gunSprite.Play("Idle");
-                canShoot = true;
-            }
-        }
-
-        // RELOAD - It's automatic rn but can also be done by pressing "R"
-        if ((canShoot && ammo == 0) || Input.IsActionJustPressed("Reload"))
-        {
-            gunSprite.Play("Reload");
-            canShoot = false;
-        }
-        // reload animation handler
-        if (gunSprite.Animation == "Reload")
-        {
-            if (!gunSprite.IsPlaying())
-            {
-                ammo = maxAmmo;
-                ammoCounter.Text = ammo.ToString();
-                gunSprite.Play("Idle");
-                canShoot = true;
-            }
-        }
-
         // apply the movement
         MoveAndSlide();
     }
@@ -241,24 +168,6 @@ public partial class Player : CharacterBody3D, IDamageable
             0
             );
         return pos;
-    }
-
-    /// <summary>
-    /// Roman Noodles
-    /// 4/30/2024
-    /// Shoots a bullet in the direction the player is facing
-    /// </summary>
-    private void SpawnBullet(float speed)
-    {
-        Bullet bullet = (Bullet)psBullet.Instantiate();
-        GetNode("/root").AddChild(bullet);
-        // set the position of the bullet in front of the player
-        Vector3 pointVector = -camera.GlobalTransform.Basis.Z;
-        bullet.GlobalPosition = camera.GlobalPosition;
-        bullet.GlobalPosition += pointVector * 1f;
-
-
-        bullet.Velocity = pointVector * speed;
     }
 
     /// <summary>

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcbfoh11q0kry"
+path="res://.godot/imported/COM_HANDS UP 2.mp3-4b60ee0ede4c85d0c0ba1f1f278af594.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_HANDS UP 2.mp3"
+dest_files=["res://.godot/imported/COM_HANDS UP 2.mp3-4b60ee0ede4c85d0c0ba1f1f278af594.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

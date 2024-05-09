@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgdodi26wvn61"
+path="res://.godot/imported/CO_OFFICER DOWN 2.mp3-65b1baeb8424938c41aa7a3e606b41e4.mp3str"
+
+[deps]
+
+source_file="res://assets/Audio/SFX/Enemies/Cop/Callouts/CO_OFFICER DOWN 2.mp3"
+dest_files=["res://.godot/imported/CO_OFFICER DOWN 2.mp3-65b1baeb8424938c41aa7a3e606b41e4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
