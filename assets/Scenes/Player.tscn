@@ -26,7 +26,6 @@ stream_4/stream = ExtResource("7_raieu")
 stream_4/weight = 1.0
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "camera", "damageSound")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.671, 2.2361, -16.756)
 script = ExtResource("1_clxhf")
 head = NodePath("Head")
 camera = NodePath("Head/Camera3D")

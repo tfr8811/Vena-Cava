@@ -81,7 +81,11 @@ public partial class Player : CharacterBody3D, IDamageable
 
     public override void _Process(double delta)
     {
-
+        // player dies if they fall out of bounds
+        if (this.GlobalPosition.Y < -50)
+        {
+            TakeDamage(1);
+        }
     }
 
     public override void _PhysicsProcess(double delta)

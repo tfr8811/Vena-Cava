@@ -24,6 +24,7 @@ healthBar = NodePath("CanvasLayer/UI/HealthBar")
 lipaseBar = NodePath("CanvasLayer/UI/LipaseBar")
 
 [node name="Player" parent="." instance=ExtResource("2_50kgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3089, 1, -18.7112)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_oj4tw")
@@ -32,6 +33,10 @@ navigation_mesh = SubResource("NavigationMesh_oj4tw")
 
 [node name="Cop" parent="." instance=ExtResource("3_irsah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.604, 1, -1.05938)
+playerPath = NodePath("../Player")
+
+[node name="Cop2" parent="." instance=ExtResource("3_irsah")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.64106, 1, -7.99912)
 playerPath = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -47,8 +52,10 @@ mouse_filter = 2
 
 [node name="HitRect" type="ColorRect" parent="CanvasLayer/UI"]
 layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_left = -515.0
+offset_top = -464.0
+offset_right = 1670.0
+offset_bottom = 1081.0
 mouse_filter = 2
 color = Color(0.85098, 0.172549, 0.27451, 0.270588)
 
