@@ -233,6 +233,10 @@ public partial class Enemy : CharacterBody3D, IDamageable
     {
         damageRandomizer.Play();
         health -= damage;
-        if (health <= 0) enemySprite.Play("Death");
+        if (health <= 0) { 
+            enemySprite.Play("Death"); 
+            canMove = false;
+            canShoot = false;
+        }
     }
 }
