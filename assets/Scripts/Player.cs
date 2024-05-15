@@ -10,7 +10,7 @@ public partial class Player : CharacterBody3D, IDamageable
 {
     // movement
     const float GRAVITY = 10f;
-    const float JUMP_VELOCITY = 4.5f;
+    const float JUMP_VELOCITY = 5.5f;
     const float WALK_SPEED = 10f;
     const float SPRINT_SPEED = 15f;
     private float speed;
@@ -138,9 +138,9 @@ public partial class Player : CharacterBody3D, IDamageable
             if (direction.Length() > 0.1)
             {
                 Velocity = new Vector3(
-                    (float) Mathf.Lerp(Velocity.X, direction.X * speed, delta * 2.0), 
+                    (float) Mathf.Lerp(Velocity.X, direction.X * speed, delta * 3.0), 
                     Velocity.Y,
-                    (float) Mathf.Lerp(Velocity.Z, direction.Z * speed, delta * 2.0)
+                    (float) Mathf.Lerp(Velocity.Z, direction.Z * speed, delta * 3.0)
                     );
             }
         }

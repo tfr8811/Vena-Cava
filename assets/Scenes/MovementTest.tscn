@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://drfi6euxvh1yx"]
+[gd_scene load_steps=15 format=3 uid="uid://drfi6euxvh1yx"]
 
 [ext_resource type="Script" path="res://assets/Scripts/GameManager.cs" id="1_1d5ay"]
 [ext_resource type="PackedScene" uid="uid://cjc13em5od4qa" path="res://assets/Scenes/Player.tscn" id="2_50kgt"]
@@ -9,12 +9,24 @@
 [ext_resource type="Texture2D" uid="uid://04lthd6ux1bv" path="res://assets/Sprites/HUD/Lipase_Bar.png" id="7_nls4b"]
 [ext_resource type="Texture2D" uid="uid://qkmbfxft8el8" path="res://assets/Sprites/HUD/Interaction_Icon.png" id="9_1p4m2"]
 [ext_resource type="Texture2D" uid="uid://uqvnaffh064k" path="res://assets/Sprites/HUD/Facecam.png" id="10_g8o6o"]
+[ext_resource type="Texture2D" uid="uid://caq5vkkqlumuh" path="res://360.png" id="10_vgfbu"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oj4tw"]
 vertices = PackedVector3Array(-11.0001, 7.25, -33, -11.0001, 7.25, -11, -1.00007, 7.25, -11, -1.00007, 7.25, -33, -5.28578, 10.5, -33, -6.71435, 10.25, -33, -6.71435, 10.25, -11, -5.28578, 10.5, -11, -5.97998, 10.75, -29.4981, -6.00432, 10.75, -12.9938, 17.7499, 0.5, -29.25, 20.7499, 0.5, -29.25, 20.9999, 0.5, -33, 16.9999, 0.5, -28.5, 17.7499, 0.5, -29.25, 20.9999, 0.5, -33, 0.999934, 0.5, -33, 0.999934, 0.5, -11.75, 16.9999, 0.5, -11.75, 16.9999, 0.5, -28.5, 0.999934, 0.5, -33, 20.9999, 0.5, -33, 20.7499, 0.5, -29.25, 22.2499, 0.5, -29.25, 20.9999, 0.5, -33, 22.2499, 0.5, -29.25, 22.9999, 0.5, -28.5, 42.9999, 0.5, -33, 22.2499, 0.5, -23, 19.2499, 0.5, -23, 19.2499, 0.5, -11.25, 22.9999, 0.5, -23.75, 22.2499, 0.5, -23, 19.2499, 0.5, -11.25, 42.9999, 0.5, -11.25, 42.9999, 0.5, -33, 42.9999, 0.5, -33, 22.9999, 0.5, -28.5, 22.9999, 0.5, -23.75, -7.75007, 0.5, -31.25, -7.00007, 0.5, -30.5, -6.50007, 0.5, -31.25, -10.7501, 0.5, -32.75, -10.7501, 0.5, -31, -7.75007, 0.5, -31.25, -10.7501, 0.5, -32.75, -7.75007, 0.5, -31.25, -6.50007, 0.5, -31.25, -1.25007, 0.5, -32.75, -10.7501, 0.5, -32.75, -6.50007, 0.5, -31.25, -3.75007, 0.5, -31.25, -1.25007, 0.5, -23.5, -1.25007, 0.5, -32.75, -3.00007, 0.5, -30.5, -3.25007, 0.5, -23.5, -1.25007, 0.5, -32.75, -3.75007, 0.5, -31.25, -3.00007, 0.5, -30.5, 18.9999, 6.25, -27.25, 18.9999, 6.25, -25, 20.9999, 6.25, -25, 20.9999, 6.25, -27.25, 19.2499, 0.5, -27, 19.2499, 0.5, -25.25, 20.7499, 0.5, -25.25, 20.7499, 0.5, -27, -6.50007, 0.5, -23, -7.00007, 0.5, -23.75, -7.75007, 0.5, -23, -9.75007, 0.5, -19.25, -9.00007, 0.5, -18.5, -9.75007, 0.5, -13, -10.7501, 0.5, -13, -10.7501, 0.5, -11.25, -1.25007, 0.5, -23.5, -3.25007, 0.5, -23.5, -3.75007, 0.5, -23, -9.00007, 0.5, -13.75, -9.75007, 0.5, -13, -10.7501, 0.5, -11.25, -1.25007, 0.5, -11.25, -10.7501, 0.5, -23.25, -10.7501, 0.5, -19.25, -9.75007, 0.5, -19.25, -7.75007, 0.5, -23, -3.75007, 0.5, -23, -6.50007, 0.5, -23, -9.00007, 0.5, -18.5, -1.25007, 0.5, -23.5, -3.75007, 0.5, -23, -9.00007, 0.5, -18.5, -9.00007, 0.5, -13.75, -1.25007, 0.5, -11.25, 0.249934, 0.5, -9.00003, -1.50007, 0.5, -9.00003, -1.50007, 0.5, 6.74997, 0.249934, 0.5, 6.74997, 0.999934, 0.5, -9.75003, 0.249934, 0.5, -9.00003, 0.249934, 0.5, 6.74997, 0.999934, 0.5, 7.49997, 17.7499, 0.5, -9.00003, 16.9999, 0.5, -9.75003, 16.9999, 0.5, -9.75003, 16.9999, 0.5, -11.75, 0.999934, 0.5, -11.75, 0.999934, 0.5, -9.75003, 24.9999, 0.5, 13, 24.9999, 0.5, -9.00003, 17.7499, 0.5, -9.00003, 0.999934, 0.5, 7.49997, 0.999934, 0.5, 13, -1.50007, 0.5, 6.74997, -1.50007, 0.5, -9.00003, -11.0001, 0.5, -9.00003, -11.0001, 0.5, 6.74997)
 polygons = [PackedInt32Array(2, 8, 3), PackedInt32Array(3, 8, 4), PackedInt32Array(4, 8, 5), PackedInt32Array(5, 8, 0), PackedInt32Array(0, 8, 1), PackedInt32Array(1, 9, 6), PackedInt32Array(6, 9, 7), PackedInt32Array(7, 9, 2), PackedInt32Array(2, 9, 8), PackedInt32Array(8, 9, 1), PackedInt32Array(12, 11, 10), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 16), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 20), PackedInt32Array(23, 22, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(30, 29, 28), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(34, 31, 35), PackedInt32Array(38, 37, 36), PackedInt32Array(41, 40, 39), PackedInt32Array(44, 43, 42), PackedInt32Array(47, 46, 45), PackedInt32Array(51, 50, 48), PackedInt32Array(48, 50, 49), PackedInt32Array(55, 54, 52), PackedInt32Array(52, 54, 53), PackedInt32Array(58, 57, 56), PackedInt32Array(62, 61, 59), PackedInt32Array(59, 61, 60), PackedInt32Array(66, 65, 63), PackedInt32Array(63, 65, 64), PackedInt32Array(68, 67, 69), PackedInt32Array(69, 67, 70), PackedInt32Array(70, 67, 71), PackedInt32Array(74, 73, 72), PackedInt32Array(77, 76, 75), PackedInt32Array(79, 78, 80), PackedInt32Array(80, 78, 81), PackedInt32Array(83, 82, 84), PackedInt32Array(84, 82, 85), PackedInt32Array(88, 87, 86), PackedInt32Array(90, 89, 91), PackedInt32Array(91, 89, 92), PackedInt32Array(92, 89, 93), PackedInt32Array(97, 96, 94), PackedInt32Array(94, 96, 95), PackedInt32Array(99, 98, 100), PackedInt32Array(100, 98, 101), PackedInt32Array(101, 98, 103), PackedInt32Array(101, 103, 102), PackedInt32Array(107, 106, 104), PackedInt32Array(104, 106, 105), PackedInt32Array(109, 108, 110), PackedInt32Array(110, 108, 111), PackedInt32Array(111, 108, 112), PackedInt32Array(116, 115, 113), PackedInt32Array(113, 115, 114)]
 agent_height = 2.0
 agent_radius = 1.0
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ieb58"]
+panorama = ExtResource("10_vgfbu")
+
+[sub_resource type="Sky" id="Sky_eup2w"]
+sky_material = SubResource("PanoramaSkyMaterial_ieb58")
+
+[sub_resource type="Environment" id="Environment_2wdre"]
+background_mode = 1
+background_color = Color(0.380392, 0.588235, 0.67451, 1)
+sky = SubResource("Sky_eup2w")
 
 [node name="MovementTest" type="Node3D" node_paths=PackedStringArray("hitRect", "player", "healthBar", "lipaseBar")]
 script = ExtResource("1_1d5ay")
@@ -127,5 +139,8 @@ grow_horizontal = 0
 scale = Vector2(0.25, 0.25)
 pivot_offset = Vector2(620, 0)
 texture = ExtResource("10_g8o6o")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2wdre")
 
 [connection signal="playerHit" from="Player" to="." method="_on_player_player_hit"]
