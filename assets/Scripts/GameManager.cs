@@ -22,9 +22,17 @@ public partial class GameManager : Node3D
     [Export]
     private TextureProgressBar lipaseBar;
 
+    [Export]
+    private Label copCounter;
+
+    private int copsDefeated = 0;
+
     public override void _Ready()
     {
         healthBar.MaxValue = player.MaxHealth;
+
+        // setup the copCounter
+        copCounter.Text = copsDefeated.ToString();
     }
 
     public override void _Process(double delta)
@@ -32,7 +40,16 @@ public partial class GameManager : Node3D
         if (hitRect.Color.A > 0)
         {
             // fade out the red tint effect
-            hitRect.Color = new Color(hitRect.Color.R, hitRect.Color.G, hitRect.Color.B, hitRect.Color.A - (float) delta);
+            hitRect.Color = new Color(hitRect.Color.R, hitRect.Color.G, hitRect.Color.B, hitRect.Color.A - (float)delta);
+        }
+
+        // FULLSCREEN Handler
+        if (Input.IsActionJustPressed("Fullscreen")) {
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+        }
+        if (Input.IsActionJustPressed("Windowed"))
+        {
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
         }
     }
 
@@ -45,5 +62,16 @@ public partial class GameManager : Node3D
     {
         hitRect.Color = new Color(hitRect.Color.R, hitRect.Color.G, hitRect.Color.B, hitOpacity);
         healthBar.Value = player.Health;
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/03/2024
+    /// Event handler for when the player defeats an enemy
+    /// </summary>
+    public void _on_player_enemy_defeated()
+    {
+        copsDefeated += 1;
+        copCounter.Text = copsDefeated.ToString();
     }
 }

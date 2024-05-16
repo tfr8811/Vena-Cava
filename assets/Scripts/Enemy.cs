@@ -13,7 +13,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
     private CharacterBody3D player = null;
 
     [Export]
-    private NodePath playerPath;
+    private NodePath playerPath = "/root/World/Player";
 
     [Export]
     private AnimatedSprite3D enemySprite;
@@ -176,6 +176,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
             {
                 if (!enemySprite.IsPlaying())
                 {
+                    // tell the gamemanager that this enemy was defeated
+                    player.EmitSignal("enemyDefeated");
                     // despawn the enemy
                     this.QueueFree();
                 }
@@ -198,7 +200,10 @@ public partial class Enemy : CharacterBody3D, IDamageable
         Bullet bullet = (Bullet)psBullet.Instantiate();
         GetNode("/root").AddChild(bullet);
         // set the position of the bullet in front of the player
-        Vector3 pointVector = -GlobalTransform.Basis.Z;
+        //Vector3 pointVector = -GlobalTransform.Basis.Z;
+        // Aim at player
+        Vector3 pointVector = new Vector3(player.GlobalPosition.X - GlobalPosition.X, player.GlobalPosition.Y - GlobalPosition.Y, player.GlobalPosition.Z - GlobalPosition.Z);
+        pointVector = pointVector.Normalized();
         bullet.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
         bullet.GlobalPosition += pointVector * 2;
 

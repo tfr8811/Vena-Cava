@@ -34,7 +34,7 @@ public partial class Gun : Node3D
     private double maxFireDelay = 0.2;
     private double fireDelay;
 
-    // instance the bullet - Tom
+    // instance the bullet
     PackedScene psBullet = GD.Load<PackedScene>("res://assets/Scenes/Bullet.tscn");
 
     public override void _Ready()

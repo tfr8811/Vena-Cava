@@ -21,7 +21,7 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         get { return this.health; }
     }
-    private int health = 10;
+    private int health = 20;
     public int Health
     {
         get { return this.health; }
@@ -50,6 +50,10 @@ public partial class Player : CharacterBody3D, IDamageable
     // send out a signal when the player is hit
     [Signal]
     public delegate void playerHitEventHandler();
+
+    // send out a signal when the enemy is defeated
+    [Signal]
+    public delegate void enemyDefeatedEventHandler();
 
     // Audio
     [Export]
@@ -186,7 +190,12 @@ public partial class Player : CharacterBody3D, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
-        if (health <= 0) { 
+        if (health <= 0) {
+            // TODO: Cleanout scene - DOESNT WORK
+            //foreach (Node node in GetNode("/root/World").GetChildren())
+            //{
+            //    node.QueueFree();
+            //}
             GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn"); 
         } else
         {
