@@ -68,7 +68,7 @@ _data = {
 "RESET": SubResource("Animation_dsoo5")
 }
 
-[node name="PauseMenu" type="Control" node_paths=PackedStringArray("mouseSlider", "resume", "restart", "quit", "animationPlayer", "senseValue")]
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("mouseSlider", "bResume", "bRestart", "bQuit", "bFullscreen", "animationPlayer", "senseValue")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -80,9 +80,10 @@ scale = Vector2(1.0004, 1.0004)
 mouse_filter = 1
 script = ExtResource("1_0ente")
 mouseSlider = NodePath("PanelContainer/VBoxContainer/MouseSlider")
-resume = NodePath("PanelContainer/VBoxContainer/Resume")
-restart = NodePath("PanelContainer/VBoxContainer/Restart")
-quit = NodePath("PanelContainer/VBoxContainer/Quit")
+bResume = NodePath("PanelContainer/VBoxContainer/Resume")
+bRestart = NodePath("PanelContainer/VBoxContainer/Restart")
+bQuit = NodePath("PanelContainer/VBoxContainer/Quit")
+bFullscreen = NodePath("PanelContainer/VBoxContainer/Fullscreen")
 animationPlayer = NodePath("AnimationPlayer")
 senseValue = NodePath("PanelContainer/VBoxContainer/SenseValue")
 
@@ -130,6 +131,12 @@ layout_mode = 2
 mouse_filter = 1
 text = "Quit"
 
+[node name="Fullscreen" type="Button" parent="PanelContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+mouse_filter = 1
+text = "Toggle Fullscreen"
+
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Mouse Sensitivity"
@@ -153,5 +160,6 @@ libraries = {
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Fullscreen" to="." method="_on_fullscreen_pressed"]
 [connection signal="drag_ended" from="PanelContainer/VBoxContainer/MouseSlider" to="." method="_on_mouse_slider_drag_ended"]
 [connection signal="value_changed" from="PanelContainer/VBoxContainer/MouseSlider" to="." method="_on_mouse_slider_value_changed"]

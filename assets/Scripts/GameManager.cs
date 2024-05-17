@@ -26,6 +26,7 @@ public partial class GameManager : Node3D
     private Label copCounter;
 
     private int copsDefeated = 0;
+    private bool fullscreen = false;
 
     public override void _Ready()
     {
@@ -45,11 +46,27 @@ public partial class GameManager : Node3D
 
         // FULLSCREEN Handler
         if (Input.IsActionJustPressed("Fullscreen")) {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+            ToggleFullscreen();
         }
-        if (Input.IsActionJustPressed("Windowed"))
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/17/2024
+    /// Toggles fullscreen
+    /// </summary>
+    public void ToggleFullscreen()
+    {
+        // toggle fullscreen
+        fullscreen = !fullscreen;
+        // switch display mode
+        if (fullscreen)
         {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Maximized);
+        }
+        else
+        {
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
         }
     }
 

@@ -8,6 +8,11 @@ using System;
 /// </summary>
 public partial class PauseMenu : Control
 {
+    // Game Manager Reference
+    private GameManager gameManager = null;
+
+    private NodePath gameManagerPath = "/root/World";
+
     // player reference
     private Player player = null;
 
@@ -17,13 +22,16 @@ public partial class PauseMenu : Control
     HSlider mouseSlider;
 
     [Export]
-    Button resume;
+    Button bResume;
 
     [Export]
-    Button restart;
+    Button bRestart;
 
     [Export]
-    Button quit;
+    Button bQuit;
+
+    [Export]
+    Button bFullscreen;
 
     [Export]
     AnimationPlayer animationPlayer;
@@ -33,10 +41,12 @@ public partial class PauseMenu : Control
 
     public override void _Ready()
     {
-        resume.Disabled = true;
-        restart.Disabled = true;
-        quit.Disabled = true;
+        bResume.Disabled = true;
+        bRestart.Disabled = true;
+        bQuit.Disabled = true;
+        bFullscreen.Disabled = true;
         animationPlayer.Play("RESET");
+        gameManager = (GameManager)GetNode(gameManagerPath);
         player = (Player)GetNode(playerPath);
         senseValue.Text = mouseSlider.Value.ToString();
     }
@@ -44,9 +54,10 @@ public partial class PauseMenu : Control
     {
         GetTree().Paused = true;
         animationPlayer.Play("Blur");
-        resume.Disabled = false;
-        restart.Disabled = false;
-        quit.Disabled = false;
+        bResume.Disabled = false;
+        bRestart.Disabled = false;
+        bQuit.Disabled = false;
+        bFullscreen.Disabled = false;
         // make the mouse visible again for menus
         Input.MouseMode = Input.MouseModeEnum.Visible;
     }
@@ -55,9 +66,10 @@ public partial class PauseMenu : Control
     {
         GetTree().Paused = false;
         animationPlayer.PlayBackwards("Blur");
-        resume.Disabled = true;
-        restart.Disabled = true;
-        quit.Disabled = true;
+        bResume.Disabled = true;
+        bRestart.Disabled = true;
+        bQuit.Disabled = true;
+        bFullscreen.Disabled = true;
         // return mouse mode to captured for gameplay
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
@@ -103,6 +115,11 @@ public partial class PauseMenu : Control
         }
         // quit to title
         GetTree().ChangeSceneToFile("res://assets/Scenes/TitleScreen.tscn");
+    }
+
+    public void _on_fullscreen_pressed()
+    {
+        gameManager.ToggleFullscreen();
     }
 
     public void _on_mouse_slider_drag_ended(bool valueChanged)

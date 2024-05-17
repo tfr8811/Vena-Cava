@@ -63,10 +63,10 @@ mouse_filter = 2
 
 [node name="HitRect" type="ColorRect" parent="CanvasLayer/UI"]
 layout_mode = 0
-offset_left = -515.0
-offset_top = -464.0
-offset_right = 1912.0
-offset_bottom = 1306.0
+offset_left = -899.0
+offset_top = -763.0
+offset_right = 2124.0
+offset_bottom = 1506.0
 scale = Vector2(1.23342, 1.13533)
 mouse_filter = 2
 color = Color(0.85098, 0.172549, 0.27451, 0.270588)
