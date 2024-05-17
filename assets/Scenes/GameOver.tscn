@@ -12,6 +12,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3, 3)
 
 [node name="Retry" type="Button" parent="." node_paths=PackedStringArray("gameOverSound")]
 layout_mode = 1

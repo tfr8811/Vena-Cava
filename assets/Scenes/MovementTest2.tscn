@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/Scripts/GameManager.cs" id="1_sdbnt"]
 [ext_resource type="PackedScene" uid="uid://cjc13em5od4qa" path="res://assets/Scenes/Player.tscn" id="2_isyb2"]
 [ext_resource type="PackedScene" uid="uid://coxrxbpkbuiw3" path="res://assets/Scenes/Gas_Station.tscn" id="3_xip4h"]
-[ext_resource type="Texture2D" uid="uid://bm2yu22141fgx" path="res://assets/Sprites/HUD/Health_and_Lipase.png" id="5_uahrc"]
+[ext_resource type="Texture2D" uid="uid://muwy1ebpfr87" path="res://assets/Sprites/HUD/Health and Armor bar.PNG" id="4_i4x1x"]
 [ext_resource type="Texture2D" uid="uid://dcvywwvvmt3ck" path="res://assets/Sprites/HUD/Health_Bar.png" id="6_w2r5m"]
 [ext_resource type="Texture2D" uid="uid://04lthd6ux1bv" path="res://assets/Sprites/HUD/Lipase_Bar.png" id="7_2oji7"]
 [ext_resource type="Texture2D" uid="uid://qkmbfxft8el8" path="res://assets/Sprites/HUD/Interaction_Icon.png" id="8_87nt6"]
@@ -65,8 +65,9 @@ mouse_filter = 2
 layout_mode = 0
 offset_left = -515.0
 offset_top = -464.0
-offset_right = 1670.0
-offset_bottom = 1081.0
+offset_right = 1912.0
+offset_bottom = 1306.0
+scale = Vector2(1.23342, 1.13533)
 mouse_filter = 2
 color = Color(0.85098, 0.172549, 0.27451, 0.270588)
 
@@ -75,24 +76,25 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -300.0
-offset_right = 450.0
+offset_left = 23.0
+offset_top = -548.0
+offset_right = 3020.0
+offset_bottom = 1500.0
 grow_vertical = 0
-scale = Vector2(0.6, 0.6)
+scale = Vector2(0.135, 0.135)
 pivot_offset = Vector2(0, 300)
-texture = ExtResource("5_uahrc")
+texture = ExtResource("4_i4x1x")
 
 [node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 38.0
-offset_top = -119.0
-offset_right = 365.0
-offset_bottom = -69.0
+offset_left = 63.0
+offset_top = -195.0
+offset_right = 390.0
+offset_bottom = -145.0
 grow_vertical = 0
-scale = Vector2(0.6, 0.6)
 value = 100.0
 texture_progress = ExtResource("6_w2r5m")
 
@@ -101,12 +103,11 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 35.0
-offset_top = -61.0
-offset_right = 362.0
-offset_bottom = -13.0
+offset_left = 58.0
+offset_top = -98.0
+offset_right = 385.0
+offset_bottom = -50.0
 grow_vertical = 0
-scale = Vector2(0.6, 0.6)
 value = 100.0
 texture_progress = ExtResource("7_2oji7")
 
@@ -123,7 +124,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.423155, 0.423155)
 pivot_offset = Vector2(165, 165)
 texture = ExtResource("8_87nt6")
 
@@ -135,23 +136,19 @@ anchor_right = 1.0
 offset_left = -620.0
 offset_bottom = 909.0
 grow_horizontal = 0
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.423465, 0.423465)
 pivot_offset = Vector2(620, 0)
 texture = ExtResource("9_4opfi")
 
 [node name="CopCount" type="Label" parent="CanvasLayer/UI"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -41.0
-offset_top = -320.0
-offset_right = 49.0
-offset_bottom = -246.0
+offset_left = -90.0
+offset_bottom = 74.0
 grow_horizontal = 2
-grow_vertical = 2
+scale = Vector2(1.99973, 1.99973)
 theme_override_colors/font_color = Color(0.988235, 0.847059, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6

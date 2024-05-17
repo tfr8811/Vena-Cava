@@ -47,14 +47,12 @@ data = PackedVector3Array(-0.0061, -0.0197, 0.0023, -0.0095, -0.0205, 0.0024, -0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wlal0"]
 resource_name = "Generic_Modern_Car"
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("2_m0n15")
 metallic = 0.4
 roughness = 0.272166
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14306"]
 resource_name = "Wheels"
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("3_xp8jp")
 metallic = 0.4
 roughness = 0.272166
