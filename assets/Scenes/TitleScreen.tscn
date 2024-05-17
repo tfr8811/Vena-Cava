@@ -1,0 +1,123 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkksechgvu2a0"]
+
+[ext_resource type="Texture2D" uid="uid://b7tallvs4ggaa" path="res://assets/Sprites/POSTER.jpg" id="1_0kou2"]
+[ext_resource type="Script" path="res://assets/Scripts/Play.cs" id="2_dke2f"]
+[ext_resource type="Texture2D" uid="uid://bai1tkfypsogy" path="res://assets/Sprites/Vive.png" id="3_cjn51"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -245.0
+offset_top = -180.0
+offset_right = -205.0
+offset_bottom = -140.0
+scale = Vector2(41.618, 26.1317)
+color = Color(0.541176, 0.356863, 0.490196, 1)
+
+[node name="Poster" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.5
+offset_top = -323.5
+offset_right = 242.5
+offset_bottom = 323.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0kou2")
+expand_mode = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -7.0
+offset_right = 33.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+flat = true
+script = ExtResource("2_dke2f")
+
+[node name="Vive" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 243.0
+offset_top = -323.5
+offset_right = 728.0
+offset_bottom = 323.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.684008, 0.594927)
+texture = ExtResource("3_cjn51")
+expand_mode = 1
+
+[node name="Vive1" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -577.0
+offset_top = 4.0
+offset_right = -92.0
+offset_bottom = 651.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.684008, 0.594927)
+texture = ExtResource("3_cjn51")
+expand_mode = 1
+
+[node name="Vive2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -574.0
+offset_top = -323.5
+offset_right = -89.0
+offset_bottom = 323.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.684008, 0.594927)
+texture = ExtResource("3_cjn51")
+expand_mode = 1
+
+[node name="Vive3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 245.0
+offset_top = -1.0
+offset_right = 730.0
+offset_bottom = 646.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.684008, 0.594927)
+texture = ExtResource("3_cjn51")
+expand_mode = 1

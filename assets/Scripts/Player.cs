@@ -11,8 +11,8 @@ public partial class Player : CharacterBody3D, IDamageable
     // movement
     const float GRAVITY = 10f;
     const float JUMP_VELOCITY = 5.5f;
-    const float WALK_SPEED = 10f;
-    const float SPRINT_SPEED = 15f;
+    const float RUN_SPEED = 10f;
+    const float WALK_SPEED = 5f;
     private float speed;
 
     // health
@@ -28,7 +28,15 @@ public partial class Player : CharacterBody3D, IDamageable
     }
 
 
-    const float SENSITIVITY = 0.001f;
+    private float sensitivity = 0.001f;
+    public float Sensitivity { 
+        get { 
+            return this.sensitivity; 
+        } 
+        set { 
+            this.sensitivity = value; 
+        }
+    }
 
     // bob variables
     const double BOB_FREQ = 2.0;
@@ -72,8 +80,8 @@ public partial class Player : CharacterBody3D, IDamageable
         // todo add controller support
         if (@event is InputEventMouseMotion look) {
             // note: X axis mouse movement rotates camera about the Y axis
-            head.RotateY(-look.Relative.X * SENSITIVITY);
-            camera.RotateX(-look.Relative.Y * SENSITIVITY);
+            head.RotateY(-look.Relative.X * sensitivity);
+            camera.RotateX(-look.Relative.Y * sensitivity);
             // clamp the cameras up and down rotation
             camera.Rotation = new Vector3(
                 (float) Math.Clamp(camera.Rotation.X, -40 * Math.PI/180, 60 * Math.PI/180), 
@@ -109,12 +117,12 @@ public partial class Player : CharacterBody3D, IDamageable
         }
 
         // sprint
-        if (Input.IsActionPressed("Sprint"))
-        {
-            speed = SPRINT_SPEED;
-        } else
+        if (Input.IsActionPressed("Crouch"))
         {
             speed = WALK_SPEED;
+        } else
+        {
+            speed = RUN_SPEED;
         }
 
         // movement
@@ -159,7 +167,7 @@ public partial class Player : CharacterBody3D, IDamageable
         }
 
         // FOV
-        double velocityClamped = Math.Clamp(Velocity.Length(), 0.5, SPRINT_SPEED * 2);
+        double velocityClamped = Math.Clamp(Velocity.Length(), 0.5, RUN_SPEED * 2);
         double targetFOV = BASE_FOV + FOV_CHANGE * velocityClamped;
         camera.Fov = (float) Mathf.Lerp(camera.Fov, targetFOV, delta * 8.0);
 
@@ -196,6 +204,12 @@ public partial class Player : CharacterBody3D, IDamageable
             //{
             //    node.QueueFree();
             //}
+            // delete all enemies - prevents ghosts
+            var allEnemies = GetTree().GetNodesInGroup("Enemies");
+            foreach (var enemy in allEnemies)
+            {
+                enemy.QueueFree();
+            }
             GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn"); 
         } else
         {

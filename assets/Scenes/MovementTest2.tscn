@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cqtw7dou2rt1c"]
+[gd_scene load_steps=16 format=3 uid="uid://cqtw7dou2rt1c"]
 
 [ext_resource type="Script" path="res://assets/Scripts/GameManager.cs" id="1_sdbnt"]
 [ext_resource type="PackedScene" uid="uid://cjc13em5od4qa" path="res://assets/Scenes/Player.tscn" id="2_isyb2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://04lthd6ux1bv" path="res://assets/Sprites/HUD/Lipase_Bar.png" id="7_2oji7"]
 [ext_resource type="Texture2D" uid="uid://qkmbfxft8el8" path="res://assets/Sprites/HUD/Interaction_Icon.png" id="8_87nt6"]
 [ext_resource type="Texture2D" uid="uid://uqvnaffh064k" path="res://assets/Sprites/HUD/Facecam.png" id="9_4opfi"]
+[ext_resource type="PackedScene" uid="uid://dtcjpjanapkyn" path="res://assets/Scenes/PauseMenu.tscn" id="9_5s5ur"]
 [ext_resource type="Texture2D" uid="uid://caq5vkkqlumuh" path="res://360.png" id="10_6lstu"]
 [ext_resource type="Script" path="res://assets/Scripts/SpawnManager.cs" id="10_ncv6v"]
 
@@ -158,6 +159,8 @@ theme_override_font_sizes/font_size = 45
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_5s5ur")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2wdre")

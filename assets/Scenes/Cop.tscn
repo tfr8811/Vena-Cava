@@ -143,7 +143,7 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("30_7r368")
 stream_4/weight = 1.0
 
-[node name="Cop" type="CharacterBody3D" node_paths=PackedStringArray("enemySprite", "commandRandomizer", "damageRandomizer", "shootSound", "reloadSound")]
+[node name="Cop" type="CharacterBody3D" node_paths=PackedStringArray("enemySprite", "commandRandomizer", "damageRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
 script = ExtResource("1_wycld")
 enemySprite = NodePath("AnimatedSprite3D")
 navPath = NodePath("NavigationAgent3D")
