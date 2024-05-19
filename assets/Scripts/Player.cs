@@ -12,7 +12,10 @@ public partial class Player : CharacterBody3D, IDamageable
     const float GRAVITY = 20f;
     const float JUMP_VELOCITY = 7f;
     const float RUN_SPEED = 10f;
-    const float WALK_SPEED = 5f;
+    const float CROUCH_MOVE_SPEED = 5f;
+    const float PLAYER_HEIGHT = 2f;
+    const float CROUCH_SPEED = 20f;
+    const float CROUCH_HEIGHT = 0.75f;
     private float speed;
 
     // health
@@ -67,6 +70,16 @@ public partial class Player : CharacterBody3D, IDamageable
     [Export]
     private AudioStreamPlayer3D damageSound;
 
+    // Collision Shape
+    [Export]
+    private CollisionShape3D playerCapsule;
+
+    // Ceiling check raycast
+    [Export]
+    private RayCast3D ceilingChecker;
+
+    private bool headBonked = false;
+
     public override void _Ready()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -104,6 +117,15 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         // update the forward vector of the player
 
+        // ceiling check
+        if (ceilingChecker.IsColliding())
+        {
+            headBonked = true;
+        } else
+        {
+            headBonked = false;
+        }
+
         // gravity
         if (!IsOnFloor())
         {
@@ -116,18 +138,29 @@ public partial class Player : CharacterBody3D, IDamageable
              Velocity = new Vector3(Velocity.X, JUMP_VELOCITY, Velocity.Z);
         }
 
-        // sprint
+        // crouch
         if (Input.IsActionPressed("Crouch"))
         {
-            speed = WALK_SPEED;
-        } else
+            speed = CROUCH_MOVE_SPEED;
+
+            // crouch height adjustment
+            ((CapsuleShape3D)playerCapsule.Shape).Height -= CROUCH_SPEED * (float) delta;
+        } else if (!headBonked)
         {
             speed = RUN_SPEED;
+
+            // stand height adjustment
+            ((CapsuleShape3D)playerCapsule.Shape).Height += CROUCH_SPEED * (float)delta;
+        } else // for partial crouch situations (when head is bonked)
+        {
+            speed = CROUCH_MOVE_SPEED;
         }
+        ((CapsuleShape3D)playerCapsule.Shape).Height = Math.Clamp(((CapsuleShape3D)playerCapsule.Shape).Height, CROUCH_HEIGHT, PLAYER_HEIGHT);
 
         // movement
         // get the movement direction from the input data
         Vector2 inputDir = Input.GetVector("Left", "Right", "Forward", "Backward");
+
         Vector3 direction = (head.Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
         if (IsOnFloor())
         {
@@ -160,6 +193,8 @@ public partial class Player : CharacterBody3D, IDamageable
                     );
             }
         }
+
+
         // head bob
         if (IsOnFloor())
         {
@@ -221,5 +256,15 @@ public partial class Player : CharacterBody3D, IDamageable
         }
         // emit the player hit signal
         EmitSignal("playerHit");
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/19/24
+    /// Gets the players head height for the enemies to aim at
+    /// </summary>
+    public float GetHeadHeight()
+    {
+        return GlobalPosition.Y + ((CapsuleShape3D)playerCapsule.Shape).Height/2 - 0.3f;
     }
 }

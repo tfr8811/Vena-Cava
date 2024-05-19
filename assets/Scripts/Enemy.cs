@@ -10,7 +10,7 @@ using System;
 public partial class Enemy : CharacterBody3D, IDamageable
 {
     // player reference
-    private CharacterBody3D player = null;
+    private Player player = null;
 
     [Export]
     private NodePath playerPath = "/root/World/Player";
@@ -66,7 +66,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
     public override void _Ready()
     {
-        player = (CharacterBody3D)GetNode(playerPath);
+        player = (Player)GetNode(playerPath);
         navAgent = (NavigationAgent3D)GetNode(navPath);
         sightRaycast = (RayCast3D)GetNode(sightPath);
         fireDelay = maxFireDelay;
@@ -202,7 +202,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
         // set the position of the bullet in front of the player
         //Vector3 pointVector = -GlobalTransform.Basis.Z;
         // Aim at player
-        Vector3 pointVector = new Vector3(player.GlobalPosition.X - GlobalPosition.X, player.GlobalPosition.Y - GlobalPosition.Y, player.GlobalPosition.Z - GlobalPosition.Z);
+        Vector3 pointVector = new Vector3(player.GlobalPosition.X - GlobalPosition.X, player.GetHeadHeight() - (GlobalPosition.Y + 0.5f), player.GlobalPosition.Z - GlobalPosition.Z);
         pointVector = pointVector.Normalized();
         bullet.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
         bullet.GlobalPosition += pointVector * 2;

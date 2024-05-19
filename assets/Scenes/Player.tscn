@@ -25,16 +25,21 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("7_raieu")
 stream_4/weight = 1.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "camera", "damageSound")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "camera", "damageSound", "playerCapsule", "ceilingChecker")]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_clxhf")
 head = NodePath("Head")
 camera = NodePath("Head/Camera3D")
 damageSound = NodePath("DamageRandomizer")
+playerCapsule = NodePath("CollisionShape3D")
+ceilingChecker = NodePath("Head/CeilingChecker")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_r1fmd")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_aes0b")
 
 [node name="Head" type="Node3D" parent="."]
@@ -45,6 +50,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606531, 0)
 [node name="Gun" type="Node3D" parent="Head/Camera3D"]
 
 [node name="Pistol" parent="Head/Camera3D/Gun" instance=ExtResource("2_02awe")]
+
+[node name="CeilingChecker" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+target_position = Vector3(0, 1, 0)
 
 [node name="DamageRandomizer" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_mltti")
