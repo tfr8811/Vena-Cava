@@ -9,8 +9,8 @@ using System;
 public partial class Player : CharacterBody3D, IDamageable
 {
     // movement
-    const float GRAVITY = 10f;
-    const float JUMP_VELOCITY = 5.5f;
+    const float GRAVITY = 20f;
+    const float JUMP_VELOCITY = 7f;
     const float RUN_SPEED = 10f;
     const float WALK_SPEED = 5f;
     private float speed;

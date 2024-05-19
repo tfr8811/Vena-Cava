@@ -62,11 +62,11 @@ public partial class GameManager : Node3D
         // switch display mode
         if (fullscreen)
         {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Maximized);
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
         }
         else
         {
-            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+            DisplayServer.WindowSetMode(DisplayServer.WindowMode.Maximized);
         }
     }
 
