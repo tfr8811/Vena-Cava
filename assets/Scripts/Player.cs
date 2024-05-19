@@ -134,7 +134,11 @@ public partial class Player : CharacterBody3D, IDamageable
             // this value is normalized, so it should be 0 or 1
             if (direction.Length() > 0.1)
             {
-                Velocity = new Vector3(direction.X * speed, Velocity.Y, direction.Z * speed);
+                Velocity = new Vector3(
+                    (float)Mathf.Lerp(Velocity.X, direction.X * speed, delta * 10.0),
+                    Velocity.Y,
+                    (float)Mathf.Lerp(Velocity.Z, direction.Z * speed, delta * 10.0)
+                    );
             }
             else
             {
