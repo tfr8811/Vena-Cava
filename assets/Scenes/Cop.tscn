@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bb67rvws5ekus"]
+[gd_scene load_steps=40 format=3 uid="uid://bb67rvws5ekus"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Enemy.cs" id="1_wycld"]
 [ext_resource type="Texture2D" uid="uid://d1ejsaqohb7t7" path="res://assets/Sprites/CHARACTERS/Cop/Death/IMG_0455.png" id="2_5340d"]
@@ -31,6 +31,8 @@
 [ext_resource type="AudioStream" uid="uid://21ucbt4rgx2q" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 4.mp3" id="28_pm6jg"]
 [ext_resource type="AudioStream" uid="uid://d328ipm21komy" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 5.mp3" id="29_thqg6"]
 [ext_resource type="AudioStream" uid="uid://xsjwdtpbq6yy" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT.mp3" id="30_7r368"]
+[ext_resource type="AudioStream" uid="uid://cthmkhtgp12xo" path="res://assets/Audio/SFX/Enemies/Cop/Callouts/CO_SHOTS FIRED 2.mp3" id="33_m0wqc"]
+[ext_resource type="AudioStream" uid="uid://cuqmcdbhqrfvs" path="res://assets/Audio/SFX/Enemies/Cop/Callouts/CO_SHOTS FIRED.mp3" id="34_dag1l"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m5u7q"]
 
@@ -143,13 +145,21 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("30_7r368")
 stream_4/weight = 1.0
 
-[node name="Cop" type="CharacterBody3D" node_paths=PackedStringArray("enemySprite", "commandRandomizer", "damageRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tieek"]
+streams_count = 2
+stream_0/stream = ExtResource("33_m0wqc")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("34_dag1l")
+stream_1/weight = 1.0
+
+[node name="Cop" type="CharacterBody3D" node_paths=PackedStringArray("enemySprite", "commandRandomizer", "damageRandomizer", "calloutRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
 script = ExtResource("1_wycld")
 enemySprite = NodePath("AnimatedSprite3D")
 navPath = NodePath("NavigationAgent3D")
 sightPath = NodePath("RayCast3D")
 commandRandomizer = NodePath("CommandRandomizer")
 damageRandomizer = NodePath("DamageRandomizer")
+calloutRandomizer = NodePath("CalloutRandomizer")
 shootSound = NodePath("ShootSound")
 reloadSound = NodePath("ReloadSound")
 
@@ -180,3 +190,6 @@ stream = ExtResource("26_q137x")
 
 [node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("27_2qpok")
+
+[node name="CalloutRandomizer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_tieek")

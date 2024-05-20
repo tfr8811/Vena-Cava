@@ -168,34 +168,34 @@ spawnPoints = [NodePath("CopSpawner"), NodePath("CopSpawner2"), NodePath("CopSpa
 spawnTimer = NodePath("SpawnTimer")
 
 [node name="CopSpawner" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4248, 7.14758e-06, 34.2421)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4248, 1.00001, 34.2421)
 
 [node name="CopSpawner2" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.1932, 12.109, -20.8343)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6009, 1.00001, 29.7231)
 
 [node name="CopSpawner3" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0441, 1, 32.5919)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.6354, 2, 30.6016)
 
 [node name="CopSpawner4" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.5496, 1, -19.328)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.2638, 2.00001, 13.3221)
 
 [node name="CopSpawner5" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1091, 13.1554, -50.9559)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4712, 1, -5.89703)
 
 [node name="CopSpawner6" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5867, 7.15788e-06, 34.3285)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.279, 1.00001, -25.7732)
 
 [node name="CopSpawner7" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.845, 1, 20.0039)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36129, 13.4164, -48.8117)
 
 [node name="CopSpawner8" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.3397, 0.999992, 32.4093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -64.9611, 15.2899, -50.3857)
 
 [node name="CopSpawner9" type="Node3D" parent="Spawners"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.7191, 1, 15.1026)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.8133, 12.8693, 3.04819)
 
 [node name="SpawnTimer" type="Timer" parent="Spawners"]
-wait_time = 5.0
+wait_time = 4.0
 one_shot = true
 autostart = true
 

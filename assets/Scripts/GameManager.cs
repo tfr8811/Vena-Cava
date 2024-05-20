@@ -91,4 +91,29 @@ public partial class GameManager : Node3D
         copsDefeated += 1;
         copCounter.Text = copsDefeated.ToString();
     }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/19/2024
+    /// keeps track of when enemy hit, alerts nearby enemies
+    /// </summary>
+    public void enemyHit(Enemy enemyRef)
+    {
+        // alert the cops who could see it
+        var allEnemies = GetTree().GetNodesInGroup("Enemies");
+        foreach (var enemy in allEnemies)
+        {
+            if (enemy is Enemy)
+            {
+                Enemy enemy1 = (Enemy) enemy;
+                // check can see target must take a relative position vector
+                if (!enemy1.HasSeenPlayer /*&& enemy1.CheckCanSeeTarget(enemy1.GlobalPosition - enemyRef.GlobalPosition, enemy1)*/)
+                {
+                    enemy1.HasSeenPlayer = true;
+                    //enemy1.Callout();
+                    //GD.Print("it worked");
+                }
+            }
+        }
+    }
 }

@@ -9,6 +9,11 @@ using System;
 
 public partial class Enemy : CharacterBody3D, IDamageable
 {
+    // Game Manager Reference
+    private GameManager gameManager = null;
+
+    private NodePath gameManagerPath = "/root/World";
+
     // player reference
     private Player player = null;
 
@@ -40,6 +45,15 @@ public partial class Enemy : CharacterBody3D, IDamageable
     // AI stuff
     private float detectionRadius = 115.0f;
     private bool hasSeenPlayer = false;
+    public bool HasSeenPlayer { 
+        get { 
+            return hasSeenPlayer; 
+        } 
+        set {
+            hasSeenPlayer = value;
+        }
+    }
+
     private float standOffRadius = 5.0f;
     private float shootRadius = 10.0f;
     RayCast3D sightRaycast;
@@ -57,6 +71,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
     [Export]
     private AudioStreamPlayer3D damageRandomizer;
     [Export]
+    private AudioStreamPlayer3D calloutRandomizer;
+    [Export]
     private AudioStreamPlayer3D shootSound;
     [Export]
     private AudioStreamPlayer3D reloadSound;
@@ -66,6 +82,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
     public override void _Ready()
     {
+        gameManager = (GameManager)GetNode(gameManagerPath);
         player = (Player)GetNode(playerPath);
         navAgent = (NavigationAgent3D)GetNode(navPath);
         sightRaycast = (RayCast3D)GetNode(sightPath);
@@ -97,7 +114,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
             // MOVE
             Vector3 playerRelativePosition = player.GlobalPosition - this.GlobalPosition;
             // chases player when they are in site or if they have already spotted the player
-            if (canMove && (hasSeenPlayer || CheckCanSeePlayer(playerRelativePosition)))
+            if (canMove && (hasSeenPlayer || CheckCanSeeTarget(playerRelativePosition, player)))
             {
                 if (standOffRadius < playerRelativePosition.Length())
                 {
@@ -122,7 +139,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
             // SHOOT
             // fires gun when player is in sight and close enough to shoot
-            if (canShoot && shootRadius > playerRelativePosition.Length() && CheckCanSeePlayer(playerRelativePosition))
+            if (canShoot && shootRadius > playerRelativePosition.Length() && CheckCanSeeTarget(playerRelativePosition, player))
             {
                 if (bulletCount > 0)
                 {
@@ -216,14 +233,14 @@ public partial class Enemy : CharacterBody3D, IDamageable
     /// 5/01/2024
     /// Checks if the player is in the line of sight of the enemy
     /// </summary>
-    public bool CheckCanSeePlayer(Vector3 relativeTargetVector)
+    public bool CheckCanSeeTarget(Vector3 relativeTargetVector, Node3D target)
     {
         bool inRadius = relativeTargetVector != Vector3.Zero && relativeTargetVector.Length() <= detectionRadius;
         if (inRadius)
         {
             sightRaycast.Rotation = -this.GlobalRotation;
             sightRaycast.TargetPosition = relativeTargetVector;
-            bool lineOfSight = sightRaycast.GetCollider() == player;
+            bool lineOfSight = sightRaycast.GetCollider() == target;
             return lineOfSight;
         }
         return false;
@@ -243,5 +260,17 @@ public partial class Enemy : CharacterBody3D, IDamageable
             canMove = false;
             canShoot = false;
         }
+        // tell the gamemanager that enemy was hit
+        gameManager.enemyHit(this);
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/19/2024
+    /// Plays the callout sound when a fellow cop was hit
+    /// </summary>
+    public void Callout()
+    {
+        calloutRandomizer.Play();
     }
 }
