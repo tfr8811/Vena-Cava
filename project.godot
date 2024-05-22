@@ -22,6 +22,8 @@ window/size/viewport_height=1080
 window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="res://assets/Sprites/HUD/Menu_Cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(7, 2)
 
 [dotnet]
 
