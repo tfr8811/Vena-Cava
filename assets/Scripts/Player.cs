@@ -238,12 +238,7 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         health -= damage;
         if (health <= 0) {
-            // TODO: Cleanout scene - DOESNT WORK
-            //foreach (Node node in GetNode("/root/World").GetChildren())
-            //{
-            //    node.QueueFree();
-            //}
-            // delete all enemies - prevents ghosts
+            // Cleanup scene
             var allEnemies = GetTree().GetNodesInGroup("Enemies");
             foreach (var enemy in allEnemies)
             {

@@ -1,22 +1,51 @@
 using Godot;
 using System;
-
+/// <summary>
+/// Roman Noodles
+/// 5/22/2024
+/// A cop car which drops off a cop then crashes into stuff
+/// </summary>
 public partial class CopCar : CharacterBody3D
 {
     // instance the cop
-    PackedScene psCop = GD.Load<PackedScene>("res://assets/Scenes/Cop.tscn");
+    private PackedScene psCop = GD.Load<PackedScene>("res://assets/Scenes/Cop.tscn");
+    // instance the explosion
+    private PackedScene psExplosion = GD.Load<PackedScene>("res://assets/Scenes/Explosion.tscn");
+    [Export]
+    private Node3D spawnPoint;
+    [Export]
+    private AudioStreamPlayer3D siren;
+    [Export]
+    private RayCast3D[] frontRayCasts;
+    // cop cars have 1 cop
+    private bool hasCop = true;
     public override void _Ready()
     {
-
+        siren.Play();
+        LookAt(Transform.Origin - Velocity, Vector3.Up);
     }
     public override void _PhysicsProcess(double delta)
     {
+        // face in direction of Velocity
+        LookAt(Transform.Origin - Velocity, Vector3.Up);
         MoveAndSlide();
 
         // handle collisions
+        // front raycasts are used to see when the cop car is about to hit something
+        // when this happens, the cop jumps out
+        for (int i = 0; i < frontRayCasts.Length; i ++)
+        {
+            if (frontRayCasts[i].IsColliding() && hasCop)
+            {
+                // the cop car has a node3d which is used to set the position of the cop
+                this.SpawnCop(spawnPoint.GlobalPosition);
+                hasCop = false;
+            }
+        }
+
         for (int i = 0; i < GetSlideCollisionCount(); i++)
         {
-            // the bullet will damage damageable colliders
+            // the cop car will damage damageable colliders
             Object collider = GetSlideCollision(i).GetCollider();
             if (collider is Node3D)
             {
@@ -24,8 +53,10 @@ public partial class CopCar : CharacterBody3D
                 {
                     ((IDamageable)collider).TakeDamage(3);
                 }
-                if (!((Node3D) collider).IsInGroup("FloorPlane") && collider is StaticBody3D)
+                // right now characters, trash cans, and even a bullet can blow up the cop car
+                if (!((Node3D) collider).IsInGroup("FloorPlane"))
                 {
+                    this.SpawnExplosion(this.GlobalPosition);
                     this.QueueFree();
                 }
             }
@@ -40,7 +71,19 @@ public partial class CopCar : CharacterBody3D
     private void SpawnCop(Vector3 spawnPoint)
     {
         Enemy cop = (Enemy)psCop.Instantiate();
-        GetNode("/root").AddChild(cop);
         cop.GlobalPosition = spawnPoint;
+        GetNode("/root").AddChild(cop);
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/23/2024
+    /// Spawns an explosion at a spawnpoint
+    /// </summary>
+    private void SpawnExplosion(Vector3 spawnPoint)
+    {
+        Explosion explosion = (Explosion)psExplosion.Instantiate();
+        GetNode("/root").AddChild(explosion);
+        explosion.GlobalPosition = spawnPoint;
     }
 }

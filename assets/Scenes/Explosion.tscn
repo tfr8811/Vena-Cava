@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7ou0qg85n164"]
+[gd_scene load_steps=10 format=3 uid="uid://c7ou0qg85n164"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Explosion.cs" id="1_puev0"]
+[ext_resource type="AudioStream" uid="uid://p1e4odap8y7o" path="res://assets/Audio/SFX/Enemies/Car/car-crash.wav" id="2_7b3lm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epr0e"]
 shading_mode = 0
@@ -40,18 +41,22 @@ scale_curve = SubResource("CurveXYZTexture_xf2ys")
 
 [sub_resource type="BoxMesh" id="BoxMesh_5lh2d"]
 
-[node name="Explosion" type="Node3D" node_paths=PackedStringArray("particles")]
+[node name="Explosion" type="Node3D" node_paths=PackedStringArray("particles", "crashSound") groups=["Enemies"]]
 script = ExtResource("1_puev0")
 particles = NodePath("Sparks")
+crashSound = NodePath("CrashSound")
 
 [node name="Sparks" type="GPUParticles3D" parent="."]
 material_override = SubResource("StandardMaterial3D_epr0e")
 emitting = false
 amount = 40
-lifetime = 0.6
+lifetime = 0.55
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ase3l")
 draw_pass_1 = SubResource("BoxMesh_5lh2d")
 
-[connection signal="finished" from="Sparks" to="." method="_on_sparks_finished"]
+[node name="CrashSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_7b3lm")
+
+[connection signal="finished" from="CrashSound" to="." method="_on_crash_sound_finished"]
