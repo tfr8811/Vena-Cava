@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=6 format=3 uid="uid://oxvv2f23e2yt"]
+
+[ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_k8qcs"]
+[ext_resource type="PackedScene" uid="uid://cjc13em5od4qa" path="res://assets/Scenes/Player.tscn" id="2_0a681"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="2_kw0ed"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="3_xin8j"]
+
+[sub_resource type="Resource" id="Resource_50uqf"]
+script = ExtResource("3_xin8j")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("2_0a681")
+apply_rotation_on_map_build = true
+classname = "info_player_start"
+description = "Starting location of the player"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8),
+"studio": "\"/trenchbroom/models/info_player_start.glb\""
+}
+node_class = ""
+name_property = ""
+
+[resource]
+script = ExtResource("2_kw0ed")
+export_file = false
+model_key_word_supported = true
+fgd_name = "vena"
+base_fgd_files = Array[Resource]([ExtResource("1_k8qcs")])
+entity_definitions = Array[Resource]([SubResource("Resource_50uqf")])

@@ -3,3 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://po2pnt6gjay7" path="res://assets/models/Liquor Outlet.glb" id="1_x307f"]
 
 [node name="Liquor Outlet" instance=ExtResource("1_x307f")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000834465, -4.76837e-07, -0.0203199)
+
+[node name="StaticBody3D" parent="Cube" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0658455, 1.90735e-06, -0.0245724)

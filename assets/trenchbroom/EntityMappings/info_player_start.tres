@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://poxj46ytu4av"]
+
+[ext_resource type="PackedScene" uid="uid://cjc13em5od4qa" path="res://assets/Scenes/Player.tscn" id="1_7sgcj"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_xjrch"]
+
+[resource]
+script = ExtResource("1_xjrch")
+scene_file = ExtResource("1_7sgcj")
+apply_rotation_on_map_build = true
+classname = "info_player_start"
+description = "Starting location of the player"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8),
+"studio": "/Assets/trenchbroom/EditorModels/info_player_start.glb"
+}
+node_class = ""
+name_property = ""

@@ -1,0 +1,21 @@
+// Game: Vena Cava
+// Format: Standard
+// entity 0
+{
+"classname" "worldspawn"
+"_tb_textures" "textures;textures/Brick;textures/Dirt;textures/Elements;textures/Metal;textures/Plaster;textures/Stone;textures/Tile;textures/Wood"
+// brush 0
+{
+( 0 64 0 ) ( 0 -192 0 ) ( 0 -192 -8 ) __TB_empty 0 -16 0 0.125 0.125
+( 0 -192 0 ) ( 256 -192 0 ) ( 256 -192 -8 ) __TB_empty -8 -16 0 0.125 0.125
+( 256 -192 -8 ) ( 256 64 -8 ) ( 0 64 -8 ) __TB_empty -8 0 0 0.125 0.125
+( 0 64 0 ) ( 256 64 0 ) ( 256 -192 0 ) __TB_empty -8 0 0 0.125 0.125
+( 256 64 -8 ) ( 256 64 0 ) ( 0 64 0 ) __TB_empty -8 -16 0 0.125 0.125
+( 256 -192 0 ) ( 256 64 0 ) ( 256 64 -8 ) __TB_empty 0 -16 0 0.125 0.125
+}
+}
+// entity 1
+{
+"classname" "info_player_start"
+"origin" "96 -56 8"
+}

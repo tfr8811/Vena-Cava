@@ -27,6 +27,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Vena Cava"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
+
 [input]
 
 Forward={
