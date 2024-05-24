@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://muwy1ebpfr87" path="res://assets/Sprites/HUD/Health and Armor bar.PNG" id="1_8s18v"]
 [ext_resource type="Texture2D" uid="uid://dcvywwvvmt3ck" path="res://assets/Sprites/HUD/Health_Bar.png" id="2_qi4at"]
 [ext_resource type="Texture2D" uid="uid://04lthd6ux1bv" path="res://assets/Sprites/HUD/Lipase_Bar.png" id="3_iebac"]
-[ext_resource type="Texture2D" uid="uid://qkmbfxft8el8" path="res://assets/Sprites/HUD/Interaction_Icon.png" id="4_brmui"]
+[ext_resource type="Texture2D" uid="uid://c7fpvgar3dl40" path="res://assets/Sprites/HUD/Crosshair_Red.png" id="5_dhis7"]
 [ext_resource type="Texture2D" uid="uid://uqvnaffh064k" path="res://assets/Sprites/HUD/Facecam.png" id="5_xu2kd"]
 [ext_resource type="PackedScene" uid="uid://dtcjpjanapkyn" path="res://assets/Scenes/PauseMenu.tscn" id="6_f28no"]
 
@@ -68,23 +68,6 @@ grow_vertical = 0
 value = 100.0
 texture_progress = ExtResource("3_iebac")
 
-[node name="InteractionIcon" type="TextureRect" parent="UI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -137.0
-offset_top = -116.0
-offset_right = 118.0
-offset_bottom = 139.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.423155, 0.423155)
-pivot_offset = Vector2(165, 165)
-texture = ExtResource("4_brmui")
-
 [node name="FaceCam" type="TextureRect" parent="UI"]
 layout_mode = 1
 anchors_preset = 1
@@ -113,5 +96,21 @@ theme_override_font_sizes/font_size = 45
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Crosshair" type="TextureRect" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -165.0
+offset_right = 165.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(165, 165)
+texture = ExtResource("5_dhis7")
 
 [node name="PauseMenu" parent="." instance=ExtResource("6_f28no")]

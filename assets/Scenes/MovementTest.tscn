@@ -1,14 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1ssgs6r7uyh8"]
+[gd_scene load_steps=10 format=3 uid="uid://c1ssgs6r7uyh8"]
 
 [ext_resource type="Script" path="res://assets/Scripts/GameManager.cs" id="1_1d5ay"]
 [ext_resource type="PackedScene" uid="uid://cjc13em5od4qa" path="res://assets/Scenes/Player.tscn" id="2_50kgt"]
 [ext_resource type="PackedScene" uid="uid://csr4qumwfa4qg" path="res://assets/Scenes/liquor_outlet.tscn" id="2_k4sn4"]
 [ext_resource type="PackedScene" uid="uid://bb67rvws5ekus" path="res://assets/Scenes/Cop.tscn" id="3_irsah"]
-[ext_resource type="Texture2D" uid="uid://bm2yu22141fgx" path="res://assets/Sprites/HUD/Health_and_Lipase.png" id="5_st6xk"]
-[ext_resource type="Texture2D" uid="uid://dcvywwvvmt3ck" path="res://assets/Sprites/HUD/Health_Bar.png" id="6_cwiyx"]
-[ext_resource type="Texture2D" uid="uid://04lthd6ux1bv" path="res://assets/Sprites/HUD/Lipase_Bar.png" id="7_nls4b"]
-[ext_resource type="Texture2D" uid="uid://qkmbfxft8el8" path="res://assets/Sprites/HUD/Interaction_Icon.png" id="9_1p4m2"]
-[ext_resource type="Texture2D" uid="uid://uqvnaffh064k" path="res://assets/Sprites/HUD/Facecam.png" id="10_g8o6o"]
 [ext_resource type="Texture2D" uid="uid://caq5vkkqlumuh" path="res://360.png" id="10_vgfbu"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_oj4tw"]
@@ -28,12 +23,13 @@ background_mode = 1
 background_color = Color(0.380392, 0.588235, 0.67451, 1)
 sky = SubResource("Sky_eup2w")
 
-[node name="World" type="Node3D" node_paths=PackedStringArray("hitRect", "player", "healthBar", "lipaseBar")]
+[node name="World" type="Node3D" node_paths=PackedStringArray("hitRect", "player", "healthBar", "lipaseBar", "copCounter")]
 script = ExtResource("1_1d5ay")
-hitRect = NodePath("CanvasLayer/UI/HitRect")
+hitRect = NodePath("Player/CanvasLayer/UI/HitRect")
 player = NodePath("Player")
-healthBar = NodePath("CanvasLayer/UI/HealthBar")
-lipaseBar = NodePath("CanvasLayer/UI/LipaseBar")
+healthBar = NodePath("Player/CanvasLayer/UI/HealthBar")
+lipaseBar = NodePath("Player/CanvasLayer/UI/LipaseBar")
+copCounter = NodePath("Player/CanvasLayer/UI/CopCount")
 
 [node name="Player" parent="." instance=ExtResource("2_50kgt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3089, 1, -18.7112)
@@ -50,95 +46,6 @@ playerPath = NodePath("../Player")
 [node name="Cop2" parent="." instance=ExtResource("3_irsah")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.64106, 1, -7.99912)
 playerPath = NodePath("../Player")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="UI" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="HitRect" type="ColorRect" parent="CanvasLayer/UI"]
-layout_mode = 0
-offset_left = -515.0
-offset_top = -464.0
-offset_right = 1670.0
-offset_bottom = 1081.0
-mouse_filter = 2
-color = Color(0.85098, 0.172549, 0.27451, 0.270588)
-
-[node name="HealthAndLipase" type="TextureRect" parent="CanvasLayer/UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -300.0
-offset_right = 450.0
-grow_vertical = 0
-scale = Vector2(0.6, 0.6)
-pivot_offset = Vector2(0, 300)
-texture = ExtResource("5_st6xk")
-
-[node name="HealthBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 38.0
-offset_top = -119.0
-offset_right = 365.0
-offset_bottom = -69.0
-grow_vertical = 0
-scale = Vector2(0.6, 0.6)
-value = 100.0
-texture_progress = ExtResource("6_cwiyx")
-
-[node name="LipaseBar" type="TextureProgressBar" parent="CanvasLayer/UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 35.0
-offset_top = -61.0
-offset_right = 362.0
-offset_bottom = -13.0
-grow_vertical = 0
-scale = Vector2(0.6, 0.6)
-value = 100.0
-texture_progress = ExtResource("7_nls4b")
-
-[node name="InteractionIcon" type="TextureRect" parent="CanvasLayer/UI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.25, 0.25)
-pivot_offset = Vector2(165, 165)
-texture = ExtResource("9_1p4m2")
-
-[node name="FaceCam" type="TextureRect" parent="CanvasLayer/UI"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -620.0
-offset_bottom = 909.0
-grow_horizontal = 0
-scale = Vector2(0.25, 0.25)
-pivot_offset = Vector2(620, 0)
-texture = ExtResource("10_g8o6o")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_2wdre")

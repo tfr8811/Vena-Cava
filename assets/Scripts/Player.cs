@@ -78,6 +78,10 @@ public partial class Player : CharacterBody3D, IDamageable
     [Export]
     private RayCast3D ceilingChecker;
 
+    // Interaction Raycast
+    [Export]
+    private RayCast3D interactionRay;
+
     private bool headBonked = false;
 
     public override void _Ready()
@@ -115,7 +119,18 @@ public partial class Player : CharacterBody3D, IDamageable
 
     public override void _PhysicsProcess(double delta)
     {
-        // update the forward vector of the player
+        // Interaction Check
+        if (interactionRay.IsColliding())
+        {
+            var collider = interactionRay.GetCollider();
+            if (collider is IInteractable)
+            {
+                ((IInteractable)collider).Interact();
+            }
+            else if (collider is IDamageable) {
+
+            }
+        }
 
         // ceiling check
         if (ceilingChecker.IsColliding())

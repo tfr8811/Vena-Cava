@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq6qjbtfj54at"]
+
+[ext_resource type="Material" uid="uid://bxj8c3luqube5" path="res://assets/models/Door/DoorMaterial.tres" id="1_nwqxw"]
+[ext_resource type="ArrayMesh" uid="uid://dlwp3qi4hsc20" path="res://assets/models/Door/Door.obj" id="2_t833s"]
+
+[node name="Door" type="Node3D"]
+
+[node name="Door" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_nwqxw")
+mesh = ExtResource("2_t833s")
