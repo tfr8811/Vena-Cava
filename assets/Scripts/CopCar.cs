@@ -22,7 +22,6 @@ public partial class CopCar : CharacterBody3D
     public override void _Ready()
     {
         siren.Play();
-        LookAt(Transform.Origin - Velocity, Vector3.Up);
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -71,8 +70,8 @@ public partial class CopCar : CharacterBody3D
     private void SpawnCop(Vector3 spawnPoint)
     {
         Enemy cop = (Enemy)psCop.Instantiate();
+        GetNode("/root/World").AddChild(cop);
         cop.GlobalPosition = spawnPoint;
-        GetNode("/root").AddChild(cop);
     }
 
     /// <summary>
@@ -83,7 +82,7 @@ public partial class CopCar : CharacterBody3D
     private void SpawnExplosion(Vector3 spawnPoint)
     {
         Explosion explosion = (Explosion)psExplosion.Instantiate();
-        GetNode("/root").AddChild(explosion);
+        GetNode("/root/World").AddChild(explosion);
         explosion.GlobalPosition = spawnPoint;
     }
 }
