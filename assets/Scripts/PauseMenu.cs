@@ -94,25 +94,12 @@ public partial class PauseMenu : Control
     public void _on_restart_pressed()
     {
         Resume();
-        // delete all enemies - prevents ghosts
-        var allEnemies = GetTree().GetNodesInGroup("Enemies");
-        foreach (var enemy in allEnemies)
-        {
-            enemy.QueueFree();
-        }
-        // reload current scene gives console errors atm
         GetTree().ReloadCurrentScene();
     }
 
     public void _on_quit_pressed()
     {
         Resume();
-        // delete all enemies - prevents ghosts
-        var allEnemies = GetTree().GetNodesInGroup("Enemies");
-        foreach (var enemy in allEnemies)
-        {
-            enemy.QueueFree();
-        }
         // quit to title
         GetTree().ChangeSceneToFile("res://assets/Scenes/TitleScreen.tscn");
     }

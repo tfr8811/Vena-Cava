@@ -238,17 +238,6 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         health -= damage;
         if (health <= 0) {
-            // TODO: Cleanout scene - DOESNT WORK
-            //foreach (Node node in GetNode("/root/World").GetChildren())
-            //{
-            //    node.QueueFree();
-            //}
-            // delete all enemies - prevents ghosts
-            var allEnemies = GetTree().GetNodesInGroup("Enemies");
-            foreach (var enemy in allEnemies)
-            {
-                enemy.QueueFree();
-            }
             GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn"); 
         } else
         {

@@ -112,7 +112,7 @@ public partial class Gun : Node3D
     private void SpawnBullet(float speed)
     {
         Bullet bullet = (Bullet)psBullet.Instantiate();
-        GetNode("/root").AddChild(bullet);
+        GetNode("/root/World").AddChild(bullet);
         // set the position of the bullet in front of the player
         Vector3 pointVector = -this.GlobalTransform.Basis.Z;
         bullet.GlobalPosition = this.GlobalPosition;

@@ -215,7 +215,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
     public void SpawnBullet(float speed)
     {
         Bullet bullet = (Bullet)psBullet.Instantiate();
-        GetNode("/root").AddChild(bullet);
+        GetNode("/root/World").AddChild(bullet);
         // set the position of the bullet in front of the player
         //Vector3 pointVector = -GlobalTransform.Basis.Z;
         // Aim at player
