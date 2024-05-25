@@ -125,7 +125,12 @@ public partial class Player : CharacterBody3D, IDamageable
             var collider = interactionRay.GetCollider();
             if (collider is IInteractable)
             {
-                ((IInteractable)collider).Interact();
+                // interact when player pushes button
+                if (Input.IsActionJustPressed("Interact"))
+                {
+                    ((IInteractable)collider).Interact();
+                }
+                // TODO change crosshair
             }
             else if (collider is IDamageable) {
 
