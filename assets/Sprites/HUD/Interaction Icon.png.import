@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qkmbfxft8el8"
-path="res://.godot/imported/Interaction_Icon.png-4f4d13637e09a89a3816a687cbc9363e.ctex"
+uid="uid://y2b13w221dak"
+path="res://.godot/imported/Interaction Icon.png-ac36103a81268248351976628bc47af3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Sprites/HUD/Interaction_Icon.png"
-dest_files=["res://.godot/imported/Interaction_Icon.png-4f4d13637e09a89a3816a687cbc9363e.ctex"]
+source_file="res://assets/Sprites/HUD/Interaction Icon.png"
+dest_files=["res://.godot/imported/Interaction Icon.png-ac36103a81268248351976628bc47af3.ctex"]
 
 [params]
 

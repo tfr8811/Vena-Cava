@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cjc13em5od4qa"]
+[gd_scene load_steps=12 format=3 uid="uid://cjc13em5od4qa"]
 
 [ext_resource type="Script" path="res://assets/Scripts/Player.cs" id="1_clxhf"]
 [ext_resource type="PackedScene" uid="uid://dnhcdoqsul3ob" path="res://assets/Scenes/Pistol.tscn" id="2_02awe"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dm6ol4qw7gga5" path="res://assets/Audio/SFX/Player/Damage/damage_3.wav" id="5_4bytc"]
 [ext_resource type="AudioStream" uid="uid://bj2gbrb538yk6" path="res://assets/Audio/SFX/Player/Damage/damage_4.wav" id="6_h7vh8"]
 [ext_resource type="AudioStream" uid="uid://di75cxun7w8g1" path="res://assets/Audio/SFX/Player/Damage/damage_5.wav" id="7_raieu"]
+[ext_resource type="PackedScene" uid="uid://diqe8bhhvnts5" path="res://assets/Scenes/UI_Overlay.tscn" id="8_pyg05"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r1fmd"]
 
@@ -25,7 +26,7 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("7_raieu")
 stream_4/weight = 1.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "camera", "damageSound", "playerCapsule", "ceilingChecker")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "camera", "damageSound", "playerCapsule", "ceilingChecker", "interactionRay")]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_clxhf")
@@ -34,6 +35,7 @@ camera = NodePath("Head/Camera3D")
 damageSound = NodePath("DamageRandomizer")
 playerCapsule = NodePath("CollisionShape3D")
 ceilingChecker = NodePath("Head/CeilingChecker")
+interactionRay = NodePath("Head/Camera3D/InteractionRay")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_r1fmd")
@@ -51,9 +53,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606531, 0)
 
 [node name="Pistol" parent="Head/Camera3D/Gun" instance=ExtResource("2_02awe")]
 
+[node name="InteractionRay" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -10)
+
 [node name="CeilingChecker" type="RayCast3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 target_position = Vector3(0, 1, 0)
 
 [node name="DamageRandomizer" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_mltti")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("8_pyg05")]
