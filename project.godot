@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="Vena Cava"
-run/main_scene="res://assets/Scenes/TitleScreen.tscn"
+run/main_scene="res://scenes/menus/TitleScreen.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalAudioManager="*res://scenes/GlobalAudioManager.cs"
+GlobalSceneManager="*res://scenes/GlobalSceneManager.cs"
+GlobalSettings="*res://scenes/GlobalSettings.cs"
 
 [display]
 
@@ -28,6 +34,10 @@ mouse_cursor/custom_image_hotspot=Vector2(7, 2)
 [dotnet]
 
 project/assembly_name="Vena Cava"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/func_godot/plugin.cfg")
 
 [input]
 

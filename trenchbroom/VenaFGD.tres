@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=6 format=3 uid="uid://qn0n1a7gi460"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_e8db0"]
+[ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_s7wxg"]
+[ext_resource type="Resource" uid="uid://baj80hhxgve8f" path="res://trenchbroom/FgdMappings/info_player_start.tres" id="2_7nd4e"]
+[ext_resource type="Resource" uid="uid://bxawec4ir286o" path="res://trenchbroom/FgdMappings/func_door.tres" id="3_mtqxd"]
+[ext_resource type="Resource" uid="uid://dutu7h5xra58s" path="res://trenchbroom/FgdMappings/func_tone.tres" id="4_8fcha"]
+
+[resource]
+script = ExtResource("1_e8db0")
+export_file = false
+model_key_word_supported = true
+fgd_name = "FuncGodot"
+base_fgd_files = Array[Resource]([ExtResource("1_s7wxg")])
+entity_definitions = Array[Resource]([ExtResource("2_7nd4e"), ExtResource("3_mtqxd"), ExtResource("4_8fcha")])
