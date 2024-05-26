@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GlobalAudioManager="*res://scenes/GlobalAudioManager.cs"
 GlobalSceneManager="*res://scenes/GlobalSceneManager.cs"
 GlobalSettings="*res://scenes/GlobalSettings.cs"
+GlobalChapterManager="*res://scenes/GlobalChapterManager.cs"
 
 [display]
 

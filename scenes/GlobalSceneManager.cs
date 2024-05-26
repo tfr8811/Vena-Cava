@@ -8,9 +8,23 @@ public partial class GlobalSceneManager: Node
 
     private string currentScene = string.Empty;
 
+    const string MAIN_MENU_PATH = "res://scenes/menus/TitleScreen.tscn";
+    const string GAME_OVER_PATH = "res://scenes/menus/GameOver.tscn";
+
     public override void _Ready()
     {
         instance = this;
+    }
+
+
+    public void MainMenu()
+    {
+        SetScene(MAIN_MENU_PATH);
+    }
+
+    public void GameOver()
+    {
+        SetScene(GAME_OVER_PATH);
     }
 
     public void SetScene(string path)

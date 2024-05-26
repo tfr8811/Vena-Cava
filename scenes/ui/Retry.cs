@@ -22,6 +22,6 @@ public partial class Retry : Button
     }
     private void OnClick()
     {
-        GetTree().ChangeSceneToFile("res://assets/Scenes/MovementTest2.tscn");
+        GlobalChapterManager.Instance.StartCurrentChapter();
     }
 }

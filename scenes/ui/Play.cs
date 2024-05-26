@@ -16,6 +16,6 @@ public partial class Play : Button
     }
     private void OnClick()
     {
-        GlobalSceneManager.Instance.LoadMap("testroom");
+        GlobalChapterManager.Instance.StartCurrentChapter();
     }
 }

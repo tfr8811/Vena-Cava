@@ -94,8 +94,7 @@ public partial class PauseMenu : Control
     public void _on_quit_pressed()
     {
         Resume();
-        // quit to title
-        GetTree().ChangeSceneToFile("res://assets/Scenes/TitleScreen.tscn");
+        GlobalSceneManager.Instance.MainMenu();
     }
 
     public void _on_mouse_slider_drag_ended(bool valueChanged)

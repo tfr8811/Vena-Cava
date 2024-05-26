@@ -246,7 +246,7 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         health -= damage;
         if (health <= 0) {
-            GetTree().ChangeSceneToFile("res://assets/Scenes/GameOver.tscn");
+            GlobalSceneManager.Instance.GameOver();
             hud.Update(this);
         } else
         {
