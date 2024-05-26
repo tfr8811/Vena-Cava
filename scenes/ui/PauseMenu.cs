@@ -8,11 +8,6 @@ using System;
 /// </summary>
 public partial class PauseMenu : Control
 {
-    // player reference
-    private Player player = null;
-
-    private NodePath playerPath = "/root/World/Player";
-
     [Export]
     HSlider mouseSlider;
 
@@ -41,7 +36,6 @@ public partial class PauseMenu : Control
         bQuit.Disabled = true;
         bFullscreen.Disabled = true;
         animationPlayer.Play("RESET");
-        player = (Player)GetNode(playerPath);
         senseValue.Text = mouseSlider.Value.ToString();
     }
     private void Pause()
@@ -106,7 +100,7 @@ public partial class PauseMenu : Control
 
     public void _on_mouse_slider_drag_ended(bool valueChanged)
     {
-        player.Sensitivity = ((float)mouseSlider.Value) / 10000f; 
+        GlobalSettings.Instance.Sensitivity = ((float)mouseSlider.Value) / 10000f; 
     }
 
     public void _on_mouse_slider_value_changed(float value)

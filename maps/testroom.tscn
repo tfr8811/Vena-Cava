@@ -126,7 +126,7 @@ sky_material = SubResource("ProceduralSkyMaterial_c0sdq")
 sky = SubResource("Sky_ubibv")
 ambient_light_source = 3
 
-[node name="Node" type="Node"]
+[node name="World" type="Node"]
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
 script = ExtResource("1_e34ul")

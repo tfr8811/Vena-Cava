@@ -25,6 +25,19 @@ public partial class GlobalSettings : Node
         }
     }
 
+    private float sensitivity = 0.001f;
+    public float Sensitivity
+    {
+        get
+        {
+            return this.sensitivity;
+        }
+        set
+        {
+            this.sensitivity = value;
+        }
+    }
+
     public override void _Ready()
     {
         instance = this;

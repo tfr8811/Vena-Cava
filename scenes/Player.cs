@@ -30,17 +30,6 @@ public partial class Player : CharacterBody3D, IDamageable
         get { return this.health; }
     }
 
-
-    private float sensitivity = 0.001f;
-    public float Sensitivity { 
-        get { 
-            return this.sensitivity; 
-        } 
-        set { 
-            this.sensitivity = value; 
-        }
-    }
-
     // bob variables
     const double BOB_FREQ = 2.0;
     const double BOB_AMP = 0.08;
@@ -92,6 +81,8 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         // fps mouse controls
         // todo add controller support
+        float sensitivity = GlobalSettings.Instance.Sensitivity;
+
         if (@event is InputEventMouseMotion look) {
             // note: X axis mouse movement rotates camera about the Y axis
             head.RotateY(-look.Relative.X * sensitivity);

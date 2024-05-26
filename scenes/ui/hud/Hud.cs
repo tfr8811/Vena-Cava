@@ -15,7 +15,7 @@ public partial class Hud : CanvasLayer
         crosshair = GetNode<TextureRect>("Hud/Crosshair");
         hand = GetNode<TextureRect>("Hud/Hand");
         damageFlash = GetNode<ColorRect>("Hud/DamageFlash");
-        status = GetNode<Status>("Hud/Hud/Status");
+        status = GetNode<Status>("Hud/Status");
     }
 
     public void ShowCrosshair()
@@ -37,7 +37,7 @@ public partial class Hud : CanvasLayer
 
     public void Update(Player player)
     {
-        
+        status.update(player);
     }
 
     public override void _Process(double delta)
