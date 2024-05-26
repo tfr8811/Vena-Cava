@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://diqe8bhhvnts5"]
+
+[ext_resource type="Script" path="res://scenes/ui/hud/Hud.cs" id="1_qpymm"]
+[ext_resource type="Texture2D" uid="uid://uqvnaffh064k" path="res://assets/Sprites/HUD/Facecam.png" id="2_j1wa3"]
+[ext_resource type="Texture2D" uid="uid://c7fpvgar3dl40" path="res://assets/Sprites/HUD/Crosshair_Red.png" id="3_rgge2"]
+[ext_resource type="Texture2D" uid="uid://y2b13w221dak" path="res://assets/Sprites/HUD/Interaction Icon.png" id="4_w66rd"]
+[ext_resource type="PackedScene" uid="uid://00cj5br7ugom" path="res://scenes/ui/hud/Status.tscn" id="5_0a25f"]
+[ext_resource type="PackedScene" uid="uid://dtcjpjanapkyn" path="res://scenes/ui/PauseMenu.tscn" id="6_1jynr"]
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_qpymm")
+
+[node name="Hud" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="DamageFlash" type="ColorRect" parent="Hud"]
+layout_mode = 0
+offset_left = -899.0
+offset_top = -763.0
+offset_right = 2124.0
+offset_bottom = 1506.0
+scale = Vector2(1.23342, 1.13533)
+mouse_filter = 2
+color = Color(0.85098, 0.172549, 0.27451, 0.270588)
+
+[node name="FaceCam" type="TextureRect" parent="Hud"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -620.0
+offset_bottom = 909.0
+grow_horizontal = 0
+scale = Vector2(0.423465, 0.423465)
+pivot_offset = Vector2(620, 0)
+texture = ExtResource("2_j1wa3")
+
+[node name="CopCount" type="Label" parent="Hud"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.0
+offset_bottom = 74.0
+grow_horizontal = 2
+scale = Vector2(1.99973, 1.99973)
+theme_override_colors/font_color = Color(0.988235, 0.847059, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 45
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crosshair" type="TextureRect" parent="Hud"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -165.0
+offset_right = 165.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.679998, 0.679998)
+pivot_offset = Vector2(165, 165)
+texture = ExtResource("3_rgge2")
+
+[node name="Hand" type="TextureRect" parent="Hud"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -165.0
+offset_right = 165.0
+offset_bottom = 165.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.44, 0.44)
+pivot_offset = Vector2(165, 165)
+texture = ExtResource("4_w66rd")
+
+[node name="Status" parent="Hud" instance=ExtResource("5_0a25f")]
+layout_mode = 1
+offset_left = 35.0
+offset_top = -564.0
+offset_right = 3032.0
+offset_bottom = 1484.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("6_1jynr")]

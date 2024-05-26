@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="TrenchBroomGameConfig" load_steps=6 format=3 uid="uid://bau2n0spjelmn"]
+
+[ext_resource type="Resource" uid="uid://b4xhdj0e16lop" path="res://addons/func_godot/game_config/trenchbroom/tb_face_tag_clip.tres" id="1_s8mj4"]
+[ext_resource type="Resource" uid="uid://ca7377sfgj074" path="res://addons/func_godot/game_config/trenchbroom/tb_face_tag_skip.tres" id="2_1ymb2"]
+[ext_resource type="Resource" uid="uid://qn0n1a7gi460" path="res://trenchbroom/VenaFGD.tres" id="3_s6ish"]
+[ext_resource type="Texture2D" uid="uid://decwujsyhj0qy" path="res://addons/func_godot/icon32.png" id="4_ma354"]
+[ext_resource type="Script" path="res://addons/func_godot/src/trenchbroom/trenchbroom_game_config.gd" id="5_1k23m"]
+
+[resource]
+script = ExtResource("5_1k23m")
+export_file = false
+game_name = "Vena Cava"
+icon = ExtResource("4_ma354")
+map_formats = Array[Dictionary]([{
+"format": "Valve",
+"initialmap": "initial_valve.map"
+}, {
+"format": "Standard",
+"initialmap": "initial_standard.map"
+}, {
+"format": "Quake2",
+"initialmap": "initial_quake2.map"
+}, {
+"format": "Quake3"
+}])
+texture_exclusion_patterns = Array[String](["*_albedo", "*_ao", "*_emission", "*_height", "*_metallic", "*_normal", "*_orm", "*_roughness", "*_sss"])
+fgd_file = ExtResource("3_s6ish")
+entity_scale = "32"
+default_uv_scale = Vector2(0.125, 0.125)
+brush_tags = Array[Resource]([])
+brushface_tags = Array[Resource]([ExtResource("1_s8mj4"), ExtResource("2_1ymb2")])

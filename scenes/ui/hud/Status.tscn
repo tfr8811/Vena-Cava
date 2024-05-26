@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://00cj5br7ugom"]
+
+[ext_resource type="Texture2D" uid="uid://muwy1ebpfr87" path="res://assets/Sprites/HUD/Health and Armor bar.PNG" id="1_hdg6k"]
+[ext_resource type="Texture2D" uid="uid://dcvywwvvmt3ck" path="res://assets/Sprites/HUD/Health_Bar.png" id="2_035u7"]
+[ext_resource type="Script" path="res://scenes/ui/hud/Status.cs" id="2_oc4e1"]
+[ext_resource type="Texture2D" uid="uid://04lthd6ux1bv" path="res://assets/Sprites/HUD/Lipase_Bar.png" id="3_rf3px"]
+
+[node name="Status" type="TextureRect"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -548.0
+offset_right = 3020.0
+offset_bottom = 1500.0
+grow_vertical = 0
+scale = Vector2(0.135, 0.135)
+pivot_offset = Vector2(0, 300)
+texture = ExtResource("1_hdg6k")
+script = ExtResource("2_oc4e1")
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 325.926
+offset_top = -1325.78
+offset_right = 652.926
+offset_bottom = -1275.78
+grow_vertical = 0
+scale = Vector2(7.22223, 5.98634)
+value = 100.0
+texture_progress = ExtResource("2_035u7")
+
+[node name="LipaseBar" type="TextureProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 340.741
+offset_top = -607.259
+offset_right = 667.741
+offset_bottom = -559.259
+grow_vertical = 0
+scale = Vector2(6.92593, 6.03711)
+value = 100.0
+texture_progress = ExtResource("3_rf3px")

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://dutu7h5xra58s"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_qw6my"]
+[ext_resource type="Script" path="res://scenes/environment/EnvTone.cs" id="2_v81tn"]
+
+[resource]
+script = ExtResource("1_qw6my")
+spawn_type = 2
+origin_type = 0
+build_visuals = false
+use_in_baked_light = true
+shadow_casting_setting = 1
+build_occlusion = false
+render_layers = 1
+collision_shape_type = 1
+collision_layer = 1
+collision_mask = 1
+collision_priority = 1.0
+collision_shape_margin = 0.04
+script_class = ExtResource("2_v81tn")
+classname = "env_tone"
+description = "Sets the ambient track when the player enters the volume."
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"path": "res://assets/Audio/ambient/tones/light_wind.wav"
+}
+class_property_descriptions = {
+"path": "Path of the sound file to play."
+}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = "Area3D"
+name_property = ""
