@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d4b02b1jpgcfx"
-path="res://.godot/imported/pickUpColour.fbx-e8976f82eb28a177abc8b207662c26ae.scn"
+uid="uid://cafdx2pikqaxx"
+path="res://.godot/imported/Flag_Pole.fbx-5132926003340edb7c219275d32fa2ce.scn"
 
 [deps]
 
-source_file="res://assets/models/Vehicles/Pickup Truck/pickUpColour.fbx"
-dest_files=["res://.godot/imported/pickUpColour.fbx-e8976f82eb28a177abc8b207662c26ae.scn"]
+source_file="res://assets/models/Props/Flag Pole/Flag_Pole.fbx"
+dest_files=["res://.godot/imported/Flag_Pole.fbx-5132926003340edb7c219275d32fa2ce.scn"]
 
 [params]
 
@@ -31,13 +31,9 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
-"Pickup_Truck": {
+"Postcan": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/models/Vehicles/Pickup Truck/Pickup_Truck.tres"
-},
-"Wheels": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/models/Vehicles/Tires.tres"
+"use_external/path": "res://assets/models/Props/PostCan.tres"
 }
 }
 }

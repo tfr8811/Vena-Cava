@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqvih5cngn4"
-path.s3tc="res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"
+uid="uid://bikeochks40wd"
+path.s3tc="res://.godot/imported/street_lamp.png-b91bf20775872c72412a8e708dbaf800.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://trenchbroom/textures/Elements/Elements_04-512x512.png"
-dest_files=["res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"]
+source_file="res://assets/models/Props/Street Light/street_lamp.png"
+dest_files=["res://.godot/imported/street_lamp.png-b91bf20775872c72412a8e708dbaf800.s3tc.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dj34rkfvgm35g"]
 
-[ext_resource type="Texture2D" uid="uid://bx6dgfwxxp1e1" path="res://assets/models/Vehicles/Pickup Truck/Tires.png" id="1_6qxql"]
+[ext_resource type="Texture2D" uid="uid://bx6dgfwxxp1e1" path="res://assets/models/Vehicles/Tires.png" id="1_6qxql"]
 
 [resource]
 shading_mode = 0

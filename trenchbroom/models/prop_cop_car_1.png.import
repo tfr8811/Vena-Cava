@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqvih5cngn4"
-path.s3tc="res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"
+uid="uid://0j0k0fea2y2"
+path.s3tc="res://.godot/imported/prop_cop_car_1.png-8ac962a3a25a92f770e18f340ec3feb4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://trenchbroom/textures/Elements/Elements_04-512x512.png"
-dest_files=["res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"]
+source_file="res://trenchbroom/models/prop_cop_car_1.png"
+dest_files=["res://.godot/imported/prop_cop_car_1.png-8ac962a3a25a92f770e18f340ec3feb4.s3tc.ctex"]
 
 [params]
 

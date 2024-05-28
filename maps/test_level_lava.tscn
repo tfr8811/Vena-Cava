@@ -1,0 +1,101 @@
+[gd_scene load_steps=20 format=3 uid="uid://b348g6bv0y1u6"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_rqfxx"]
+[ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_bd6s5"]
+[ext_resource type="Material" uid="uid://dkopn2ohfxdv3" path="res://trenchbroom/textures/Elements/Elements_04-512x512.tres" id="3_7rbh1"]
+[ext_resource type="PackedScene" uid="uid://c2sc64qc1y3c6" path="res://scenes/prop/Cop_Car.tscn" id="4_l6bxo"]
+[ext_resource type="PackedScene" uid="uid://cjc13em5od4qa" path="res://scenes/Player.tscn" id="5_87m6g"]
+[ext_resource type="Script" path="res://scenes/environment/EnvTone.cs" id="6_xiuvo"]
+[ext_resource type="PackedScene" uid="uid://c54pwwo48n0in" path="res://scenes/prop/flag_pole.tscn" id="7_pafqj"]
+[ext_resource type="PackedScene" uid="uid://bq67v1g0mmukg" path="res://scenes/prop/pickup_truck.tscn" id="8_uui3q"]
+[ext_resource type="PackedScene" uid="uid://bax6wdexilke0" path="res://scenes/prop/generic_car.tscn" id="9_yxv0o"]
+[ext_resource type="PackedScene" uid="uid://c2rijwpj6su1w" path="res://scenes/prop/trash_can.tscn" id="10_xhl4l"]
+[ext_resource type="PackedScene" uid="uid://t25sfe22olpf" path="res://scenes/prop/street_light.tscn" id="11_kjdhd"]
+[ext_resource type="PackedScene" uid="uid://chu3ew5sa7xvj" path="res://scenes/prop/gas_pump.tscn" id="12_772u8"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_evgnt"]
+_surfaces = [{
+"aabb": AABB(-13, 0, -10, 17, 2.00001, 28),
+"attribute_data": PackedByteArray(0, 0, 80, 64, 0, 0, 128, 190, 0, 0, 80, 64, 0, 0, 128, 62, 0, 0, 128, 191, 0, 0, 128, 62, 0, 0, 128, 191, 0, 0, 128, 190, 0, 0, 16, 192, 0, 0, 128, 190, 0, 0, 152, 64, 0, 0, 128, 190, 0, 0, 152, 64, 0, 0, 128, 62, 0, 0, 16, 192, 0, 0, 128, 62, 0, 0, 16, 64, 0, 0, 128, 191, 0, 0, 16, 64, 0, 0, 80, 64, 0, 0, 152, 192, 0, 0, 80, 64, 0, 0, 152, 192, 0, 0, 128, 191, 0, 0, 16, 192, 0, 0, 128, 191, 0, 0, 152, 64, 0, 0, 128, 191, 0, 0, 152, 64, 0, 0, 80, 64, 0, 0, 16, 192, 0, 0, 80, 64, 0, 0, 16, 64, 0, 0, 128, 190, 0, 0, 16, 64, 0, 0, 128, 62, 0, 0, 152, 192, 0, 0, 128, 62, 0, 0, 152, 192, 0, 0, 128, 190, 0, 0, 80, 192, 0, 0, 128, 190, 0, 0, 128, 63, 0, 0, 128, 190, 0, 0, 128, 63, 0, 0, 128, 62, 0, 0, 80, 192, 0, 0, 128, 62),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 4, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 12, 0, 14, 0, 15, 0, 16, 0, 17, 0, 18, 0, 16, 0, 18, 0, 19, 0, 20, 0, 21, 0, 22, 0, 20, 0, 22, 0, 23, 0),
+"material": ExtResource("3_7rbh1"),
+"name": "Elements/Elements_04-512x512",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray(0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 144, 65, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 144, 65, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 144, 65, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 144, 65, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 144, 65, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 144, 65, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 144, 65, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 144, 65, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 144, 65, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 144, 65, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 144, 65, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 144, 65, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
+}]
+
+[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_4tqqg"]
+vertices = PackedVector3Array(-13, 2, -10, -13, 0, -10, 4, 0, -10, 4, 2, -10, -13, 2, -10, -13, 2, 18, -13, 0, 18, -13, 0, -10, 4, 0, -10, -13, 0, -10, -13, 0, 18, 4, 0, 18, 4, 2, -10, 4, 2, 18, -13, 2, 18, -13, 2, -10, 4, 2, -10, 4, 0, -10, 4, 0, 18, 4, 2, 18, -13, 2, 18, 4, 2, 18, 4, 0, 18, -13, 0, 18)
+indices = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xf7kd"]
+points = PackedVector3Array(-13, 2, -10, -13, 0, -10, 4, 0, -10, 4, 2, -10, -13, 2, 18, -13, 0, 18, 4, 0, 18, 4, 2, 18)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_j6k0d"]
+points = PackedVector3Array(-1.5, 1, -1.5, -1.5, -1, -1.5, 1.5, -1, -1.5, 1.5, 1, -1.5, -1.5, 1, 1.5, -1.5, -1, 1.5, 1.5, -1, 1.5, 1.5, 1, 1.5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x2mcg"]
+
+[sub_resource type="Sky" id="Sky_ubibv"]
+sky_material = SubResource("ProceduralSkyMaterial_x2mcg")
+
+[sub_resource type="Environment" id="Environment_c1t4m"]
+sky = SubResource("Sky_ubibv")
+ambient_light_source = 3
+
+[node name="World" type="Node3D"]
+
+[node name="FuncGodotMap" type="Node3D" parent="."]
+script = ExtResource("1_rqfxx")
+local_map_file = "res://mapsrc/TestRoomLava.map"
+map_settings = ExtResource("2_bd6s5")
+
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
+
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+mesh = SubResource("ArrayMesh_evgnt")
+
+[node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+occluder = SubResource("ArrayOccluder3D_4tqqg")
+
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+shape = SubResource("ConvexPolygonShape3D_xf7kd")
+
+[node name="entity_1_prop_cop_car" parent="FuncGodotMap" instance=ExtResource("4_l6bxo")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.1875, 2.6875, 4.25)
+
+[node name="entity_2_info_player_start" parent="FuncGodotMap" instance=ExtResource("5_87m6g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.5, 1.5)
+
+[node name="entity_3_env_tone" type="Area3D" parent="FuncGodotMap"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 3, 1.5)
+script = ExtResource("6_xiuvo")
+path = "res://assets/Audio/ambient/tones/TF2_Halloween_music.mp3"
+
+[node name="entity_3_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_3_env_tone"]
+shape = SubResource("ConvexPolygonShape3D_j6k0d")
+
+[node name="entity_4_prop_flag_pole" parent="FuncGodotMap" instance=ExtResource("7_pafqj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.5, 1.9375, 5.5)
+
+[node name="entity_5_prop_pickup_truck" parent="FuncGodotMap" instance=ExtResource("8_uui3q")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.5, 2, -2.5)
+
+[node name="entity_6_prop_generic_car" parent="FuncGodotMap" instance=ExtResource("9_yxv0o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 2, -4.5)
+
+[node name="entity_7_prop_trash_can" parent="FuncGodotMap" instance=ExtResource("10_xhl4l")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.5, 2, 11.5)
+
+[node name="entity_8_prop_street_light" parent="FuncGodotMap" instance=ExtResource("11_kjdhd")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, 1.9375, 11.5)
+
+[node name="entity_9_prop_gas_pump" parent="FuncGodotMap" instance=ExtResource("12_772u8")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.5, 2.1875, 12.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_c1t4m")

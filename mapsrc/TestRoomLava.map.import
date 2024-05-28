@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dosr5cmoacprr"
+path="res://.godot/imported/TestRoomLava.map-71f66deddf30fb7eb6c13c00bacac221.tres"
+
+[deps]
+
+source_file="res://mapsrc/TestRoomLava.map"
+dest_files=["res://.godot/imported/TestRoomLava.map-71f66deddf30fb7eb6c13c00bacac221.tres"]
+
+[params]
+

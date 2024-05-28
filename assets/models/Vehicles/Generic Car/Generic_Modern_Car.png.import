@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqvih5cngn4"
-path.s3tc="res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"
+uid="uid://cc0eawxe7fegd"
+path.s3tc="res://.godot/imported/Generic_Modern_Car.png-e56837fd5caefebc35323c8e346ef06a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://trenchbroom/textures/Elements/Elements_04-512x512.png"
-dest_files=["res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"]
+source_file="res://assets/models/Vehicles/Generic Car/Generic_Modern_Car.png"
+dest_files=["res://.godot/imported/Generic_Modern_Car.png-e56837fd5caefebc35323c8e346ef06a.s3tc.ctex"]
 
 [params]
 

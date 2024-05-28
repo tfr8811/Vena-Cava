@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d4b02b1jpgcfx"
-path="res://.godot/imported/pickUpColour.fbx-e8976f82eb28a177abc8b207662c26ae.scn"
+uid="uid://c3hqtxal073n7"
+path="res://.godot/imported/Metalic_Trash_Can.fbx-3ee0f3baa9edbade79bdab3fdcd4fd8b.scn"
 
 [deps]
 
-source_file="res://assets/models/Vehicles/Pickup Truck/pickUpColour.fbx"
-dest_files=["res://.godot/imported/pickUpColour.fbx-e8976f82eb28a177abc8b207662c26ae.scn"]
+source_file="res://assets/models/Props/Metallic Trashcan/Metalic_Trash_Can.fbx"
+dest_files=["res://.godot/imported/Metalic_Trash_Can.fbx-3ee0f3baa9edbade79bdab3fdcd4fd8b.scn"]
 
 [params]
 
@@ -31,13 +31,9 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
-"Pickup_Truck": {
+"Postcan": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/models/Vehicles/Pickup Truck/Pickup_Truck.tres"
-},
-"Wheels": {
-"use_external/enabled": true,
-"use_external/path": "res://assets/models/Vehicles/Tires.tres"
+"use_external/path": "res://assets/models/Props/PostCan.tres"
 }
 }
 }
