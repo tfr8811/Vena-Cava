@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqvih5cngn4"
-path.s3tc="res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"
+uid="uid://dctm80lba8qbi"
+path.s3tc="res://.godot/imported/Gas_Pump-d4bd5aef6342d83990da37886d7d33e7_Vending_part_1.png-b03ee5a030bde5dc0cf79f2b9a6ced94.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://trenchbroom/textures/Elements/Elements_04-512x512.png"
-dest_files=["res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"]
+source_file="res://assets/models/Props/Gas Pump/Gas_Pump-d4bd5aef6342d83990da37886d7d33e7_Vending_part_1.png"
+dest_files=["res://.godot/imported/Gas_Pump-d4bd5aef6342d83990da37886d7d33e7_Vending_part_1.png-b03ee5a030bde5dc0cf79f2b9a6ced94.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://c1egqbpe2oqk7"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_68n7h"]
+[ext_resource type="PackedScene" uid="uid://t25sfe22olpf" path="res://scenes/prop/street_light.tscn" id="1_lbmp5"]
+
+[resource]
+script = ExtResource("1_68n7h")
+target_map_editor = 0
+models_sub_folder = ""
+scale_expression = ""
+generate_size_property = false
+generate_gd_ignore_file = false
+scene_file = ExtResource("1_lbmp5")
+apply_rotation_on_map_build = true
+classname = "prop_street_light"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

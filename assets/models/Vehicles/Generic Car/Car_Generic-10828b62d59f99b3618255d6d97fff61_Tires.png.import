@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqvih5cngn4"
-path.s3tc="res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"
+uid="uid://cdc5n0pxhh2ve"
+path.s3tc="res://.godot/imported/Car_Generic-10828b62d59f99b3618255d6d97fff61_Tires.png-2a9e69e7102ea40b78be6aa949c82588.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://trenchbroom/textures/Elements/Elements_04-512x512.png"
-dest_files=["res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"]
+source_file="res://assets/models/Vehicles/Generic Car/Car_Generic-10828b62d59f99b3618255d6d97fff61_Tires.png"
+dest_files=["res://.godot/imported/Car_Generic-10828b62d59f99b3618255d6d97fff61_Tires.png-2a9e69e7102ea40b78be6aa949c82588.s3tc.ctex"]
 
 [params]
 

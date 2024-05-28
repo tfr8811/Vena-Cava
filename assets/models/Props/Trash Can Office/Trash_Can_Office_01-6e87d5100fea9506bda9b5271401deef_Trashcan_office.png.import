@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqvih5cngn4"
-path.s3tc="res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"
+uid="uid://bfenv8t65kem7"
+path.s3tc="res://.godot/imported/Trash_Can_Office_01-6e87d5100fea9506bda9b5271401deef_Trashcan_office.png-69cc1b327df8325d9da7ced0bf715270.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://trenchbroom/textures/Elements/Elements_04-512x512.png"
-dest_files=["res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"]
+source_file="res://assets/models/Props/Trash Can Office/Trash_Can_Office_01-6e87d5100fea9506bda9b5271401deef_Trashcan_office.png"
+dest_files=["res://.godot/imported/Trash_Can_Office_01-6e87d5100fea9506bda9b5271401deef_Trashcan_office.png-69cc1b327df8325d9da7ced0bf715270.s3tc.ctex"]
 
 [params]
 

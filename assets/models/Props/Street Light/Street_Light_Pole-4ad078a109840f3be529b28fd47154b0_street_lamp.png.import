@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvoqvih5cngn4"
-path.s3tc="res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"
+uid="uid://cbvahmhig562"
+path.s3tc="res://.godot/imported/Street_Light_Pole-4ad078a109840f3be529b28fd47154b0_street_lamp.png-05518b2c84ee1e4dffa3800668a10e5c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://trenchbroom/textures/Elements/Elements_04-512x512.png"
-dest_files=["res://.godot/imported/Elements_04-512x512.png-12ca5185c3cd44ab57a311448db5f3ff.s3tc.ctex"]
+source_file="res://assets/models/Props/Street Light/Street_Light_Pole-4ad078a109840f3be529b28fd47154b0_street_lamp.png"
+dest_files=["res://.godot/imported/Street_Light_Pole-4ad078a109840f3be529b28fd47154b0_street_lamp.png-05518b2c84ee1e4dffa3800668a10e5c.s3tc.ctex"]
 
 [params]
 
