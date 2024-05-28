@@ -6,7 +6,6 @@ using System;
 /// 4/30/2024
 /// A shape that the player or enemies can launch at other bodies, damages target
 /// </summary>
-// todo: change from CharacterBody3D to Raycast3D
 public partial class Bullet : RayCast3D
 {
     // destroy the bullet after 3 seconds
@@ -38,10 +37,9 @@ public partial class Bullet : RayCast3D
 
     public override void _PhysicsProcess(double delta)
     {
-        // apply Velocity
-        this.GlobalPosition += velocity * (float) delta;
-        // face in direction of Velocity
-        LookAt(Transform.Origin - velocity, Vector3.Up);
+        // set target position
+        this.TargetPosition = velocity / (float) delta;
+
         // decay the bullet
         bulletTimer -= delta;
         if (bulletTimer < 0) {
@@ -60,5 +58,8 @@ public partial class Bullet : RayCast3D
             }
             this.QueueFree();
         }
+
+        // apply Velocity
+        this.Position += velocity * (float)delta;
     }
 }

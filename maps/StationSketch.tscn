@@ -149,7 +149,7 @@ environment = SubResource("Environment_t4ib3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.5, 3)
 
 [node name="entity_24_character_cop" parent="." instance=ExtResource("15_keyy7")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -14, 2.5, 29.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23.4276, 2.5, 11.5527)
 
 [node name="entity_25_character_cop" parent="." instance=ExtResource("15_keyy7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -34, 2.5, 27.5)

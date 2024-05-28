@@ -129,10 +129,9 @@ public partial class Gun : Node3D
         for (int i = 0; i < count; i++) {
             Bullet bullet = (Bullet)psBullet.Instantiate();
             GetNode("/root/World").AddChild(bullet);
-            // set the position of the bullet in front of the player
+            // calculate the bullets trajectory
             Vector3 pointVector = -this.GlobalTransform.Basis.Z;
             bullet.GlobalPosition = this.GlobalPosition;
-            bullet.GlobalPosition += pointVector * 1f;
             // set the collision mask of the bullet to the enemy layer (3)
             bullet.SetCollisionMaskValue(3, true);
             // guns that shoot in bursts are stronger close up
