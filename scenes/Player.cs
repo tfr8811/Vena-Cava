@@ -19,7 +19,7 @@ public partial class Player : CharacterBody3D, IDamageable
     private float speed;
 
     // health
-    private int maxHealth = 10;
+    private int maxHealth = 20;
     public int MaxHealth
     {
         get { return this.maxHealth; }
@@ -245,9 +245,9 @@ public partial class Player : CharacterBody3D, IDamageable
     public void TakeDamage(int damage)
     {
         health -= damage;
+        hud.Update(this);
         if (health <= 0) {
             GlobalSceneManager.Instance.GameOver();
-            hud.Update(this);
         } else
         {
             damageSound.Play();

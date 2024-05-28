@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDModelPointClass" load_steps=3 format=3 uid="uid://b6vrtfqgw8htt"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_model_point_class.gd" id="1_d2ejo"]
-[ext_resource type="PackedScene" uid="uid://bq67v1g0mmukg" path="res://scenes/prop/pickup_truck.tscn" id="1_yx2rf"]
+[ext_resource type="PackedScene" uid="uid://bq67v1g0mmukg" path="res://scenes/prop/Pickup_Truck.tscn" id="1_yx2rf"]
 
 [resource]
 script = ExtResource("1_d2ejo")

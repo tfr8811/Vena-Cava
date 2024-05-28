@@ -69,3 +69,8 @@
 "classname" "prop_gas_pump"
 "origin" "200 -88 35"
 }
+// entity 10
+{
+"classname" "character_cop"
+"origin" "232 -120 40"
+}

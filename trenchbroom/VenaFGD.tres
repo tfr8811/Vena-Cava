@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=13 format=3 uid="uid://qn0n1a7gi460"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=14 format=3 uid="uid://qn0n1a7gi460"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_e8db0"]
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_s7wxg"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://b6vrtfqgw8htt" path="res://trenchbroom/FgdMappings/prop_pickup_truck.tres" id="9_pbpvq"]
 [ext_resource type="Resource" uid="uid://c1egqbpe2oqk7" path="res://trenchbroom/FgdMappings/prop_street_light.tres" id="10_4swks"]
 [ext_resource type="Resource" uid="uid://boar13ahbep2w" path="res://trenchbroom/FgdMappings/prop_trash_can.tres" id="11_glv0m"]
+[ext_resource type="Resource" uid="uid://b6ds0k7w68omm" path="res://trenchbroom/FgdMappings/character_cop.tres" id="12_oide5"]
 
 [resource]
 script = ExtResource("1_e8db0")
@@ -19,4 +20,4 @@ export_file = false
 model_key_word_supported = true
 fgd_name = "FuncGodot"
 base_fgd_files = Array[Resource]([ExtResource("1_s7wxg")])
-entity_definitions = Array[Resource]([ExtResource("2_7nd4e"), ExtResource("3_mtqxd"), ExtResource("4_8fcha"), ExtResource("5_2bh4y"), ExtResource("6_2y5rg"), ExtResource("7_mh63l"), ExtResource("8_digc2"), ExtResource("9_pbpvq"), ExtResource("10_4swks"), ExtResource("11_glv0m")])
+entity_definitions = Array[Resource]([ExtResource("2_7nd4e"), ExtResource("3_mtqxd"), ExtResource("4_8fcha"), ExtResource("5_2bh4y"), ExtResource("6_2y5rg"), ExtResource("7_mh63l"), ExtResource("8_digc2"), ExtResource("9_pbpvq"), ExtResource("10_4swks"), ExtResource("11_glv0m"), ExtResource("12_oide5")])

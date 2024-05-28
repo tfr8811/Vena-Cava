@@ -73,7 +73,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	private AudioStreamPlayer3D reloadSound;
 
 	// instance the bullet
-	PackedScene psBullet = GD.Load<PackedScene>("res://assets/Scenes/Bullet.tscn");
+	PackedScene psBullet = GD.Load<PackedScene>("res://scenes/equipment/Bullet.tscn");
 
 	public override void _Ready()
 	{
