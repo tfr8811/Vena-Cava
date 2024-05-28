@@ -217,9 +217,10 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		pointVector = pointVector.Normalized();
 		bullet.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
 		bullet.GlobalPosition += pointVector * 2;
+        // set the collision mask of the bullet to the player layer (2)
+        bullet.SetCollisionMaskValue(2, true);
 
-
-		bullet.Velocity = pointVector * speed;
+        bullet.Velocity = pointVector * speed;
 	}
 
 	/// <summary>

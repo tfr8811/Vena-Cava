@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://w31km61o0ml4"
+path="res://.godot/imported/StationSketch.2.map-463f7cf9cbdf5109750dc0bd472cbf91.tres"
+
+[deps]
+
+source_file="res://mapsrc/autosave/StationSketch.2.map"
+dest_files=["res://.godot/imported/StationSketch.2.map-463f7cf9cbdf5109750dc0bd472cbf91.tres"]
+
+[params]
+

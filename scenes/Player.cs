@@ -89,7 +89,7 @@ public partial class Player : CharacterBody3D, IDamageable
             camera.RotateX(-look.Relative.Y * sensitivity);
             // clamp the cameras up and down rotation
             camera.Rotation = new Vector3(
-                (float) Math.Clamp(camera.Rotation.X, -40 * Math.PI/180, 60 * Math.PI/180), 
+                (float) Math.Clamp(camera.Rotation.X, -90 * Math.PI/180, 90 * Math.PI/180), 
                 camera.Rotation.Y, 
                 camera.Rotation.Z
                 );

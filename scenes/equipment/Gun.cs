@@ -117,7 +117,8 @@ public partial class Gun : Node3D
         Vector3 pointVector = -this.GlobalTransform.Basis.Z;
         bullet.GlobalPosition = this.GlobalPosition;
         bullet.GlobalPosition += pointVector * 1f;
-
+        // set the collision mask of the bullet to the enemy layer (3)
+        bullet.SetCollisionMaskValue(3, true);
 
         bullet.Velocity = pointVector * speed;
     }

@@ -7,6 +7,7 @@
 [sub_resource type="SphereMesh" id="SphereMesh_tfp5p"]
 
 [node name="Bullet" type="CharacterBody3D"]
+collision_layer = 0
 script = ExtResource("1_v0f7a")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
