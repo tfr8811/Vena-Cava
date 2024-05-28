@@ -11,6 +11,21 @@ public partial class Bullet : CharacterBody3D
 {
     // destroy the bullet after 3 seconds
     private double bulletTimer = 3.0f;
+    public double BulletTimer
+    {
+        set
+        {
+            this.bulletTimer = value;
+        }
+    }
+    private int damage = 1;
+    public int Damage
+    {
+        set
+        {
+            this.damage = value;
+        }
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -31,7 +46,7 @@ public partial class Bullet : CharacterBody3D
             
             if (collider is IDamageable)
             {
-                ((IDamageable)collider).TakeDamage(1);
+                ((IDamageable)collider).TakeDamage(damage);
             }
             this.QueueFree();
         }

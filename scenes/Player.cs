@@ -11,8 +11,8 @@ public partial class Player : CharacterBody3D, IDamageable
     // movement
     const float GRAVITY = 20f;
     const float JUMP_VELOCITY = 7f;
-    const float RUN_SPEED = 10f;
-    const float CROUCH_MOVE_SPEED = 5f;
+    const float RUN_SPEED = 8f;
+    const float CROUCH_MOVE_SPEED = 4f;
     const float PLAYER_HEIGHT = 2f;
     const float CROUCH_SPEED = 20f;
     const float CROUCH_HEIGHT = 0.75f;

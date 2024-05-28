@@ -8,12 +8,26 @@ using System;
 /// </summary>
 public partial class Gun : Node3D
 {
-    // shooting
-    const float BULLET_SPEED = 120.0f;
-
-    // ammo
-    private int maxAmmo = 10;
-    private int ammo = 10;
+    // Gun parameters
+    [Export]
+    private float bulletSpeed; // recommended: 120.0f, worth speeding up for rifle
+    [Export]
+    private int maxAmmo;
+    [Export]
+    private int ammo;
+    [Export]
+    private int bulletDamage;
+    [Export]
+    private int projectileCount;
+    [Export]
+    private float projectileSpread;
+    [Export]
+    private double maxBulletLifespan;
+    [Export]
+    private double maxFireDelay; // pistol's is 0.2, for reference
+    private double fireDelay;
+    [Export]
+    private bool autofire;
 
     // Gun info - TODO should refactor some of the player code to the gun
     [Export]
@@ -30,9 +44,7 @@ public partial class Gun : Node3D
     // the player cant shoot during some actions such as reloading
     private bool canShoot = true;
 
-    // todo: use GD.Timer
-    private double maxFireDelay = 0.2;
-    private double fireDelay;
+    RandomNumberGenerator rng;
 
     // instance the bullet
     PackedScene psBullet = GD.Load<PackedScene>("res://scenes/equipment/Bullet.tscn");
@@ -44,6 +56,8 @@ public partial class Gun : Node3D
 
         // setup the ammoCounter
         ammoCounter.Text = ammo.ToString();
+
+        rng = new RandomNumberGenerator();
     }
 
     public override void _Process(double delta)
@@ -59,11 +73,12 @@ public partial class Gun : Node3D
     public override void _PhysicsProcess(double delta)
     {
         // SHOOT
-        if (canShoot && ammo > 0 && fireDelay <= 0 && Input.IsActionJustPressed("Shoot"))
+        if (canShoot && ammo > 0 && fireDelay <= 0 
+            && ( Input.IsActionJustPressed("Shoot") || (Input.IsActionPressed("Shoot") && autofire)) )
         {
             gunSprite.Play("Shoot");
             shootSound.Play();
-            SpawnBullet(BULLET_SPEED);
+            SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
 
             // Here I can use can shoot or fire delay, for now, I'll use can shoot
             canShoot = false;
@@ -109,17 +124,24 @@ public partial class Gun : Node3D
     /// 4/30/2024
     /// Shoots a bullet in the direction the player is facing
     /// </summary>
-    private void SpawnBullet(float speed)
+    private void SpawnBullet(float speed, int damage, int count, float spread, double lifespan)
     {
-        Bullet bullet = (Bullet)psBullet.Instantiate();
-        GetNode("/root/World").AddChild(bullet);
-        // set the position of the bullet in front of the player
-        Vector3 pointVector = -this.GlobalTransform.Basis.Z;
-        bullet.GlobalPosition = this.GlobalPosition;
-        bullet.GlobalPosition += pointVector * 1f;
-        // set the collision mask of the bullet to the enemy layer (3)
-        bullet.SetCollisionMaskValue(3, true);
-
-        bullet.Velocity = pointVector * speed;
+        for (int i = 0; i < count; i++) {
+            Bullet bullet = (Bullet)psBullet.Instantiate();
+            GetNode("/root/World").AddChild(bullet);
+            // set the position of the bullet in front of the player
+            Vector3 pointVector = -this.GlobalTransform.Basis.Z;
+            bullet.GlobalPosition = this.GlobalPosition;
+            bullet.GlobalPosition += pointVector * 1f;
+            // set the collision mask of the bullet to the enemy layer (3)
+            bullet.SetCollisionMaskValue(3, true);
+            // guns that shoot in bursts are stronger close up
+            bullet.BulletTimer = lifespan * (((float) i + 1f) / (float) count);
+            bullet.Damage = damage;
+            // apply spread
+            Vector3 vSpread = new Vector3(rng.Randf() - 0.5f, rng.Randf() - 0.5f, rng.Randf()-0.5f);
+            vSpread = vSpread.Normalized() * spread;
+            bullet.Velocity = (pointVector * speed) + vSpread;
+        }
     }
 }

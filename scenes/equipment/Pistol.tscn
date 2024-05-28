@@ -78,6 +78,13 @@ animations = [{
 
 [node name="Pistol" type="Node3D" node_paths=PackedStringArray("gunSprite", "ammoCounter", "shootSound", "reloadSound", "equipSound")]
 script = ExtResource("1_egrsy")
+bulletSpeed = 120.0
+maxAmmo = 10
+ammo = 10
+bulletDamage = 1
+projectileCount = 1
+maxBulletLifespan = 3.0
+maxFireDelay = 0.2
 gunSprite = NodePath("CanvasLayer/Control/GunSprite")
 ammoCounter = NodePath("CanvasLayer/Control/AmmoLabel")
 shootSound = NodePath("ShootSound")
