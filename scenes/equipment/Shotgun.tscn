@@ -107,7 +107,6 @@ animations = [{
 script = ExtResource("1_xp2rs")
 bulletSpeed = 120.0
 maxAmmo = 1
-ammo = 1
 bulletDamage = 1
 projectileCount = 10
 projectileSpread = 8.0

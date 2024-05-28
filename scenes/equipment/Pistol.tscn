@@ -80,7 +80,6 @@ animations = [{
 script = ExtResource("1_egrsy")
 bulletSpeed = 120.0
 maxAmmo = 10
-ammo = 10
 bulletDamage = 1
 projectileCount = 1
 maxBulletLifespan = 3.0

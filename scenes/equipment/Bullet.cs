@@ -7,7 +7,7 @@ using System;
 /// A shape that the player or enemies can launch at other bodies, damages target
 /// </summary>
 // todo: change from CharacterBody3D to Raycast3D
-public partial class Bullet : CharacterBody3D
+public partial class Bullet : RayCast3D
 {
     // destroy the bullet after 3 seconds
     private double bulletTimer = 3.0f;
@@ -27,8 +27,21 @@ public partial class Bullet : CharacterBody3D
         }
     }
 
+    private Vector3 velocity;
+    public Vector3 Velocity
+    {
+        set 
+        { 
+            this.velocity = value;
+        }
+    }
+
     public override void _PhysicsProcess(double delta)
     {
+        // apply Velocity
+        this.GlobalPosition += velocity * (float) delta;
+        // face in direction of Velocity
+        LookAt(Transform.Origin - velocity, Vector3.Up);
         // decay the bullet
         bulletTimer -= delta;
         if (bulletTimer < 0) {
@@ -36,20 +49,16 @@ public partial class Bullet : CharacterBody3D
             this.QueueFree();
         }
 
-        MoveAndSlide();
-
         // handle collisions
-        for (int i = 0; i < GetSlideCollisionCount(); i++)
+        if (IsColliding())
         {
-            // the bullet will damage damageable colliders
-            Object collider = GetSlideCollision(i).GetCollider();
-            
+            Object collider = GetCollider();
+
             if (collider is IDamageable)
             {
                 ((IDamageable)collider).TakeDamage(damage);
             }
             this.QueueFree();
         }
-
     }
 }

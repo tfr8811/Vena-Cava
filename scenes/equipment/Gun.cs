@@ -13,7 +13,6 @@ public partial class Gun : Node3D
     private float bulletSpeed; // recommended: 120.0f, worth speeding up for rifle
     [Export]
     private int maxAmmo;
-    [Export]
     private int ammo;
     [Export]
     private int bulletDamage;
@@ -53,6 +52,7 @@ public partial class Gun : Node3D
     {
         gunSprite.Play("Idle");
         equipSound.Play();
+        ammo = maxAmmo;
 
         // setup the ammoCounter
         ammoCounter.Text = ammo.ToString();
@@ -100,7 +100,7 @@ public partial class Gun : Node3D
         }
 
         // RELOAD - It's automatic rn but can also be done by pressing "R"
-        if ((canShoot && ammo == 0) || Input.IsActionJustPressed("Reload"))
+        if (canShoot && (ammo == 0 || Input.IsActionJustPressed("Reload")))
         {
             gunSprite.Play("Reload");
             reloadSound.Play();
