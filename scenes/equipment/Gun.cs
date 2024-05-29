@@ -145,4 +145,24 @@ public partial class Gun : Node3D
             bullet.Velocity = (pointVector * speed) + vSpread;
         }
     }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/29/2024
+    /// Handles the guns behavior when equipped
+    /// </summary>
+    public void Equip()
+    {
+        gunSprite.Play("Idle");
+        if (shootSound.Playing)
+        {
+            shootSound.Stop();
+        }
+        if (reloadSound.Playing)
+        {
+            reloadSound.Stop();
+        }
+        equipSound.Play();
+        canShoot = true;
+    }
 }

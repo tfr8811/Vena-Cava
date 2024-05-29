@@ -10,7 +10,7 @@ public partial class Items : Node3D
     private int currentIndex = 0;
     public override void _Ready()
     {
-        // I'll need to resize this when player picks up an item
+        // preload all of the player's items
         loadedItems = new Node[inventory.Length];
         for (int i = 0; i < inventory.Length; i++)
         {
@@ -24,29 +24,60 @@ public partial class Items : Node3D
         {
             if (currentIndex < inventory.Length-1)
             {
-                RemoveChild(loadedItems[currentIndex]);
-                currentIndex++;
-                AddChild(loadedItems[currentIndex]);
+                SwapToIndex(currentIndex + 1);
             } else
             {
-                RemoveChild(loadedItems[currentIndex]);
-                currentIndex = 0;
-                AddChild(loadedItems[currentIndex]);
+                SwapToIndex(0);
             }
         }
         if (Input.IsActionJustPressed("ScrollDown"))
         {
             if (currentIndex > 0)
             {
-                RemoveChild(loadedItems[currentIndex]);
-                currentIndex--;
-                AddChild(loadedItems[currentIndex]);
+                SwapToIndex(currentIndex - 1);
             } else
             {
-                RemoveChild(loadedItems[currentIndex]);
-                currentIndex = inventory.Length - 1;
-                AddChild(loadedItems[currentIndex]);
+                SwapToIndex(inventory.Length - 1);
             }
+        }
+    }
+    /// <summary>
+    /// Roman Noodles
+    /// 5/29/2024
+    /// Adds an item to the player's inventory
+    /// </summary>
+    public void AddItem(PackedScene item)
+    {
+        // add the new item to the arrays
+        PackedScene[] newInventory = new PackedScene[inventory.Length + 1];
+        Node[] newLoadedItems = new Node[loadedItems.Length + 1];
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            newInventory[i] = inventory[i];
+            newLoadedItems[i] = loadedItems[i];
+        }
+        newInventory[inventory.Length] = item;
+        newLoadedItems[loadedItems.Length] = item.Instantiate();
+        inventory = newInventory;
+        loadedItems = newLoadedItems;
+        // swap to the new item
+        SwapToIndex(inventory.Length-1);
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/29/2024
+    /// swaps from one item to another
+    /// </summary>
+    /// <param name="index">index of the item to swap to</param>
+    private void SwapToIndex(int index)
+    {
+        RemoveChild(loadedItems[currentIndex]);
+        currentIndex = index;
+        AddChild(loadedItems[currentIndex]);
+        if (loadedItems[currentIndex] is Gun)
+        {
+            ((Gun)loadedItems[currentIndex]).Equip();
         }
     }
 }
