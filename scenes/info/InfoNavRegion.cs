@@ -19,6 +19,5 @@ public partial class InfoNavRegion : NavigationRegion3D, ICsFGD
         NavigationMesh.GeometrySourceGeometryMode = NavigationMesh.SourceGeometryMode.GroupsWithChildren;
         NavigationMesh.GeometrySourceGroupName = WORLD_GROUP;
         BakeNavigationMesh(false);
-        ResourceSaver.Save(NavigationMesh, "res://test.tres");
     }
 }
