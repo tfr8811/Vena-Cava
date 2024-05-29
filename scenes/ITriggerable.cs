@@ -3,5 +3,5 @@ using System;
 
 public interface ITriggerable
 {
-    public void Trigger();
+    public void Trigger(Node activator);
 }

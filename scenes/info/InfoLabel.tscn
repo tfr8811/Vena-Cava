@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhuwrimmq1wv4"]
+
+[ext_resource type="Script" path="res://scenes/info/InfoLabel.cs" id="1_h5aae"]
+
+[node name="InfoLabel" type="Label3D"]
+billboard = 1
+font_size = 64
+script = ExtResource("1_h5aae")

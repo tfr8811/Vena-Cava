@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://12lrv30vaopp"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_mvl83"]
+[ext_resource type="Script" path="res://scenes/logic/InfoSpawner.cs" id="2_cw75q"]
+
+[resource]
+script = ExtResource("1_mvl83")
+script_class = ExtResource("2_cw75q")
+apply_rotation_on_map_build = true
+classname = "info_spawner"
+description = "Spawns an entity when triggered"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"path": ""
+}
+class_property_descriptions = {
+"path": "Path of the entity to spawn"
+}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"model": "{\"path\":\"textures/EditorIcons/user_add.png\", \"scale\": 1}",
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = "targetname"

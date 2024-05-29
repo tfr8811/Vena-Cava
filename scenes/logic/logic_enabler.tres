@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://baw8fspyko11p"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_0logr"]
+[ext_resource type="Script" path="res://scenes/logic/LogicEnabler.cs" id="2_rujyq"]
+
+[resource]
+script = ExtResource("1_0logr")
+script_class = ExtResource("2_rujyq")
+apply_rotation_on_map_build = true
+classname = "logic_enabler"
+description = "Enables a toggle-able"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"target": "",
+"targetname": ""
+}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"model": "{\"path\":\"textures/EditorIcons/accept.png\", \"scale\": 1}",
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = "targetname"

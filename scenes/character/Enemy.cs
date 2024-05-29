@@ -9,12 +9,6 @@ using System;
 
 public partial class Enemy : CharacterBody3D, IDamageable
 {
-	// player reference
-	private Player player = null;
-
-	[Export]
-	private NodePath playerPath = "/root/World/Player";
-
 	[Export]
 	private AnimatedSprite3D enemySprite;
 
@@ -26,7 +20,6 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
 	[Export]
 	private NodePath navPath;
-
 
 	// movement
 	const float SPEED = 6f;
@@ -77,7 +70,6 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
 	public override void _Ready()
 	{
-		player = (Player)GetNode(playerPath);
 		navAgent = (NavigationAgent3D)GetNode(navPath);
 		sightRaycast = (RayCast3D)GetNode(sightPath);
 		fireDelay = maxFireDelay;
@@ -98,6 +90,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
 		// reset velocity
 		Velocity = Vector3.Zero;
+
+		Player player = GlobalWorldState.Instance.Player;
 
 		// navigate to player
 		if (IsInstanceValid(player))
@@ -213,6 +207,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		// set the position of the bullet in front of the player
 		//Vector3 pointVector = -GlobalTransform.Basis.Z;
 		// Aim at player
+
+		Player player = GlobalWorldState.Instance.Player;
 		Vector3 pointVector = new Vector3(player.GlobalPosition.X - GlobalPosition.X, player.GetHeadHeight() - (GlobalPosition.Y + 0.5f), player.GlobalPosition.Z - GlobalPosition.Z);
 		pointVector = pointVector.Normalized();
 		bullet.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);

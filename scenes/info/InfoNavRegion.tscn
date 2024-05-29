@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2hipue0blxrr"]
+
+[ext_resource type="Script" path="res://scenes/info/InfoNavRegion.cs" id="1_y4vln"]
+
+[node name="InfoNavRegion" type="NavigationRegion3D"]
+script = ExtResource("1_y4vln")

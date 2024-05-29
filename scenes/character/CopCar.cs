@@ -8,9 +8,9 @@ using System;
 public partial class CopCar : CharacterBody3D
 {
     // instance the cop
-    private PackedScene psCop = GD.Load<PackedScene>("res://assets/Scenes/Cop.tscn");
+    private PackedScene psCop = GD.Load<PackedScene>("res://scenes/character/Cop.tscn");
     // instance the explosion
-    private PackedScene psExplosion = GD.Load<PackedScene>("res://assets/Scenes/Explosion.tscn");
+    private PackedScene psExplosion = GD.Load<PackedScene>("res://scenes/effects/Explosion.tscn");
     [Export]
     private Node3D spawnPoint;
     [Export]
@@ -22,6 +22,7 @@ public partial class CopCar : CharacterBody3D
     public override void _Ready()
     {
         siren.Play();
+        Velocity = Vector3.Forward * 20;
     }
     public override void _PhysicsProcess(double delta)
     {

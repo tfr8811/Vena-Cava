@@ -21,6 +21,7 @@ GlobalAudioManager="*res://scenes/GlobalAudioManager.cs"
 GlobalSceneManager="*res://scenes/GlobalSceneManager.cs"
 GlobalSettings="*res://scenes/GlobalSettings.cs"
 GlobalChapterManager="*res://scenes/GlobalChapterManager.cs"
+GlobalWorldState="*res://scenes/GlobalWorldState.cs"
 
 [display]
 

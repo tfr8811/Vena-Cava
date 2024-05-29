@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://cy30blm7grbrm"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_voyro"]
+[ext_resource type="Script" path="res://scenes/logic/LogicRelay.cs" id="2_n3qeo"]
+
+[resource]
+script = ExtResource("1_voyro")
+script_class = ExtResource("2_n3qeo")
+apply_rotation_on_map_build = true
+classname = "logic_relay"
+description = "When triggered, triggers all entities listed.
+"
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"targetname": "",
+"targets": ""
+}
+class_property_descriptions = {
+"targetname": "",
+"targets": "Semicolon-separated list of targetnames"
+}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"model": "{\"path\":\"textures/EditorIcons/arrow_right.png\", \"scale\": 1}",
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = "targetname"
