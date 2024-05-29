@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://cjc13em5od4qa"]
+[gd_scene load_steps=14 format=3 uid="uid://cjc13em5od4qa"]
 
 [ext_resource type="Script" path="res://scenes/Player.cs" id="1_clxhf"]
 [ext_resource type="PackedScene" uid="uid://c8oqmn7ehj8p" path="res://scenes/equipment/Shotgun.tscn" id="2_avvo2"]
+[ext_resource type="Script" path="res://scenes/equipment/Items.cs" id="2_eopid"]
+[ext_resource type="PackedScene" uid="uid://dnhcdoqsul3ob" path="res://scenes/equipment/Pistol.tscn" id="3_2l3rw"]
 [ext_resource type="AudioStream" uid="uid://cckxjtwevkvsm" path="res://assets/Audio/SFX/Player/Damage/damage_1.wav" id="3_ltc0d"]
 [ext_resource type="AudioStream" uid="uid://dm0fodtlit7wn" path="res://assets/Audio/SFX/Player/Damage/damage_2.wav" id="4_jnwsk"]
 [ext_resource type="AudioStream" uid="uid://dm6ol4qw7gga5" path="res://assets/Audio/SFX/Player/Damage/damage_3.wav" id="5_4bytc"]
@@ -49,9 +51,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606531, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 
-[node name="Gun" type="Node3D" parent="Head/Camera3D"]
-
-[node name="Shotgun" parent="Head/Camera3D/Gun" instance=ExtResource("2_avvo2")]
+[node name="Items" type="Node3D" parent="Head/Camera3D"]
+script = ExtResource("2_eopid")
+inventory = Array[PackedScene]([ExtResource("3_2l3rw"), ExtResource("2_avvo2")])
 
 [node name="InteractionRay" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -10)
