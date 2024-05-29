@@ -1,0 +1,186 @@
+[gd_scene load_steps=21 format=3 uid="uid://dhs7hpp1c4jyq"]
+
+[ext_resource type="Script" path="res://scenes/equipment/Gun.cs" id="1_jq4hc"]
+[ext_resource type="Texture2D" uid="uid://fot4o4elyw1o" path="res://assets/Sprites/WEAPONS/CARBINE/FRAME 1.PNG" id="2_3s6yi"]
+[ext_resource type="Texture2D" uid="uid://ijons01epd4h" path="res://assets/Sprites/WEAPONS/CARBINE/FRAME 2.PNG" id="3_0pin0"]
+[ext_resource type="Texture2D" uid="uid://c1hh5ukn30sf4" path="res://assets/Sprites/WEAPONS/CARBINE/FRAME 3.PNG" id="4_0hbx3"]
+[ext_resource type="Texture2D" uid="uid://dm8moh7uquut7" path="res://assets/Sprites/WEAPONS/CARBINE/FRAME 4.PNG" id="5_rd1uj"]
+[ext_resource type="Texture2D" uid="uid://cwgqkmm27gbkf" path="res://assets/Sprites/WEAPONS/CARBINE/FRAME 5.PNG" id="6_cjben"]
+[ext_resource type="Texture2D" uid="uid://cw3corj0r3blw" path="res://assets/Sprites/WEAPONS/CARBINE/FRAME 6.PNG" id="7_rdsex"]
+[ext_resource type="Texture2D" uid="uid://cetc4y2rs2fbw" path="res://assets/Sprites/WEAPONS/CARBINE/FRAME 7.PNG" id="8_py62u"]
+[ext_resource type="Texture2D" uid="uid://c4as5duy8yy0k" path="res://assets/Sprites/WEAPONS/CARBINE/RELOAD 1.PNG" id="9_prfxu"]
+[ext_resource type="Texture2D" uid="uid://bwrp68dkphutg" path="res://assets/Sprites/WEAPONS/CARBINE/RELOAD 2.PNG" id="10_0ndom"]
+[ext_resource type="Texture2D" uid="uid://brfhkl4cpo4qc" path="res://assets/Sprites/WEAPONS/CARBINE/RELOAD 3.PNG" id="11_s1psm"]
+[ext_resource type="Texture2D" uid="uid://cl4e6gnp7w42y" path="res://assets/Sprites/WEAPONS/CARBINE/RELOAD 4 PNG.png" id="12_25bgb"]
+[ext_resource type="Texture2D" uid="uid://dcfdvdni1yw8t" path="res://assets/Sprites/WEAPONS/CARBINE/RELOAD 5.PNG" id="13_cwpas"]
+[ext_resource type="Texture2D" uid="uid://dnfyx75o4ubn4" path="res://assets/Sprites/HUD/Ammo_Counter.png" id="13_kr1f7"]
+[ext_resource type="AudioStream" uid="uid://c2447r8h66btu" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL_FIRE_2.wav" id="14_drrfo"]
+[ext_resource type="Texture2D" uid="uid://b2ovx80w3najf" path="res://assets/Sprites/WEAPONS/CARBINE/Muzzle flash 1.png" id="14_gb2vo"]
+[ext_resource type="AudioStream" uid="uid://dtf65vv66q2be" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL RELOAD.wav" id="15_gm0v3"]
+[ext_resource type="Texture2D" uid="uid://bnhn8u2hhy0v" path="res://assets/Sprites/WEAPONS/CARBINE/Muzzle Flash 2.PNG" id="15_r8o43"]
+[ext_resource type="AudioStream" uid="uid://bs3qtxr28wpeh" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL_EQUIP.wav" id="16_xmysf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_26jbt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3s6yi")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0pin0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0hbx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rd1uj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cjben")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rdsex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_py62u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_prfxu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_0ndom")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_s1psm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_25bgb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_cwpas")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_py62u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rdsex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cjben")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rd1uj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0hbx3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0pin0")
+}],
+"loop": false,
+"name": &"Reload",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_gb2vo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_r8o43")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 20.0
+}]
+
+[node name="Carbine" type="Node3D" node_paths=PackedStringArray("gunSprite", "ammoCounter", "shootSound", "reloadSound", "equipSound")]
+script = ExtResource("1_jq4hc")
+bulletSpeed = 120.0
+maxAmmo = 10
+bulletDamage = 2
+projectileCount = 1
+maxBulletLifespan = 3.0
+maxFireDelay = 0.4
+gunSprite = NodePath("CanvasLayer/Control/GunSprite")
+ammoCounter = NodePath("CanvasLayer/Control/AmmoLabel")
+shootSound = NodePath("ShootSound")
+reloadSound = NodePath("ReloadSound")
+equipSound = NodePath("EquipSound")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="GunSprite" type="AnimatedSprite2D" parent="CanvasLayer/Control"]
+position = Vector2(-188, 40)
+rotation = 3.14159
+scale = Vector2(0.74863, 0.74863)
+sprite_frames = SubResource("SpriteFrames_26jbt")
+animation = &"Idle"
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="AmmoCounter" type="TextureRect" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 300.0
+offset_bottom = 298.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = 3.14159
+scale = Vector2(0.834988, 0.834988)
+texture = ExtResource("13_kr1f7")
+flip_h = true
+flip_v = true
+
+[node name="AmmoLabel" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -137.0
+offset_right = -90.0
+offset_bottom = -63.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.71456, 1.71456)
+theme_override_colors/font_color = Color(0.988235, 0.847059, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 45
+text = "10
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_drrfo")
+
+[node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("15_gm0v3")
+
+[node name="EquipSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("16_xmysf")
