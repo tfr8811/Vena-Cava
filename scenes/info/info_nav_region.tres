@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://dkw75gsy6icvw"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_kj28b"]
+[ext_resource type="PackedScene" uid="uid://d2hipue0blxrr" path="res://scenes/info/InfoNavRegion.tscn" id="1_lubl8"]
+
+[resource]
+script = ExtResource("1_kj28b")
+scene_file = ExtResource("1_lubl8")
+apply_rotation_on_map_build = true
+classname = "info_nav_region"
+description = "Required to be placed in a level for navigation to work properly."
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {
+"test": "test2"
+}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = "NavigationRegion3D"
+name_property = ""

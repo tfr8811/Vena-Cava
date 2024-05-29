@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=9 format=3 uid="uid://rjsjh6eef1ic"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_5oc8k"]
+[ext_resource type="Resource" uid="uid://bpehh3s1valhl" path="res://scenes/prop/prop_flag_pole.tres" id="1_6g055"]
+[ext_resource type="Resource" uid="uid://61mvgm6o56rn" path="res://scenes/prop/prop_cop_car.tres" id="2_pxlqc"]
+[ext_resource type="Resource" uid="uid://8t60kxyopxp5" path="res://scenes/prop/prop_gas_pump.tres" id="3_75sv1"]
+[ext_resource type="Resource" uid="uid://b6vrtfqgw8htt" path="res://scenes/prop/prop_pickup_truck.tres" id="4_nww52"]
+[ext_resource type="Resource" uid="uid://dg0d450x6sqgu" path="res://scenes/prop/prop_generic_car.tres" id="5_4lyco"]
+[ext_resource type="Resource" uid="uid://c1egqbpe2oqk7" path="res://scenes/prop/prop_street_light.tres" id="6_y2srr"]
+[ext_resource type="Resource" uid="uid://boar13ahbep2w" path="res://scenes/prop/prop_trash_can.tres" id="7_tfvta"]
+
+[resource]
+script = ExtResource("1_5oc8k")
+export_file = false
+model_key_word_supported = true
+fgd_name = "FuncGodot"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_6g055"), ExtResource("2_pxlqc"), ExtResource("3_75sv1"), ExtResource("4_nww52"), ExtResource("5_4lyco"), ExtResource("6_y2srr"), ExtResource("7_tfvta")])

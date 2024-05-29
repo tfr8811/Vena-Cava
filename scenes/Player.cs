@@ -75,6 +75,8 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
         hud = GetNode<Hud>("Hud");
+
+        GlobalWorldState.Instance.Player = this;
     }
 
     public override void _UnhandledInput(InputEvent @event)

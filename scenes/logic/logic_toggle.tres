@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://bmseome0h16sn"]
+
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="1_l2m4p"]
+[ext_resource type="Script" path="res://scenes/logic/LogicToggle.cs" id="2_ulcni"]
+
+[resource]
+script = ExtResource("1_l2m4p")
+script_class = ExtResource("2_ulcni")
+apply_rotation_on_map_build = true
+classname = "logic_toggle"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"target": "",
+"targetname": ""
+}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"model": "{\"path\":\"textures/EditorIcons/arrow_refresh.png\", \"scale\": 1}",
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = "targetname"

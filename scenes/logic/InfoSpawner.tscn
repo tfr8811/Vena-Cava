@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkex8ywfp46ej"]
+
+[ext_resource type="Script" path="res://scenes/logic/InfoSpawner.cs" id="1_rs0ii"]
+
+[node name="InfoSpawner" type="Node3D"]
+script = ExtResource("1_rs0ii")

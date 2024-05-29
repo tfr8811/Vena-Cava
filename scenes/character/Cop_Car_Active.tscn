@@ -67,6 +67,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gnm32")
 
 [node name="CopCarActive" type="CharacterBody3D" node_paths=PackedStringArray("spawnPoint", "siren", "frontRayCasts") groups=["Enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.808204, 0)
 script = ExtResource("1_0plm3")
 spawnPoint = NodePath("Spawnpoint")
 siren = NodePath("Cop_Siren")

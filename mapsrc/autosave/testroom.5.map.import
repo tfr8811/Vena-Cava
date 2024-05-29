@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://svgg3oxpraoe"
+path="res://.godot/imported/testroom.5.map-e2fea62e289fbe80bdfd3fe498c6956c.tres"
+
+[deps]
+
+source_file="res://mapsrc/autosave/testroom.5.map"
+dest_files=["res://.godot/imported/testroom.5.map-e2fea62e289fbe80bdfd3fe498c6956c.tres"]
+
+[params]
+

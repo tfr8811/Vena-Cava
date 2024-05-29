@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=8 format=3 uid="uid://bfr1lx274i7dh"]
+
+[ext_resource type="Resource" uid="uid://dwh6bkwkaqxt4" path="res://scenes/logic/logic_disabler.tres" id="1_fwr5c"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_vl50y"]
+[ext_resource type="Resource" uid="uid://baw8fspyko11p" path="res://scenes/logic/logic_enabler.tres" id="2_qn18d"]
+[ext_resource type="Resource" uid="uid://dpbpeqk3ygmd2" path="res://scenes/logic/logic_random.tres" id="3_njuaj"]
+[ext_resource type="Resource" uid="uid://cy30blm7grbrm" path="res://scenes/logic/logic_relay.tres" id="4_h20cv"]
+[ext_resource type="Resource" uid="uid://bqv3vt1m2ajk5" path="res://scenes/logic/logic_timer.tres" id="5_hqi2y"]
+[ext_resource type="Resource" uid="uid://bmseome0h16sn" path="res://scenes/logic/logic_toggle.tres" id="6_m4kwh"]
+
+[resource]
+script = ExtResource("1_vl50y")
+export_file = false
+model_key_word_supported = true
+fgd_name = "FuncGodot"
+base_fgd_files = Array[Resource]([])
+entity_definitions = Array[Resource]([ExtResource("1_fwr5c"), ExtResource("2_qn18d"), ExtResource("3_njuaj"), ExtResource("4_h20cv"), ExtResource("5_hqi2y"), ExtResource("6_m4kwh")])
