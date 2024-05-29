@@ -11,15 +11,15 @@ public partial class EnvTone : Area3D, ICsFGD
 
 	public override void _Ready()
 	{
-        BodyEntered += _BodyEntered; 
-	}
+        BodyEntered += _BodyEntered;
+
+        SetCollisionMaskValue(1, false);
+        SetCollisionMaskValue(2, true);
+    }
 
     private void _BodyEntered(Node3D body)
     {
-        if (body is Player)
-        {
-            play();
-        }
+        play();
     }
 
 	public void play()

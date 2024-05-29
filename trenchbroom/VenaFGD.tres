@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://bfr1lx274i7dh" path="res://scenes/logic/LogicFGD.tres" id="2_7y8mq"]
 [ext_resource type="Resource" uid="uid://rjsjh6eef1ic" path="res://scenes/prop/PropFGD.tres" id="3_bnjan"]
 [ext_resource type="Resource" uid="uid://bxawec4ir286o" path="res://trenchbroom/FgdMappings/func_door.tres" id="3_mtqxd"]
-[ext_resource type="Resource" uid="uid://dutu7h5xra58s" path="res://trenchbroom/FgdMappings/func_tone.tres" id="4_8fcha"]
+[ext_resource type="Resource" uid="uid://dutu7h5xra58s" path="res://trenchbroom/FgdMappings/env_tone.tres" id="4_8fcha"]
 [ext_resource type="Resource" uid="uid://cf2a1b3yito20" path="res://scenes/environment/EnvFGD.tres" id="4_swv5t"]
 [ext_resource type="Resource" uid="uid://brm7tgc17gqxe" path="res://scenes/info/InfoFGD.tres" id="5_1uqhj"]
 [ext_resource type="Resource" uid="uid://b6ds0k7w68omm" path="res://trenchbroom/FgdMappings/character_cop.tres" id="12_oide5"]

@@ -17,6 +17,8 @@ public partial class FuncTrigger : Area3D, ICsFGD
     public override void _Ready()
     {
         BodyEntered += _BodyEntered;
+        SetCollisionMaskValue(1, false);
+        SetCollisionMaskValue(2, true);
     }
 
     private void _BodyEntered(Node3D body)

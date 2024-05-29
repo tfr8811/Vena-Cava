@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=4 format=3 uid="uid://brm7tgc17gqxe"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=5 format=3 uid="uid://brm7tgc17gqxe"]
 
 [ext_resource type="Resource" uid="uid://dkw75gsy6icvw" path="res://scenes/info/info_nav_region.tres" id="1_3pajc"]
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_lcsv8"]
 [ext_resource type="Resource" uid="uid://1mx3hhk658fa" path="res://scenes/info/info_label.tres" id="2_agsqs"]
+[ext_resource type="Resource" uid="uid://cjpphw3q7h072" path="res://scenes/info/info_transition.tres" id="3_r5m7t"]
 
 [resource]
 script = ExtResource("1_lcsv8")
@@ -10,4 +11,4 @@ export_file = false
 model_key_word_supported = true
 fgd_name = "FuncGodot"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_3pajc"), ExtResource("2_agsqs")])
+entity_definitions = Array[Resource]([ExtResource("1_3pajc"), ExtResource("2_agsqs"), ExtResource("3_r5m7t")])
