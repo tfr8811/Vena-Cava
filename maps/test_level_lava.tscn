@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://dkopn2ohfxdv3" path="res://trenchbroom/textures/Elements/Elements_04-512x512.tres" id="3_7rbh1"]
 [ext_resource type="PackedScene" uid="uid://c2sc64qc1y3c6" path="res://scenes/prop/Cop_Car.tscn" id="4_l6bxo"]
 [ext_resource type="PackedScene" uid="uid://cjc13em5od4qa" path="res://scenes/Player.tscn" id="5_87m6g"]
-[ext_resource type="Script" path="res://scenes/prop/brushentities/EnvTone.cs" id="6_xiuvo"]
+[ext_resource type="Script" path="res://scenes/brushentities/EnvTone.cs" id="6_xiuvo"]
 [ext_resource type="PackedScene" uid="uid://c54pwwo48n0in" path="res://scenes/prop/flag_pole.tscn" id="7_pafqj"]
 [ext_resource type="PackedScene" uid="uid://bq67v1g0mmukg" path="res://scenes/prop/Pickup_Truck.tscn" id="8_uui3q"]
 [ext_resource type="PackedScene" uid="uid://bax6wdexilke0" path="res://scenes/prop/generic_car.tscn" id="9_yxv0o"]

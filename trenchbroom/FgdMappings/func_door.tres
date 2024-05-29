@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="FuncGodotFGDSolidClass" load_steps=3 format=3 uid="uid://bxawec4ir286o"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_solid_class.gd" id="1_4ym2e"]
-[ext_resource type="Script" path="res://scenes/prop/brushentities/Door.cs" id="2_x87oj"]
+[ext_resource type="Script" path="res://scenes/brushentities/Door.cs" id="2_x87oj"]
 
 [resource]
 script = ExtResource("1_4ym2e")
