@@ -80,9 +80,8 @@ public partial class Gun : Node3D
             shootSound.Play();
             SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
 
-            // Here I can use can shoot or fire delay, for now, I'll use can shoot
-            canShoot = false;
-            // fireDelay = maxFireDelay;
+            // Here I can use can shoot or fire delay, for now, I'll use fireDelay
+            fireDelay = maxFireDelay;
 
             // update the ammo
             ammo -= 1;
@@ -100,7 +99,7 @@ public partial class Gun : Node3D
         }
 
         // RELOAD - It's automatic rn but can also be done by pressing "R"
-        if (canShoot && (ammo == 0 || Input.IsActionJustPressed("Reload")))
+        if (canShoot && fireDelay <= 0 && (ammo == 0 || Input.IsActionJustPressed("Reload")))
         {
             gunSprite.Play("Reload");
             reloadSound.Play();
