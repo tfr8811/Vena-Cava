@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkpq4wlgwocnl"]
+
+[ext_resource type="PackedScene" uid="uid://388s28rferaw" path="res://assets/models/Vehicles/Shopping Cart/Shopping_cart.fbx" id="1_rnvhs"]
+
+[node name="ShoppingCart" instance=ExtResource("1_rnvhs")]

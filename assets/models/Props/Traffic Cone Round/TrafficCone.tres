@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cam0rtp7ca7qj"]
+
+[ext_resource type="Texture2D" uid="uid://b7idyq1j0nrl" path="res://assets/models/Props/Traffic Cone Round/Cone_dreary_Colour.png" id="1_20pyv"]
+
+[resource]
+albedo_texture = ExtResource("1_20pyv")
+texture_filter = 0
