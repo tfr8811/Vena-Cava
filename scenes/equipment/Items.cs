@@ -80,4 +80,16 @@ public partial class Items : Node3D
             ((Gun)loadedItems[currentIndex]).Equip();
         }
     }
+
+    public bool hasItem(string name)
+    {
+        for (int i = 0; i < loadedItems.Length; i++)
+        {
+            if (loadedItems[i].Name == name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://bms0i7ntyy3dm"]
+
+[ext_resource type="Script" path="res://scenes/pickups/ItemPickup.cs" id="1_u6vh1"]
+[ext_resource type="Texture2D" uid="uid://dhu17ndmv0bgi" path="res://assets/Sprites/PICKUPS/MACHINE GUN.PNG" id="1_vkcic"]
+[ext_resource type="PackedScene" uid="uid://duqp3ldprpavg" path="res://scenes/equipment/Rifle.tscn" id="2_jeihb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlcyw"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_vkcic")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_41bg4"]
+size = Vector3(0.7, 0.18, 0.7)
+
+[node name="MachineGunPickup" type="Node3D"]
+script = ExtResource("1_u6vh1")
+name = "Rifle"
+psPickup = ExtResource("2_jeihb")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jlcyw")
+texture = ExtResource("1_vkcic")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0105484, -0.00439453, 0)
+shape = SubResource("BoxShape3D_41bg4")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
