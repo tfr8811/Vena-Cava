@@ -12,7 +12,7 @@
 ( 288 -208 0 ) ( 288 64 0 ) ( -160 64 0 ) Elements/Elements_04-512x512 [ -1 0 0 -128 ] [ 0 -1 0 0 ] 0 0.125 0.125
 ( -160 64 32 ) ( 288 64 32 ) ( 288 -208 32 ) Elements/Elements_04-512x512 [ 1 0 0 128 ] [ 0 -1 0 0 ] 0 0.125 0.125
 ( 288 64 0 ) ( 288 64 32 ) ( -160 64 32 ) Elements/Elements_04-512x512 [ -1 0 0 -128 ] [ 0 0 -1 128 ] 0 0.125 0.125
-( 288 -208 32 ) ( 288 64 32 ) ( 288 64 0 ) Elements/Elements_04-512x512 [ 0 1 0 0 ] [ 0 0 -1 128 ] 0 0.125 0.125
+( 608 -208 32 ) ( 608 64 32 ) ( 608 64 0 ) Elements/Elements_04-512x512 [ 0 1 0 0 ] [ 0 0 -1 128 ] 0 0.125 0.125
 }
 }
 // entity 1
@@ -73,4 +73,54 @@
 {
 "classname" "character_cop"
 "origin" "232 -120 40"
+}
+// entity 11
+{
+"classname" "prop_bench"
+"origin" "291 -152 32"
+}
+// entity 12
+{
+"classname" "prop_chair"
+"origin" "290 -84 32"
+}
+// entity 13
+{
+"classname" "prop_hydrant"
+"origin" "282 -20 32"
+}
+// entity 14
+{
+"classname" "prop_traffic_cone_round"
+"origin" "300 25 32"
+}
+// entity 15
+{
+"classname" "prop_traffic_cone_square"
+"origin" "303 -4 32"
+}
+// entity 16
+{
+"classname" "prop_trash_bag"
+"origin" "339 -61 30"
+}
+// entity 17
+{
+"classname" "prop_trash_can_office"
+"origin" "327 -145 32"
+}
+// entity 18
+{
+"classname" "prop_urinal"
+"origin" "419 3 29"
+}
+// entity 19
+{
+"classname" "prop_urinal_floor"
+"origin" "399 -34 32"
+}
+// entity 20
+{
+"classname" "prop_vending_machine"
+"origin" "415 -120 32"
 }

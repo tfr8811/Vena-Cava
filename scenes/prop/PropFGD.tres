@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=9 format=3 uid="uid://rjsjh6eef1ic"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=19 format=3 uid="uid://rjsjh6eef1ic"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_5oc8k"]
 [ext_resource type="Resource" uid="uid://bpehh3s1valhl" path="res://scenes/prop/prop_flag_pole.tres" id="1_6g055"]
@@ -8,6 +8,16 @@
 [ext_resource type="Resource" uid="uid://dg0d450x6sqgu" path="res://scenes/prop/prop_generic_car.tres" id="5_4lyco"]
 [ext_resource type="Resource" uid="uid://c1egqbpe2oqk7" path="res://scenes/prop/prop_street_light.tres" id="6_y2srr"]
 [ext_resource type="Resource" uid="uid://boar13ahbep2w" path="res://scenes/prop/prop_trash_can.tres" id="7_tfvta"]
+[ext_resource type="Resource" uid="uid://7kpg37ndl4fq" path="res://scenes/prop/prop_trash_can_office.tres" id="8_wxvqp"]
+[ext_resource type="Resource" uid="uid://c5yjghww6bbr7" path="res://scenes/prop/prop_bench.tres" id="9_n38vs"]
+[ext_resource type="Resource" uid="uid://073k7c2qs6l7" path="res://scenes/prop/prop_hydrant.tres" id="10_kfc8f"]
+[ext_resource type="Resource" uid="uid://d31weccpj8uiq" path="res://scenes/prop/prop_chair.tres" id="11_5nr5e"]
+[ext_resource type="Resource" uid="uid://cy2hegdpv37qg" path="res://scenes/prop/prop_vending_machine.tres" id="12_j84o3"]
+[ext_resource type="Resource" uid="uid://oetkhxy0bgas" path="res://scenes/prop/prop_urinal.tres" id="13_6s8t0"]
+[ext_resource type="Resource" uid="uid://daneu275cpxb8" path="res://scenes/prop/prop_urinal_floor.tres" id="14_aoacn"]
+[ext_resource type="Resource" uid="uid://bw7uo130ky3mh" path="res://scenes/prop/prop_trash_bag.tres" id="15_4bcu0"]
+[ext_resource type="Resource" uid="uid://dieb0vijab8e1" path="res://scenes/prop/prop_traffic_cone_round.tres" id="16_isu7f"]
+[ext_resource type="Resource" uid="uid://dn38gnqkpyhtd" path="res://scenes/prop/prop_traffic_cone_square.tres" id="17_j47h6"]
 
 [resource]
 script = ExtResource("1_5oc8k")
@@ -15,4 +25,4 @@ export_file = false
 model_key_word_supported = true
 fgd_name = "FuncGodot"
 base_fgd_files = Array[Resource]([])
-entity_definitions = Array[Resource]([ExtResource("1_6g055"), ExtResource("2_pxlqc"), ExtResource("3_75sv1"), ExtResource("4_nww52"), ExtResource("5_4lyco"), ExtResource("6_y2srr"), ExtResource("7_tfvta")])
+entity_definitions = Array[Resource]([ExtResource("1_6g055"), ExtResource("2_pxlqc"), ExtResource("3_75sv1"), ExtResource("4_nww52"), ExtResource("5_4lyco"), ExtResource("6_y2srr"), ExtResource("7_tfvta"), ExtResource("8_wxvqp"), ExtResource("9_n38vs"), ExtResource("10_kfc8f"), ExtResource("11_5nr5e"), ExtResource("12_j84o3"), ExtResource("13_6s8t0"), ExtResource("14_aoacn"), ExtResource("15_4bcu0"), ExtResource("16_isu7f"), ExtResource("17_j47h6")])

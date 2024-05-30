@@ -3,6 +3,5 @@
 [ext_resource type="Texture2D" uid="uid://bw188rttm8hrw" path="res://assets/models/Vehicles/Pickup Truck/Pickup_Truck.png" id="1_biq5j"]
 
 [resource]
-shading_mode = 0
 albedo_texture = ExtResource("1_biq5j")
 texture_filter = 0
