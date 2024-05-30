@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b348g6bv0y1u6"]
+[gd_scene load_steps=37 format=3 uid="uid://b348g6bv0y1u6"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_rqfxx"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_bd6s5"]
@@ -24,6 +24,11 @@
 [ext_resource type="PackedScene" uid="uid://bqelc7pwc7w15" path="res://scenes/prop/urinal_floor.tscn" id="22_du4y5"]
 [ext_resource type="PackedScene" uid="uid://ccaax4522qhmx" path="res://scenes/prop/vending_machine.tscn" id="23_vn5o7"]
 [ext_resource type="PackedScene" uid="uid://dkpq4wlgwocnl" path="res://scenes/equipment/ShoppingCart.tscn" id="24_xl58g"]
+[ext_resource type="PackedScene" uid="uid://bms0i7ntyy3dm" path="res://scenes/pickups/MachineGunPickup.tscn" id="25_feuo4"]
+[ext_resource type="PackedScene" uid="uid://y7dq6nwv8ctw" path="res://scenes/pickups/PistolPickup.tscn" id="26_i4ay1"]
+[ext_resource type="PackedScene" uid="uid://g7mvdqh5c7ju" path="res://scenes/pickups/ShotgunPickup.tscn" id="27_sc2r5"]
+[ext_resource type="PackedScene" uid="uid://b0hdbiyqte1v4" path="res://scenes/pickups/CarbinePickup.tscn" id="28_ydlom"]
+[ext_resource type="PackedScene" uid="uid://bk3p27p38frxy" path="res://scenes/pickups/HealthPickup.tscn" id="29_5leoa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x2mcg"]
 
@@ -148,3 +153,36 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -7.5, 
 
 [node name="ShoppingCart" parent="." instance=ExtResource("24_xl58g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.51837, 2.09699, 6.61834)
+
+[node name="MachineGunPickup" parent="." instance=ExtResource("25_feuo4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28396, 2.20752, 30.7281)
+
+[node name="PistolPickup" parent="." instance=ExtResource("26_i4ay1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32723, 2.17747, 30.9736)
+
+[node name="ShotgunPickup" parent="." instance=ExtResource("27_sc2r5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29765, 2.07363, 30.7092)
+
+[node name="CarbinePickup" parent="." instance=ExtResource("28_ydlom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.335445, 2.15185, 30.3703)
+
+[node name="MachineGunPickup2" parent="." instance=ExtResource("25_feuo4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.28396, 2.20752, -8.92727)
+
+[node name="PistolPickup2" parent="." instance=ExtResource("26_i4ay1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.32723, 2.17747, -8.6818)
+
+[node name="ShotgunPickup2" parent="." instance=ExtResource("27_sc2r5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29765, 2.07363, -8.94616)
+
+[node name="CarbinePickup2" parent="." instance=ExtResource("28_ydlom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.335445, 2.15185, -9.28506)
+
+[node name="HealthPickup" parent="." instance=ExtResource("29_5leoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35702, 2.34812, 9.32191)
+
+[node name="HealthPickup2" parent="." instance=ExtResource("29_5leoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14811, 2.34812, 12.6923)
+
+[node name="HealthPickup3" parent="." instance=ExtResource("29_5leoa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.7202, 2.34812, 24.2964)

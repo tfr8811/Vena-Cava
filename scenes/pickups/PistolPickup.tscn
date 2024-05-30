@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://y7dq6nwv8ctw"]
+
+[ext_resource type="Script" path="res://scenes/pickups/ItemPickup.cs" id="1_3o4yj"]
+[ext_resource type="PackedScene" uid="uid://dnhcdoqsul3ob" path="res://scenes/equipment/Pistol.tscn" id="2_hxmb4"]
+[ext_resource type="Texture2D" uid="uid://c3f7vd3p8jgvj" path="res://assets/Sprites/PICKUPS/IPISA0.PNG" id="3_s4tau"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlcyw"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_s4tau")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_41bg4"]
+size = Vector3(0.7, 0.18, 0.7)
+
+[node name="PistolPickup" type="Node3D"]
+script = ExtResource("1_3o4yj")
+name = "Pistol"
+psPickup = ExtResource("2_hxmb4")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jlcyw")
+texture = ExtResource("3_s4tau")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0105484, -0.00439453, 0)
+shape = SubResource("BoxShape3D_41bg4")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
