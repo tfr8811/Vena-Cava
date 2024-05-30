@@ -261,6 +261,21 @@ public partial class Player : CharacterBody3D, IDamageable
 
     /// <summary>
     /// Roman Noodles
+    /// 5/30/2024
+    /// Heals the player by the amount specified
+    /// </summary>
+    public void Heal(int hp)
+    {
+        health += hp;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        hud.Update(this);
+    }
+
+    /// <summary>
+    /// Roman Noodles
     /// 5/19/24
     /// Gets the players head height for the enemies to aim at
     /// </summary>
