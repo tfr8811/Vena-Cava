@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://eaabwsstwdye"]
+[gd_scene load_steps=40 format=3 uid="uid://eaabwsstwdye"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_c8yw0"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_rmja8"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bb67rvws5ekus" path="res://scenes/character/Cop.tscn" id="15_keyy7"]
 [ext_resource type="PackedScene" uid="uid://d2hipue0blxrr" path="res://scenes/info/InfoNavRegion.tscn" id="16_bcnt4"]
 [ext_resource type="Script" path="res://scenes/info/InfoTransition.cs" id="17_cbjt2"]
+[ext_resource type="PackedScene" uid="uid://cdu2p5khiiqfp" path="res://scenes/character/FreakyBro.tscn" id="18_q6nue"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rh5p"]
 
@@ -291,3 +292,6 @@ mapName = "testroom"
 
 [node name="entity_27_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_27_info_transition"]
 shape = SubResource("ConvexPolygonShape3D_5yfkk")
+
+[node name="FreakyBro" parent="FuncGodotMap" instance=ExtResource("18_q6nue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0149, 3.41631, -1.73309)

@@ -38,7 +38,7 @@ public partial class Bullet : RayCast3D
     public override void _PhysicsProcess(double delta)
     {
         // set target position
-        this.TargetPosition = velocity / (float) delta;
+        this.TargetPosition = velocity * (float) delta;
 
         // decay the bullet
         bulletTimer -= delta;
