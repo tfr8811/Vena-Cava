@@ -29,6 +29,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
     // Gun parameters
     [Export]
     private float bulletSpeed; // recommended: 120.0f, worth speeding up for rifle
+	[Export]
+	private float shotHeight;
     [Export]
     private int maxAmmo;
     private int ammo;
@@ -40,9 +42,12 @@ public partial class Enemy : CharacterBody3D, IDamageable
     private float projectileSpread;
     [Export]
     private double maxBulletLifespan;
-    [Export]
-    private double maxFireDelay = 1;
-    private double fireDelay;
+	[Export]
+	private double maxFireDelay;
+	private double fireDelay;
+	[Export]
+    private double maxPostReloadDelay;
+    private double postReloadDelay;
 
     private bool canShoot = true;
 	// enemy cannot move while shooting or reloading
@@ -88,8 +93,10 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	{
 		navAgent = (NavigationAgent3D)GetNode(navPath);
 		sightRaycast = (RayCast3D)GetNode(sightPath);
-		fireDelay = maxFireDelay;
+        fireDelay = maxFireDelay;
+        postReloadDelay = maxPostReloadDelay;
 		enemySprite.Play("Idle");
+		ammo = maxAmmo;
 
         rng = new RandomNumberGenerator();
     }
@@ -101,7 +108,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		{
 			fireDelay -= delta;
 		}
-	}
+        if (postReloadDelay > 0)
+        {
+            postReloadDelay -= delta;
+        }
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -149,7 +160,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 			{
 				if (ammo > 0)
 				{
-					if (fireDelay <= 0)
+					if (postReloadDelay <= 0 && fireDelay <= 0)
 					{
 						// SHOOT THE BULLET
 						enemySprite.Play("Shoot");
@@ -158,6 +169,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
                         SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
                         canShoot = false;
 						canMove = false;
+						fireDelay = maxFireDelay;
 					}
 				}
 				else
@@ -172,7 +184,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 			// shoot animation handler
 			if (enemySprite.Animation == "Shoot")
 			{
-				if (!enemySprite.IsPlaying())
+				if (!enemySprite.IsPlaying() && fireDelay <= 0)
 				{
 					enemySprite.Play("Idle");
 					canShoot = true;
@@ -189,8 +201,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
 					canShoot = true;
 					canMove = true;
 
-					// right now I'm applying fire delay after reload so the enemy at some point tries to get closer to the player
-					fireDelay = maxFireDelay;
+                    // postReloadDelay exists so the enemy at some point tries to get closer to the player
+                    postReloadDelay = maxPostReloadDelay;
 				}
 			}
 
@@ -218,7 +230,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
     /// 5/01/2024
     /// Shoots a bullet in the direction the enemy is facing
     /// </summary>
-    private void SpawnBullet(float speed, int damage, int count, float spread, double lifespan)
+    private void SpawnBullet(float bSpeed, int damage, int count, float spread, double lifespan)
     {
 		for (int i = 0; i < count; i++)
 		{
@@ -228,11 +240,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
 			Player player = GlobalWorldState.Instance.Player;
 			Vector3 pointVector = new Vector3(
 				player.GlobalPosition.X - GlobalPosition.X, 
-				player.GetHeadHeight() - (GlobalPosition.Y + 0.5f), 
+				player.GetHeadHeight() - (GlobalPosition.Y + shotHeight), 
 				player.GlobalPosition.Z - GlobalPosition.Z
 				);
 			pointVector = pointVector.Normalized();
-			bullet.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
+			bullet.GlobalPosition = GlobalPosition + new Vector3(0, shotHeight, 0);
 			// prevents point blank shots from failing
 			bullet.GlobalPosition -= pointVector * 1f;
 			// set the collision mask of the bullet to the player layer (2)
@@ -240,10 +252,16 @@ public partial class Enemy : CharacterBody3D, IDamageable
             // guns that shoot in bursts are stronger close up
             bullet.BulletTimer = lifespan * (((float)i + 1f) / (float)count);
             bullet.Damage = damage;
-            // apply spread
-            Vector3 vSpread = new Vector3(rng.Randf() - 0.5f, rng.Randf() - 0.5f, rng.Randf() - 0.5f);
-            vSpread = vSpread.Normalized() * spread;
-            bullet.Velocity = (pointVector * speed) + vSpread;
+			// apply spread
+			if (spread > 0)
+			{
+				Vector3 vSpread = new Vector3(rng.Randf() - 0.5f, rng.Randf() - 0.5f, rng.Randf() - 0.5f);
+				vSpread = vSpread.Normalized() * spread;
+				bullet.Velocity = (pointVector * bSpeed) + vSpread;
+			} else
+			{
+				bullet.Velocity = (pointVector * bSpeed);
+            }
 		}
 	}
 
