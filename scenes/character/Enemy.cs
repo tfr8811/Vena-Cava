@@ -12,21 +12,39 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	[Export]
 	private AnimatedSprite3D enemySprite;
 
-	// health
-	private int health = 3;
+    // navigation agent reference
+    private NavigationAgent3D navAgent;
+    [Export]
+    private NodePath navPath;
 
-	// navigation agent reference
-	private NavigationAgent3D navAgent;
+    // health
+    [Export]
+	private int health;
 
-	[Export]
-	private NodePath navPath;
+    // movement
+    [Export]
+    private float speed;
 
-	// movement
-	const float SPEED = 6f;
+    // shooting
+    // Gun parameters
+    [Export]
+    private float bulletSpeed; // recommended: 120.0f, worth speeding up for rifle
+    [Export]
+    private int maxAmmo;
+    private int ammo;
+    [Export]
+    private int bulletDamage;
+    [Export]
+    private int projectileCount;
+    [Export]
+    private float projectileSpread;
+    [Export]
+    private double maxBulletLifespan;
+    [Export]
+    private double maxFireDelay = 1;
+    private double fireDelay;
 
-	// shooting
-	const float BULLET_SPEED = 120.0f;
-	private bool canShoot = true;
+    private bool canShoot = true;
 	// enemy cannot move while shooting or reloading
 	private bool canMove = true;
 
@@ -41,17 +59,13 @@ public partial class Enemy : CharacterBody3D, IDamageable
 			hasSeenPlayer = value;
 		}
 	}
-
-	private float standOffRadius = 5.0f;
-	private float shootRadius = 10.0f;
+	[Export]
+	private float standOffRadius;
+	[Export]
+	private float shootRadius;
 	RayCast3D sightRaycast;
 	[Export]
 	private NodePath sightPath;
-
-	private double maxFireDelay = 1;
-	private double fireDelay;
-	private int maxBulletCount = 8;
-	private int bulletCount = 8;
 
 	// Sounds
 	[Export]
@@ -68,13 +82,17 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	// instance the bullet
 	PackedScene psBullet = GD.Load<PackedScene>("res://scenes/equipment/Bullet.tscn");
 
+	RandomNumberGenerator rng;
+
 	public override void _Ready()
 	{
 		navAgent = (NavigationAgent3D)GetNode(navPath);
 		sightRaycast = (RayCast3D)GetNode(sightPath);
 		fireDelay = maxFireDelay;
 		enemySprite.Play("Idle");
-	}
+
+        rng = new RandomNumberGenerator();
+    }
 
 	public override void _Process(double delta)
 	{
@@ -117,7 +135,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 					}
 					navAgent.TargetPosition = player.GlobalTransform.Origin;
 					Vector3 nextNavPoint = navAgent.GetNextPathPosition();
-					Velocity = (nextNavPoint - GlobalTransform.Origin).Normalized() * SPEED;
+					Velocity = (nextNavPoint - GlobalTransform.Origin).Normalized() * speed;
 				} else
 				{
 					// The enemy is not moving:
@@ -129,16 +147,16 @@ public partial class Enemy : CharacterBody3D, IDamageable
 			// fires gun when player is in sight and close enough to shoot
 			if (canShoot && shootRadius > playerRelativePosition.Length() && CheckCanSeeTarget(playerRelativePosition, player))
 			{
-				if (bulletCount > 0)
+				if (ammo > 0)
 				{
 					if (fireDelay <= 0)
 					{
 						// SHOOT THE BULLET
 						enemySprite.Play("Shoot");
 						shootSound.Play();
-						bulletCount -= 1;
-						SpawnBullet(BULLET_SPEED);
-						canShoot = false;
+						ammo -= 1;
+                        SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
+                        canShoot = false;
 						canMove = false;
 					}
 				}
@@ -166,7 +184,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 			{
 				if (!enemySprite.IsPlaying())
 				{
-					bulletCount = maxBulletCount;
+					ammo = maxAmmo;
 					enemySprite.Play("Idle");
 					canShoot = true;
 					canMove = true;
@@ -195,29 +213,38 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		}
 	}
 
-	/// <summary>
-	/// Roman Noodles
-	/// 5/01/2024
-	/// Shoots a bullet in the direction the enemy is facing
-	/// </summary>
-	public void SpawnBullet(float speed)
-	{
-		Bullet bullet = (Bullet)psBullet.Instantiate();
-		GetNode("/root/World").AddChild(bullet);
-		// set the position of the bullet in front of the player
-		//Vector3 pointVector = -GlobalTransform.Basis.Z;
-		// Aim at player
-
-		Player player = GlobalWorldState.Instance.Player;
-		Vector3 pointVector = new Vector3(player.GlobalPosition.X - GlobalPosition.X, player.GetHeadHeight() - (GlobalPosition.Y + 0.5f), player.GlobalPosition.Z - GlobalPosition.Z);
-		pointVector = pointVector.Normalized();
-		bullet.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
-        // prevents point blank shots from failing
-        bullet.GlobalPosition -= pointVector * 1f;
-        // set the collision mask of the bullet to the player layer (2)
-        bullet.SetCollisionMaskValue(2, true);
-
-        bullet.Velocity = pointVector * speed;
+    /// <summary>
+    /// Roman Noodles
+    /// 5/01/2024
+    /// Shoots a bullet in the direction the enemy is facing
+    /// </summary>
+    private void SpawnBullet(float speed, int damage, int count, float spread, double lifespan)
+    {
+		for (int i = 0; i < count; i++)
+		{
+			Bullet bullet = (Bullet)psBullet.Instantiate();
+			GetNode("/root/World").AddChild(bullet);
+			// calculate the bullets trajectory
+			Player player = GlobalWorldState.Instance.Player;
+			Vector3 pointVector = new Vector3(
+				player.GlobalPosition.X - GlobalPosition.X, 
+				player.GetHeadHeight() - (GlobalPosition.Y + 0.5f), 
+				player.GlobalPosition.Z - GlobalPosition.Z
+				);
+			pointVector = pointVector.Normalized();
+			bullet.GlobalPosition = GlobalPosition + new Vector3(0, 0.5f, 0);
+			// prevents point blank shots from failing
+			bullet.GlobalPosition -= pointVector * 1f;
+			// set the collision mask of the bullet to the player layer (2)
+			bullet.SetCollisionMaskValue(2, true);
+            // guns that shoot in bursts are stronger close up
+            bullet.BulletTimer = lifespan * (((float)i + 1f) / (float)count);
+            bullet.Damage = damage;
+            // apply spread
+            Vector3 vSpread = new Vector3(rng.Randf() - 0.5f, rng.Randf() - 0.5f, rng.Randf() - 0.5f);
+            vSpread = vSpread.Normalized() * spread;
+            bullet.Velocity = (pointVector * speed) + vSpread;
+		}
 	}
 
 	/// <summary>

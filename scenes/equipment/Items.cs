@@ -11,33 +11,41 @@ public partial class Items : Node3D
     public override void _Ready()
     {
         // preload all of the player's items
-        loadedItems = new Node[inventory.Length];
-        for (int i = 0; i < inventory.Length; i++)
+        if (inventory.Length > 0)
         {
-            loadedItems[i] = inventory[i].Instantiate();
+            loadedItems = new Node[inventory.Length];
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                loadedItems[i] = inventory[i].Instantiate();
+            }
+            AddChild(loadedItems[currentIndex]);
         }
-        AddChild(loadedItems[currentIndex]);
     }
     public override void _Process(double delta)
     {
-        if (Input.IsActionJustPressed("ScrollUp"))
+        if (inventory.Length > 0)
         {
-            if (currentIndex < inventory.Length-1)
+            if (Input.IsActionJustPressed("ScrollUp"))
             {
-                SwapToIndex(currentIndex + 1);
-            } else
-            {
-                SwapToIndex(0);
+                if (currentIndex < inventory.Length - 1)
+                {
+                    SwapToIndex(currentIndex + 1);
+                }
+                else
+                {
+                    SwapToIndex(0);
+                }
             }
-        }
-        if (Input.IsActionJustPressed("ScrollDown"))
-        {
-            if (currentIndex > 0)
+            if (Input.IsActionJustPressed("ScrollDown"))
             {
-                SwapToIndex(currentIndex - 1);
-            } else
-            {
-                SwapToIndex(inventory.Length - 1);
+                if (currentIndex > 0)
+                {
+                    SwapToIndex(currentIndex - 1);
+                }
+                else
+                {
+                    SwapToIndex(inventory.Length - 1);
+                }
             }
         }
     }

@@ -1,0 +1,181 @@
+[gd_scene load_steps=24 format=3 uid="uid://cdu2p5khiiqfp"]
+
+[ext_resource type="Script" path="res://scenes/character/Enemy.cs" id="1_i0lo8"]
+[ext_resource type="Texture2D" uid="uid://7sq0qqhqwlb7" path="res://assets/Sprites/CHARACTERS/blobguy.png" id="2_n83eh"]
+[ext_resource type="AudioStream" uid="uid://brry21wlxlfum" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_DROP THE GUN.mp3" id="20_hgjie"]
+[ext_resource type="AudioStream" uid="uid://dcbfoh11q0kry" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_HANDS UP 2.mp3" id="21_1yb2e"]
+[ext_resource type="AudioStream" uid="uid://bvh37svx7b3qt" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_HANDS UP.mp3" id="22_x25aw"]
+[ext_resource type="AudioStream" uid="uid://bppe7414bhxcy" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_STOP.mp3" id="23_fu6yx"]
+[ext_resource type="AudioStream" uid="uid://ilvignhxstuy" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_UNDER ARREST 2.mp3" id="24_7c03n"]
+[ext_resource type="AudioStream" uid="uid://cs2p1nj46spt0" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_UNDER ARREST.mp3" id="25_e82p1"]
+[ext_resource type="AudioStream" uid="uid://rgp7kkjf77rp" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 2.mp3" id="26_85sw3"]
+[ext_resource type="AudioStream" uid="uid://br1aa8mapaua" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 3.mp3" id="27_wfdmx"]
+[ext_resource type="AudioStream" uid="uid://21ucbt4rgx2q" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 4.mp3" id="28_tmqt7"]
+[ext_resource type="AudioStream" uid="uid://d328ipm21komy" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 5.mp3" id="29_tupie"]
+[ext_resource type="AudioStream" uid="uid://xsjwdtpbq6yy" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT.mp3" id="30_7ajra"]
+[ext_resource type="AudioStream" uid="uid://c2447r8h66btu" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL_FIRE_2.wav" id="31_0m5kr"]
+[ext_resource type="AudioStream" uid="uid://dtf65vv66q2be" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL RELOAD.wav" id="32_oojno"]
+[ext_resource type="AudioStream" uid="uid://cthmkhtgp12xo" path="res://assets/Audio/SFX/Enemies/Cop/Callouts/CO_SHOTS FIRED 2.mp3" id="33_jrhau"]
+[ext_resource type="AudioStream" uid="uid://cuqmcdbhqrfvs" path="res://assets/Audio/SFX/Enemies/Cop/Callouts/CO_SHOTS FIRED.mp3" id="34_o2i6s"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_m5u7q"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i5jy5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0wgee"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}],
+"loop": false,
+"name": &"Reload",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n83eh")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 8.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_30ghv"]
+streams_count = 6
+stream_0/stream = ExtResource("20_hgjie")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("21_1yb2e")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("22_x25aw")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("23_fu6yx")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("24_7c03n")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("25_e82p1")
+stream_5/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fcetk"]
+streams_count = 5
+stream_0/stream = ExtResource("26_85sw3")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("27_wfdmx")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("28_tmqt7")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("29_tupie")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("30_7ajra")
+stream_4/weight = 1.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tieek"]
+streams_count = 2
+stream_0/stream = ExtResource("33_jrhau")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("34_o2i6s")
+stream_1/weight = 1.0
+
+[node name="BlobGuy" type="CharacterBody3D" node_paths=PackedStringArray("enemySprite", "commandRandomizer", "damageRandomizer", "calloutRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_i0lo8")
+enemySprite = NodePath("AnimatedSprite3D")
+navPath = NodePath("NavigationAgent3D")
+health = 5
+speed = 10.0
+bulletSpeed = 60.0
+maxAmmo = 8
+bulletDamage = 1
+projectileCount = 1
+maxBulletLifespan = 0.01
+standOffRadius = 0.5
+shootRadius = 1.0
+sightPath = NodePath("RayCast3D")
+commandRandomizer = NodePath("CommandRandomizer")
+damageRandomizer = NodePath("DamageRandomizer")
+calloutRandomizer = NodePath("CalloutRandomizer")
+shootSound = NodePath("ShootSound")
+reloadSound = NodePath("ReloadSound")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_m5u7q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("SphereShape3D_i5jy5")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+collision_mask = 3
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.496357, 0)
+sprite_frames = SubResource("SpriteFrames_0wgee")
+animation = &"Shoot"
+
+[node name="CommandRandomizer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_30ghv")
+
+[node name="DamageRandomizer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_fcetk")
+
+[node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("31_0m5kr")
+
+[node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("32_oojno")
+
+[node name="CalloutRandomizer" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_tieek")
