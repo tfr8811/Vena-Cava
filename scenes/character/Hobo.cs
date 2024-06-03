@@ -84,8 +84,10 @@ public partial class Hobo : CharacterBody3D, IDamageable
     // instance the bullet
     PackedScene psBullet = GD.Load<PackedScene>("res://scenes/equipment/Bullet.tscn");
 
-    Node3D currentFightTarget;
-    bool fighting = false;
+    Enemy currentFightTarget;
+    public bool fighting = false;
+    public bool recruited = false;
+    
 
     RandomNumberGenerator rng;
 
@@ -131,7 +133,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
         }
     }
 
-    public void FightTarget(Node3D target, Player player)
+    public void FightTarget(Enemy target, Player player)
     {
         // navigate to enemy
         if (IsInstanceValid(target))
@@ -155,7 +157,6 @@ public partial class Hobo : CharacterBody3D, IDamageable
                     PlayAnimation("Idle");
                 }
             }
-
             // SHOOT
             // fires gun when target is in sight and close enough to shoot
             if (canShoot && shootRadius > targetRelativePosition.Length() && CheckCanSeeTarget(targetRelativePosition, target))
@@ -168,7 +169,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
                         PlayAnimation("Shoot");
                         shootSound.Play();
                         ammo -= 1;
-                        SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
+                        SpawnBullet(target, bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
                         canShoot = false;
                         canMove = false;
                         fireDelay = maxFireDelay;
@@ -183,6 +184,9 @@ public partial class Hobo : CharacterBody3D, IDamageable
                     canMove = false;
                 }
             }
+        } else
+        {
+            fighting = false;
         }
     }
 
@@ -238,7 +242,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
             if (fighting)
             {
                 FightTarget(currentFightTarget, player);
-            } else
+            } else if (recruited)
             {
                 FollowPlayer(player);
             }
@@ -254,27 +258,25 @@ public partial class Hobo : CharacterBody3D, IDamageable
     /// <summary>
     /// Roman Noodles
     /// 5/01/2024
-    /// Shoots a bullet in the direction the enemy is facing
+    /// Shoots a bullet in the direction the hobo is facing
     /// </summary>
-    private void SpawnBullet(float bSpeed, int damage, int count, float spread, double lifespan)
+    private void SpawnBullet(Enemy target, float bSpeed, int damage, int count, float spread, double lifespan)
     {
         for (int i = 0; i < count; i++)
         {
             Bullet bullet = (Bullet)psBullet.Instantiate();
             GetNode("/root/World").AddChild(bullet);
+
             // calculate the bullets trajectory
-            Player player = GlobalWorldState.Instance.Player;
             Vector3 pointVector = new Vector3(
-                player.GlobalPosition.X - GlobalPosition.X,
-                player.GetHeadHeight() - (GlobalPosition.Y + shotHeight),
-                player.GlobalPosition.Z - GlobalPosition.Z
+                target.GlobalPosition.X - GlobalPosition.X,
+                target.GlobalPosition.Y - (GlobalPosition.Y + shotHeight),
+                target.GlobalPosition.Z - GlobalPosition.Z
                 );
             pointVector = pointVector.Normalized();
             bullet.GlobalPosition = GlobalPosition + new Vector3(0, shotHeight, 0);
-            // prevents point blank shots from failing
-            bullet.GlobalPosition -= pointVector * 1f;
-            // set the collision mask of the bullet to the player layer (2)
-            bullet.SetCollisionMaskValue(2, true);
+            // set the collision mask of the bullet to the enemy layer (3)
+            bullet.SetCollisionMaskValue(3, true);
             // guns that shoot in bursts are stronger close up
             bullet.BulletTimer = lifespan * (((float)i + 1f) / (float)count);
             bullet.Damage = damage;
@@ -295,7 +297,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
     /// <summary>
     /// Roman Noodles (Adapted from Impulse)
     /// 5/01/2024
-    /// Checks if the player is in the line of sight of the enemy
+    /// Checks if the target is in the line of sight of the hobo
     /// </summary>
     public bool CheckCanSeeTarget(Vector3 relativeTargetVector, Node3D target)
     {
@@ -313,11 +315,11 @@ public partial class Hobo : CharacterBody3D, IDamageable
     /// <summary>
     /// Roman Noodles
     /// 2/6/2024
-    /// Damages the enemy by the amount specified
+    /// Damages the hobo by the amount specified
     /// </summary>
     public void TakeDamage(int damage)
     {
-        damageRandomizer.Play();
+        //damageRandomizer.Play();
         health -= damage;
         if (health <= 0)
         {
@@ -325,17 +327,12 @@ public partial class Hobo : CharacterBody3D, IDamageable
             canMove = false;
             canShoot = false;
         }
-        // tell the gamemanager that enemy was hit
-        //gameManager.enemyHit(this);
+
     }
 
-    /// <summary>
-    /// Roman Noodles
-    /// 5/19/2024
-    /// Plays the callout sound when a fellow cop was hit
-    /// </summary>
-    public void Callout()
+    public void SetTarget(Enemy target)
     {
-        calloutRandomizer.Play();
+        currentFightTarget = target;
+        fighting = true;
     }
 }

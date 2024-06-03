@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cdu2p5khiiqfp"]
+[gd_scene load_steps=21 format=3 uid="uid://cdu2p5khiiqfp"]
 
 [ext_resource type="Script" path="res://scenes/character/Enemy.cs" id="1_y1hb0"]
 [ext_resource type="Texture2D" uid="uid://7sq0qqhqwlb7" path="res://assets/Sprites/CHARACTERS/blobguy.png" id="2_ukopg"]
@@ -15,8 +15,6 @@
 [ext_resource type="AudioStream" uid="uid://scy1n06q4lg7" path="res://assets/Audio/SFX/Enemies/Creature/creatureRecharge.wav" id="13_kf3b7"]
 [ext_resource type="AudioStream" uid="uid://bs73rlfxove4j" path="res://assets/Audio/SFX/Enemies/Creature/creatureCallout1.wav" id="14_wqkl8"]
 [ext_resource type="AudioStream" uid="uid://gti3kfaxlr1r" path="res://assets/Audio/SFX/Enemies/Creature/creatureCallout2.wav" id="15_e22y3"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_m5u7q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i5jy5"]
 
@@ -146,7 +144,7 @@ stream_1/stream = ExtResource("15_e22y3")
 stream_1/weight = 1.0
 
 [node name="FreakyBro" type="CharacterBody3D" node_paths=PackedStringArray("enemySprite", "commandRandomizer", "damageRandomizer", "calloutRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_y1hb0")
@@ -155,6 +153,7 @@ navPath = NodePath("NavigationAgent3D")
 health = 3
 speed = 8.0
 bulletSpeed = 40.0
+shotHeight = 0.5
 maxAmmo = 8
 bulletDamage = 1
 projectileCount = 1
@@ -170,12 +169,7 @@ calloutRandomizer = NodePath("CalloutRandomizer")
 shootSound = NodePath("ShootSound")
 reloadSound = NodePath("ReloadSound")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("CapsuleMesh_m5u7q")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("SphereShape3D_i5jy5")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -184,7 +178,7 @@ shape = SubResource("SphereShape3D_i5jy5")
 collision_mask = 3
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.496357, 0)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.00364304, 0)
 sprite_frames = SubResource("SpriteFrames_0wgee")
 animation = &"Death"
 

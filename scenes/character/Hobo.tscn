@@ -318,9 +318,9 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("34_ywd1o")
 stream_1/weight = 1.0
 
-[node name="Hobo" type="CharacterBody3D" node_paths=PackedStringArray("hoboFront", "hoboSide", "hoboRear") groups=["Hobos"]]
+[node name="Hobo" type="CharacterBody3D" node_paths=PackedStringArray("hoboFront", "hoboSide", "hoboRear", "shootSound", "reloadSound") groups=["Hobos"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 2
+collision_layer = 18
 collision_mask = 7
 script = ExtResource("1_p0y1h")
 hoboFront = NodePath("FrontalMovement")
@@ -340,6 +340,9 @@ maxFireDelay = 0.2
 maxPostReloadDelay = 1.0
 standOffRadius = 5.0
 shootRadius = 10.0
+sightPath = NodePath("RayCast3D")
+shootSound = NodePath("ShootSound")
+reloadSound = NodePath("ReloadSound")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.125, 0)
@@ -348,7 +351,7 @@ shape = SubResource("CapsuleShape3D_7hmt8")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-collision_mask = 3
+collision_mask = 7
 
 [node name="FrontalMovement" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.122445, 0)
