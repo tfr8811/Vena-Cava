@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// Roman Noodles
 /// 5/01/2024
-/// Controls and Manages the cop enemy
+/// Controls and Manages the enemies
 /// </summary>
 
 public partial class Enemy : CharacterBody3D, IDamageable

@@ -43,6 +43,13 @@ public partial class Player : CharacterBody3D, IDamageable
     // setup the reference objects
     [Export]
     private Node3D head;
+    public Node3D Head
+    {
+        get
+        {
+            return this.head;
+        }
+    }
 
     [Export]
     private Camera3D camera;
