@@ -87,7 +87,8 @@ public partial class Hobo : CharacterBody3D, IDamageable
     Enemy currentFightTarget;
     public bool fighting = false;
     public bool recruited = false;
-    
+
+    private float facingAngle = 0.0f;
 
     RandomNumberGenerator rng;
 
@@ -161,6 +162,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
             // fires gun when target is in sight and close enough to shoot
             if (canShoot && shootRadius > targetRelativePosition.Length() && CheckCanSeeTarget(targetRelativePosition, target))
             {
+                facingAngle = (new Vector2(targetRelativePosition.X, targetRelativePosition.Z)).Angle();
                 if (ammo > 0)
                 {
                     if (postReloadDelay <= 0 && fireDelay <= 0)
@@ -248,10 +250,46 @@ public partial class Hobo : CharacterBody3D, IDamageable
             }
         }
 
+        // for testing
+        //Velocity = new Vector3(1, 0, 0);
+
         // move if the hobo is not doing an action that prevents them from moving
         if (canMove)
         {
             MoveAndSlide();
+        }
+        // animation direction handler
+        if (Velocity.Length() > 0)
+        { 
+            facingAngle = (new Vector2(Velocity.X, Velocity.Z)).Angle(); 
+        }
+        Vector2 relativeDirectionToPlayer2D = new Vector2(player.GlobalPosition.X - this.GlobalPosition.X,
+                                                            player.GlobalPosition.Z - this.GlobalPosition.Z);
+        AnimationUtil.Direction dir = AnimationUtil.GetDirection(relativeDirectionToPlayer2D.Angle(), facingAngle);
+        switch (dir)
+        {
+            case AnimationUtil.Direction.AWAY:
+                hoboFront.Hide();
+                hoboSide.Hide();
+                hoboRear.Show();
+                break;
+            case AnimationUtil.Direction.RIGHT:
+                hoboFront.Hide();
+                hoboSide.Show();
+                hoboRear.Hide();
+                hoboSide.FlipH = false;
+                break;
+            case AnimationUtil.Direction.LEFT:
+                hoboFront.Hide();
+                hoboSide.Show();
+                hoboRear.Hide();
+                hoboSide.FlipH = true;
+                break;
+            case AnimationUtil.Direction.TOWARDS:
+                hoboFront.Show();
+                hoboSide.Hide();
+                hoboRear.Hide();
+                break;
         }
     }
 
