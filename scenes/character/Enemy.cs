@@ -9,13 +9,20 @@ using System;
 
 public partial class Enemy : CharacterBody3D, IDamageable
 {
-	[Export]
-	private AnimatedSprite3D enemySprite;
+    // ANIMATIONS
+    [Export]
+    private AnimatedSprite3D enemyFront;
+    [Export]
+    private AnimatedSprite3D enemySide;
+    [Export]
+    private AnimatedSprite3D enemyRear;
 
     // navigation agent reference
     private NavigationAgent3D navAgent;
     [Export]
     private NodePath navPath;
+    [Export]
+    private Area3D nearbyDetection;
 
     // health
     [Export]
@@ -87,7 +94,13 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	// instance the bullet
 	PackedScene psBullet = GD.Load<PackedScene>("res://scenes/equipment/Bullet.tscn");
 
-	RandomNumberGenerator rng;
+    CharacterBody3D currentFightTarget;
+    public bool fighting = false;
+    public bool recruited = false;
+
+    private float facingAngle = 0.0f;
+
+    RandomNumberGenerator rng;
 
 	public override void _Ready()
 	{
@@ -95,13 +108,20 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		sightRaycast = (RayCast3D)GetNode(sightPath);
         fireDelay = maxFireDelay;
         postReloadDelay = maxPostReloadDelay;
-		enemySprite.Play("Idle");
+        PlayAnimation("Idle");
 		ammo = maxAmmo;
 
         rng = new RandomNumberGenerator();
     }
 
-	public override void _Process(double delta)
+    public void PlayAnimation(StringName name)
+    {
+        enemyFront.Play(name);
+        enemySide.Play(name);
+        enemyRear.Play(name);
+    }
+
+    public override void _Process(double delta)
 	{
 		// decrease delay
 		if (fireDelay > 0)
@@ -112,22 +132,41 @@ public partial class Enemy : CharacterBody3D, IDamageable
         {
             postReloadDelay -= delta;
         }
+
+        // shoot animation handler
+        if (enemyFront.Animation == "Shoot")
+        {
+            if (!enemyFront.IsPlaying() && fireDelay <= 0)
+            {
+                PlayAnimation("Idle");
+                canShoot = true;
+                canMove = true;
+            }
+        }
+        // reload animation handler
+        if (enemyFront.Animation == "Reload")
+        {
+            if (!enemyFront.IsPlaying())
+            {
+                ammo = maxAmmo;
+                PlayAnimation("Idle");
+                canShoot = true;
+                canMove = true;
+
+                // postReloadDelay exists so the enemy at some point tries to get closer to the player
+                postReloadDelay = maxPostReloadDelay;
+            }
+        }
     }
 
-	public override void _PhysicsProcess(double delta)
+	public void FightTarget(CharacterBody3D target, Player player)
 	{
-
-		// reset velocity
-		Velocity = Vector3.Zero;
-
-		Player player = GlobalWorldState.Instance.Player;
-
 		// navigate to player
 		if (IsInstanceValid(player))
 		{
 			// FACE PLAYER - enemy always faces player as the sprites are 2d
 			LookAt(new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z), Vector3.Up);
-			
+
 			// MOVE
 			Vector3 playerRelativePosition = player.GlobalPosition - this.GlobalPosition;
 			// chases player when they are in site or if they have already spotted the player
@@ -136,7 +175,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 				if (standOffRadius < playerRelativePosition.Length())
 				{
 					// The enemy is moving:
-					enemySprite.Play("Run");
+					PlayAnimation("Run");
 
 					// this enemy has noticed the player, and therefore, their detection radius should increase due to vigilance
 					if (!hasSeenPlayer)
@@ -147,10 +186,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
 					navAgent.TargetPosition = player.GlobalTransform.Origin;
 					Vector3 nextNavPoint = navAgent.GetNextPathPosition();
 					Velocity = (nextNavPoint - GlobalTransform.Origin).Normalized() * speed;
-				} else
+				}
+				else
 				{
 					// The enemy is not moving:
-					enemySprite.Play("Idle");
+					PlayAnimation("Idle");
 				}
 			}
 
@@ -163,11 +203,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
 					if (postReloadDelay <= 0 && fireDelay <= 0)
 					{
 						// SHOOT THE BULLET
-						enemySprite.Play("Shoot");
+						PlayAnimation("Shoot");
 						shootSound.Play();
 						ammo -= 1;
-                        SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
-                        canShoot = false;
+						SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
+						canShoot = false;
 						canMove = false;
 						fireDelay = maxFireDelay;
 					}
@@ -175,55 +215,85 @@ public partial class Enemy : CharacterBody3D, IDamageable
 				else
 				{
 					// start the reload delay and reload the gun
-					enemySprite.Play("Reload");
+					PlayAnimation("Reload");
 					reloadSound.Play();
 					canShoot = false;
 					canMove = false;
 				}
 			}
-			// shoot animation handler
-			if (enemySprite.Animation == "Shoot")
-			{
-				if (!enemySprite.IsPlaying() && fireDelay <= 0)
-				{
-					enemySprite.Play("Idle");
-					canShoot = true;
-					canMove = true;
-				}
-			}
-			// reload animation handler
-			if (enemySprite.Animation == "Reload")
-			{
-				if (!enemySprite.IsPlaying())
-				{
-					ammo = maxAmmo;
-					enemySprite.Play("Idle");
-					canShoot = true;
-					canMove = true;
-
-                    // postReloadDelay exists so the enemy at some point tries to get closer to the player
-                    postReloadDelay = maxPostReloadDelay;
-				}
-			}
-
-			// death animation handler
-			if (enemySprite.Animation == "Death")
-			{
-				if (!enemySprite.IsPlaying())
-				{
-					// tell the gamemanager that this enemy was defeated
-					player.EmitSignal("enemyDefeated");
-					// despawn the enemy
-					this.QueueFree();
-				}
-			}
-		}
-
-		// move if the enemy is not doing an action that prevents them from moving
-		if (canMove) {
-			MoveAndSlide();
 		}
 	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+
+		// reset velocity
+		Velocity = Vector3.Zero;
+
+		Player player = GlobalWorldState.Instance.Player;
+
+        // handle movement
+        if (IsInstanceValid(player))
+        {
+            // FACE PLAYER - enemy always faces player as the sprites are 2d
+            LookAt(new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z), Vector3.Up);
+            if (fighting)
+            {
+                FightTarget(currentFightTarget, player);
+            }
+        }
+
+        // move if the enemy is not doing an action that prevents them from moving
+        if (canMove) {
+			MoveAndSlide();
+		}
+
+        // death animation handler
+        if (enemyFront.Animation == "Death")
+        {
+            if (!enemyFront.IsPlaying())
+            {
+                // tell the gamemanager that this enemy was defeated
+                player.EmitSignal("enemyDefeated");
+                // despawn the enemy
+                this.QueueFree();
+            }
+        }
+
+        // HANDLE ANIMATION
+        if (Velocity.Length() > 0)
+        {
+            facingAngle = (new Vector2(Velocity.X, Velocity.Z)).Angle();
+        }
+        Vector2 relativeDirectionToPlayer2D = new Vector2(player.GlobalPosition.X - this.GlobalPosition.X,
+                                                            player.GlobalPosition.Z - this.GlobalPosition.Z);
+        AnimationUtil.Direction dir = AnimationUtil.GetDirection(relativeDirectionToPlayer2D.Angle(), facingAngle);
+        switch (dir)
+        {
+            case AnimationUtil.Direction.AWAY:
+                enemyFront.Hide();
+                enemySide.Hide();
+                enemyRear.Show();
+                break;
+            case AnimationUtil.Direction.RIGHT:
+                enemyFront.Hide();
+                enemySide.Show();
+                enemyRear.Hide();
+                enemySide.FlipH = false;
+                break;
+            case AnimationUtil.Direction.LEFT:
+                enemyFront.Hide();
+                enemySide.Show();
+                enemyRear.Hide();
+                enemySide.FlipH = true;
+                break;
+            case AnimationUtil.Direction.TOWARDS:
+                enemyFront.Show();
+                enemySide.Hide();
+                enemyRear.Hide();
+                break;
+        }
+    }
 
     /// <summary>
     /// Roman Noodles
@@ -266,12 +336,34 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		}
 	}
 
-	/// <summary>
-	/// Roman Noodles (Adapted from Impulse)
-	/// 5/01/2024
-	/// Checks if the player is in the line of sight of the enemy
-	/// </summary>
-	public bool CheckCanSeeTarget(Vector3 relativeTargetVector, Node3D target)
+    /// <summary>
+    /// Roman Noodles (Adapted from Impulse)
+    /// 6/05/2024
+    /// Checks surroundings for enemies and targets the closest one
+    /// </summary>
+    private void CheckSurroundings()
+    {
+        var allCollisions = nearbyDetection.GetOverlappingBodies();
+        Node3D closestCollision = null;
+        foreach (var collision in allCollisions)
+        {
+            if (collision is Enemy)
+            {
+                closestCollision = collision as Enemy;
+            }
+        }
+        if (closestCollision != null)
+        {
+            this.SetTarget((Enemy)closestCollision);
+        }
+    }
+
+    /// <summary>
+    /// Roman Noodles (Adapted from Impulse)
+    /// 5/01/2024
+    /// Checks if the player is in the line of sight of the enemy
+    /// </summary>
+    public bool CheckCanSeeTarget(Vector3 relativeTargetVector, Node3D target)
 	{
 		bool inRadius = relativeTargetVector != Vector3.Zero && relativeTargetVector.Length() <= detectionRadius;
 		if (inRadius)
@@ -293,8 +385,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	{
 		damageRandomizer.Play();
 		health -= damage;
-		if (health <= 0) { 
-			enemySprite.Play("Death"); 
+		if (health <= 0) {
+            PlayAnimation("Death"); 
 			canMove = false;
 			canShoot = false;
 		}
@@ -302,12 +394,18 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		//gameManager.enemyHit(this);
 	}
 
-	/// <summary>
-	/// Roman Noodles
-	/// 5/19/2024
-	/// Plays the callout sound when a fellow cop was hit
-	/// </summary>
-	public void Callout()
+    public void SetTarget(CharacterBody3D target)
+    {
+        currentFightTarget = target;
+        fighting = true;
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/19/2024
+    /// Plays the callout sound when a fellow cop was hit
+    /// </summary>
+    public void Callout()
 	{
 		calloutRandomizer.Play();
 	}
