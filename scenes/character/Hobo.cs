@@ -22,6 +22,8 @@ public partial class Hobo : CharacterBody3D, IDamageable
     private NavigationAgent3D navAgent;
     [Export]
     private NodePath navPath;
+    [Export]
+    private Area3D nearbyDetection;
 
     // health
     [Export]
@@ -236,6 +238,11 @@ public partial class Hobo : CharacterBody3D, IDamageable
 
         Player player = GlobalWorldState.Instance.Player;
 
+        if (!fighting)
+        {
+            CheckSurroundings();
+        }
+
         // handle movement
         if (IsInstanceValid(player))
         {
@@ -250,15 +257,15 @@ public partial class Hobo : CharacterBody3D, IDamageable
             }
         }
 
-        // for testing
-        //Velocity = new Vector3(1, 0, 0);
-
         // move if the hobo is not doing an action that prevents them from moving
         if (canMove)
         {
             MoveAndSlide();
         }
-        // animation direction handler
+
+
+
+        // HANDLE ANIMATION
         if (Velocity.Length() > 0)
         { 
             facingAngle = (new Vector2(Velocity.X, Velocity.Z)).Angle(); 
@@ -329,6 +336,27 @@ public partial class Hobo : CharacterBody3D, IDamageable
             {
                 bullet.Velocity = (pointVector * bSpeed);
             }
+        }
+    }
+    /// <summary>
+    /// Roman Noodles (Adapted from Impulse)
+    /// 6/05/2024
+    /// Checks surroundings for enemies and targets the closest one
+    /// </summary>
+    private void CheckSurroundings()
+    {
+        var allCollisions = nearbyDetection.GetOverlappingBodies();
+        Node3D closestCollision = null;
+        foreach ( var collision in allCollisions )
+        {
+            if (collision is Enemy)
+            {
+                closestCollision = collision as Enemy;
+            }
+        }
+        if ( closestCollision != null )
+        {
+            this.SetTarget((Enemy)closestCollision);
         }
     }
 

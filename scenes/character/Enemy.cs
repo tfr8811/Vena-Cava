@@ -247,8 +247,9 @@ public partial class Enemy : CharacterBody3D, IDamageable
 			bullet.GlobalPosition = GlobalPosition + new Vector3(0, shotHeight, 0);
 			// prevents point blank shots from failing
 			bullet.GlobalPosition -= pointVector * 1f;
-			// set the collision mask of the bullet to the player layer (2)
+			// set the collision mask of the bullet to the player layer (2) and the hobo layer (5)
 			bullet.SetCollisionMaskValue(2, true);
+            bullet.SetCollisionMaskValue(5, true);
             // guns that shoot in bursts are stronger close up
             bullet.BulletTimer = lifespan * (((float)i + 1f) / (float)count);
             bullet.Damage = damage;

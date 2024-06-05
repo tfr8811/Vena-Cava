@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://ciaj42oig4vlp"]
+[gd_scene load_steps=60 format=3 uid="uid://ciaj42oig4vlp"]
 
 [ext_resource type="Script" path="res://scenes/character/Hobo.cs" id="1_p0y1h"]
 [ext_resource type="Texture2D" uid="uid://w3snsxh5afw5" path="res://assets/Sprites/CHARACTERS/Hobo/Death/FRAME 1.PNG" id="2_f0w5v"]
@@ -318,15 +318,19 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("34_ywd1o")
 stream_1/weight = 1.0
 
-[node name="Hobo" type="CharacterBody3D" node_paths=PackedStringArray("hoboFront", "hoboSide", "hoboRear", "shootSound", "reloadSound") groups=["Hobos"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_03dea"]
+radius = 15.0
+
+[node name="Hobo" type="CharacterBody3D" node_paths=PackedStringArray("hoboFront", "hoboSide", "hoboRear", "nearbyDetection", "shootSound", "reloadSound") groups=["Hobos"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-collision_layer = 18
-collision_mask = 7
+collision_layer = 16
+collision_mask = 23
 script = ExtResource("1_p0y1h")
 hoboFront = NodePath("FrontalMovement")
 hoboSide = NodePath("SidewaysMovement")
 hoboRear = NodePath("RearMovement")
 navPath = NodePath("NavigationAgent3D")
+nearbyDetection = NodePath("NearbyDetection")
 health = 3
 speed = 6.0
 bulletSpeed = 120.0
@@ -384,3 +388,11 @@ stream = ExtResource("32_wfm1l")
 
 [node name="CalloutRandomizer" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_tieek")
+
+[node name="NearbyDetection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NearbyDetection"]
+shape = SubResource("SphereShape3D_03dea")
