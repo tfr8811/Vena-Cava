@@ -166,8 +166,9 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		{
 			// MOVE
 			Vector3 targetRelativePosition = target.GlobalPosition - this.GlobalPosition;
-			// chases player when they are in site or if they have already spotted the player
-			if (canMove)
+
+            // chases player when they are in site or if they have already spotted the player
+            if (canMove)
 			{
 				if (standOffRadius < targetRelativePosition.Length())
 				{
@@ -183,13 +184,17 @@ public partial class Enemy : CharacterBody3D, IDamageable
 					// The enemy is not moving:
 					PlayAnimation("Idle");
 				}
-			}
+			} else
+            {
+                // face target
+                facingAngle = (new Vector2(targetRelativePosition.X, targetRelativePosition.Z)).Angle();
+            }
 
 			// SHOOT
 			// fires gun when player is in sight and close enough to shoot
 			if (canShoot && shootRadius > targetRelativePosition.Length() && CheckCanSeeTarget(target))
 			{
-                facingAngle = (new Vector2(targetRelativePosition.X, targetRelativePosition.Z)).Angle();
+                
                 if (ammo > 0)
 				{
 					if (postReloadDelay <= 0 && fireDelay <= 0)
