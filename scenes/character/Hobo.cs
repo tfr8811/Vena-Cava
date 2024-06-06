@@ -136,7 +136,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
         }
     }
 
-    public void FightTarget(Enemy target, Player player)
+    public void FightTarget(Enemy target)
     {
         // navigate to enemy
         if (IsInstanceValid(target))
@@ -162,7 +162,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
             }
             // SHOOT
             // fires gun when target is in sight and close enough to shoot
-            if (canShoot && shootRadius > targetRelativePosition.Length() && CheckCanSeeTarget(targetRelativePosition, target))
+            if (canShoot && shootRadius > targetRelativePosition.Length() && CheckCanSeeTarget(target))
             {
                 facingAngle = (new Vector2(targetRelativePosition.X, targetRelativePosition.Z)).Angle();
                 if (ammo > 0)
@@ -248,12 +248,16 @@ public partial class Hobo : CharacterBody3D, IDamageable
         {
             // FACE PLAYER - enemy always faces player as the sprites are 2d
             LookAt(new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z), Vector3.Up);
-            if (fighting)
+            if (recruited)
             {
-                FightTarget(currentFightTarget, player);
-            } else if (recruited)
-            {
-                FollowPlayer(player);
+                if (fighting)
+                {
+                    FightTarget(currentFightTarget);
+                }
+                else
+                {
+                    FollowPlayer(player);
+                }
             }
         }
 
@@ -351,7 +355,10 @@ public partial class Hobo : CharacterBody3D, IDamageable
         {
             if (collision is Enemy)
             {
-                closestCollision = collision as Enemy;
+                if (CheckCanSeeTarget(collision))
+                {
+                    closestCollision = collision as Enemy;
+                }
             }
         }
         if ( closestCollision != null )
@@ -365,8 +372,9 @@ public partial class Hobo : CharacterBody3D, IDamageable
     /// 5/01/2024
     /// Checks if the target is in the line of sight of the hobo
     /// </summary>
-    public bool CheckCanSeeTarget(Vector3 relativeTargetVector, Node3D target)
+    public bool CheckCanSeeTarget(Node3D target)
     {
+        Vector3 relativeTargetVector = target.GlobalPosition - this.GlobalPosition;
         bool inRadius = relativeTargetVector != Vector3.Zero && relativeTargetVector.Length() <= detectionRadius;
         if (inRadius)
         {

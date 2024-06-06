@@ -159,31 +159,22 @@ public partial class Enemy : CharacterBody3D, IDamageable
         }
     }
 
-	public void FightTarget(CharacterBody3D target, Player player)
+    public void FightTarget(CharacterBody3D target)
 	{
 		// navigate to player
-		if (IsInstanceValid(player))
+		if (IsInstanceValid(target))
 		{
-			// FACE PLAYER - enemy always faces player as the sprites are 2d
-			LookAt(new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z), Vector3.Up);
-
 			// MOVE
-			Vector3 playerRelativePosition = player.GlobalPosition - this.GlobalPosition;
+			Vector3 targetRelativePosition = target.GlobalPosition - this.GlobalPosition;
 			// chases player when they are in site or if they have already spotted the player
-			if (canMove && (hasSeenPlayer || CheckCanSeeTarget(playerRelativePosition, player)))
+			if (canMove)
 			{
-				if (standOffRadius < playerRelativePosition.Length())
+				if (standOffRadius < targetRelativePosition.Length())
 				{
 					// The enemy is moving:
 					PlayAnimation("Run");
 
-					// this enemy has noticed the player, and therefore, their detection radius should increase due to vigilance
-					if (!hasSeenPlayer)
-					{
-						commandRandomizer.Play();
-						hasSeenPlayer = true;
-					}
-					navAgent.TargetPosition = player.GlobalTransform.Origin;
+					navAgent.TargetPosition = target.GlobalTransform.Origin;
 					Vector3 nextNavPoint = navAgent.GetNextPathPosition();
 					Velocity = (nextNavPoint - GlobalTransform.Origin).Normalized() * speed;
 				}
@@ -196,7 +187,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
 			// SHOOT
 			// fires gun when player is in sight and close enough to shoot
-			if (canShoot && shootRadius > playerRelativePosition.Length() && CheckCanSeeTarget(playerRelativePosition, player))
+			if (canShoot && shootRadius > targetRelativePosition.Length() && CheckCanSeeTarget(target))
 			{
 				if (ammo > 0)
 				{
@@ -222,7 +213,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
 				}
 			}
 		}
-	}
+        else
+        {
+            fighting = false;
+        }
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -232,6 +227,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
 		Player player = GlobalWorldState.Instance.Player;
 
+        if (!fighting)
+        {
+            CheckSurroundings();
+        }
+
         // handle movement
         if (IsInstanceValid(player))
         {
@@ -239,7 +239,10 @@ public partial class Enemy : CharacterBody3D, IDamageable
             LookAt(new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z), Vector3.Up);
             if (fighting)
             {
-                FightTarget(currentFightTarget, player);
+                FightTarget(currentFightTarget);
+            } else if (CheckCanSeeTarget(player))
+            {
+                SetTarget(player);
             }
         }
 
@@ -347,14 +350,17 @@ public partial class Enemy : CharacterBody3D, IDamageable
         Node3D closestCollision = null;
         foreach (var collision in allCollisions)
         {
-            if (collision is Enemy)
+            if (collision is Hobo || collision is Player)
             {
-                closestCollision = collision as Enemy;
+                if (CheckCanSeeTarget(collision))
+                {
+                    closestCollision = collision as CharacterBody3D;
+                }
             }
         }
         if (closestCollision != null)
         {
-            this.SetTarget((Enemy)closestCollision);
+            this.SetTarget((CharacterBody3D)closestCollision);
         }
     }
 
@@ -363,9 +369,10 @@ public partial class Enemy : CharacterBody3D, IDamageable
     /// 5/01/2024
     /// Checks if the player is in the line of sight of the enemy
     /// </summary>
-    public bool CheckCanSeeTarget(Vector3 relativeTargetVector, Node3D target)
+    public bool CheckCanSeeTarget(Node3D target)
 	{
-		bool inRadius = relativeTargetVector != Vector3.Zero && relativeTargetVector.Length() <= detectionRadius;
+        Vector3 relativeTargetVector = target.GlobalPosition - this.GlobalPosition;
+        bool inRadius = relativeTargetVector != Vector3.Zero && relativeTargetVector.Length() <= detectionRadius;
 		if (inRadius)
 		{
 			sightRaycast.Rotation = -this.GlobalRotation;
@@ -398,6 +405,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
     {
         currentFightTarget = target;
         fighting = true;
+        commandRandomizer.Play();
     }
 
     /// <summary>
