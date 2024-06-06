@@ -197,7 +197,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
 						PlayAnimation("Shoot");
 						shootSound.Play();
 						ammo -= 1;
-						SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
+						SpawnBullet(target, bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
 						canShoot = false;
 						canMove = false;
 						fireDelay = maxFireDelay;
@@ -227,10 +227,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
 		Player player = GlobalWorldState.Instance.Player;
 
-        if (!fighting)
-        {
-            CheckSurroundings();
-        }
+        // the cop will look for the closest thing to target
+        CheckSurroundings();
 
         // handle movement
         if (IsInstanceValid(player))
@@ -303,41 +301,42 @@ public partial class Enemy : CharacterBody3D, IDamageable
     /// 5/01/2024
     /// Shoots a bullet in the direction the enemy is facing
     /// </summary>
-    private void SpawnBullet(float bSpeed, int damage, int count, float spread, double lifespan)
+    private void SpawnBullet(CharacterBody3D target, float bSpeed, int damage, int count, float spread, double lifespan)
     {
-		for (int i = 0; i < count; i++)
-		{
-			Bullet bullet = (Bullet)psBullet.Instantiate();
-			GetNode("/root/World").AddChild(bullet);
-			// calculate the bullets trajectory
-			Player player = GlobalWorldState.Instance.Player;
-			Vector3 pointVector = new Vector3(
-				player.GlobalPosition.X - GlobalPosition.X, 
-				player.GetHeadHeight() - (GlobalPosition.Y + shotHeight), 
-				player.GlobalPosition.Z - GlobalPosition.Z
-				);
-			pointVector = pointVector.Normalized();
-			bullet.GlobalPosition = GlobalPosition + new Vector3(0, shotHeight, 0);
-			// prevents point blank shots from failing
-			bullet.GlobalPosition -= pointVector * 1f;
+        for (int i = 0; i < count; i++)
+        {
+            Bullet bullet = (Bullet)psBullet.Instantiate();
+            GetNode("/root/World").AddChild(bullet);
+
+            // calculate the bullets trajectory
+            Vector3 pointVector = new Vector3(
+                target.GlobalPosition.X - GlobalPosition.X,
+                target.GlobalPosition.Y - (GlobalPosition.Y + shotHeight),
+                target.GlobalPosition.Z - GlobalPosition.Z
+                );
+            pointVector = pointVector.Normalized();
+            bullet.GlobalPosition = GlobalPosition + new Vector3(0, shotHeight, 0);
+            // prevents point blank shots from failing
+            bullet.GlobalPosition -= pointVector * 1f;
 			// set the collision mask of the bullet to the player layer (2) and the hobo layer (5)
 			bullet.SetCollisionMaskValue(2, true);
             bullet.SetCollisionMaskValue(5, true);
             // guns that shoot in bursts are stronger close up
             bullet.BulletTimer = lifespan * (((float)i + 1f) / (float)count);
             bullet.Damage = damage;
-			// apply spread
-			if (spread > 0)
-			{
-				Vector3 vSpread = new Vector3(rng.Randf() - 0.5f, rng.Randf() - 0.5f, rng.Randf() - 0.5f);
-				vSpread = vSpread.Normalized() * spread;
-				bullet.Velocity = (pointVector * bSpeed) + vSpread;
-			} else
-			{
-				bullet.Velocity = (pointVector * bSpeed);
+            // apply spread
+            if (spread > 0)
+            {
+                Vector3 vSpread = new Vector3(rng.Randf() - 0.5f, rng.Randf() - 0.5f, rng.Randf() - 0.5f);
+                vSpread = vSpread.Normalized() * spread;
+                bullet.Velocity = (pointVector * bSpeed) + vSpread;
             }
-		}
-	}
+            else
+            {
+                bullet.Velocity = (pointVector * bSpeed);
+            }
+        }
+    }
 
     /// <summary>
     /// Roman Noodles (Adapted from Impulse)
@@ -403,9 +402,13 @@ public partial class Enemy : CharacterBody3D, IDamageable
 
     public void SetTarget(CharacterBody3D target)
     {
+        // play the command when the combat encounter starts
+        if (!fighting)
+        {
+            commandRandomizer.Play();
+        }
         currentFightTarget = target;
         fighting = true;
-        commandRandomizer.Play();
     }
 
     /// <summary>

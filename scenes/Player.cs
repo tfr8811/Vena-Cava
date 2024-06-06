@@ -20,7 +20,7 @@ public partial class Player : CharacterBody3D, IDamageable
     private float speed;
 
     // health
-    private int maxHealth = 20000;
+    private int maxHealth = 20;
     public int MaxHealth
     {
         get { return this.maxHealth; }

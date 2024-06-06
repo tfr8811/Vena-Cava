@@ -394,7 +394,7 @@ shape = SubResource("CapsuleShape3D_7hmt8")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-collision_mask = 3
+collision_mask = 19
 
 [node name="FrontalMovement" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.122445, 0)
