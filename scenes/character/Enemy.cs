@@ -189,7 +189,8 @@ public partial class Enemy : CharacterBody3D, IDamageable
 			// fires gun when player is in sight and close enough to shoot
 			if (canShoot && shootRadius > targetRelativePosition.Length() && CheckCanSeeTarget(target))
 			{
-				if (ammo > 0)
+                facingAngle = (new Vector2(targetRelativePosition.X, targetRelativePosition.Z)).Angle();
+                if (ammo > 0)
 				{
 					if (postReloadDelay <= 0 && fireDelay <= 0)
 					{
