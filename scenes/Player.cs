@@ -169,11 +169,7 @@ public partial class Player : CharacterBody3D, IDamageable
                 {
                     for (int i = 0; i < allies.Length; i++)
                     {
-                        if (!allies[i].fighting)
-                        {
-                            allies[i].SetTarget((Enemy) collider);
-                            break;
-                        }
+                        allies[i].SetTarget((Enemy) collider);
                     }
                 }
             }
