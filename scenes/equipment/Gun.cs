@@ -6,7 +6,7 @@ using System;
 /// 5/09/2024
 /// Controls the behavior of the players guns
 /// </summary>
-public partial class Gun : Node3D
+public partial class Gun : Node3D, IEquippable
 {
     // Gun parameters
     [Export]

@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://cs7cm301ccant"]
+
+[ext_resource type="Script" path="res://scenes/equipment/Melee.cs" id="1_kj8d0"]
+[ext_resource type="Texture2D" uid="uid://d2r5282l1fphx" path="res://assets/Sprites/WEAPONS/Brick/FRAME 1.PNG" id="2_wb6l1"]
+[ext_resource type="Texture2D" uid="uid://dhpeu3ndil5cu" path="res://assets/Sprites/WEAPONS/Brick/FRAME 2.PNG" id="3_xqjur"]
+[ext_resource type="Texture2D" uid="uid://3tdroycr181o" path="res://assets/Sprites/WEAPONS/Brick/FRAME 3.PNG" id="4_7kwui"]
+[ext_resource type="Texture2D" uid="uid://djb6mxqlm43o5" path="res://assets/Sprites/WEAPONS/Brick/FRAME 4.PNG" id="5_4rian"]
+[ext_resource type="Texture2D" uid="uid://l04rxnubxvq3" path="res://assets/Sprites/WEAPONS/Brick/FRAME 5.PNG" id="6_rmtgy"]
+[ext_resource type="Texture2D" uid="uid://db3ufry5cvb01" path="res://assets/Sprites/WEAPONS/Brick/FRAME 6.PNG" id="7_0saba"]
+[ext_resource type="Texture2D" uid="uid://b30lfxp0htr6" path="res://assets/Sprites/WEAPONS/Brick/FRAME 7.PNG" id="8_wte6j"]
+[ext_resource type="Texture2D" uid="uid://bxa3wxog1mdmm" path="res://assets/Sprites/WEAPONS/Brick/FRAME 8.PNG" id="9_escvr"]
+[ext_resource type="AudioStream" uid="uid://c2447r8h66btu" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL_FIRE_2.wav" id="15_hyjkg"]
+[ext_resource type="AudioStream" uid="uid://bs3qtxr28wpeh" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL_EQUIP.wav" id="17_eyhbv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_26jbt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wb6l1")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_xqjur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7kwui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4rian")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rmtgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0saba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_wte6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_escvr")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 12.0
+}]
+
+[node name="Brick" type="Node3D" node_paths=PackedStringArray("weaponSprite", "hitSound", "equipSound", "hitScan")]
+script = ExtResource("1_kj8d0")
+damage = 3
+hitFrame = 4
+maxFireDelay = 0.5
+weaponSprite = NodePath("CanvasLayer/Control/WeaponSprite")
+hitSound = NodePath("HitSound")
+equipSound = NodePath("EquipSound")
+hitScan = NodePath("HitScan")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="CanvasLayer/Control"]
+position = Vector2(40.2057, 39.9994)
+rotation = 3.14159
+scale = Vector2(0.996834, 0.996834)
+sprite_frames = SubResource("SpriteFrames_26jbt")
+animation = &"Shoot"
+frame = 6
+frame_progress = 1.0
+centered = false
+flip_h = true
+flip_v = true
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("15_hyjkg")
+
+[node name="EquipSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("17_eyhbv")
+
+[node name="HitScan" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -2)
+collision_mask = 5
