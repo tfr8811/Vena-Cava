@@ -97,8 +97,11 @@ public partial class Enemy : CharacterBody3D, IDamageable
     CharacterBody3D currentFightTarget;
     public bool fighting = false;
     public bool recruited = false;
+    private bool dead = false;
 
     private float facingAngle = 0.0f;
+
+    Player player;
 
     RandomNumberGenerator rng;
 
@@ -110,6 +113,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
         postReloadDelay = maxPostReloadDelay;
         PlayAnimation("Idle");
 		ammo = maxAmmo;
+        player = GlobalWorldState.Instance.Player;
 
         rng = new RandomNumberGenerator();
     }
@@ -133,30 +137,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
             postReloadDelay -= delta;
         }
 
-        // shoot animation handler
-        if (enemyFront.Animation == "Shoot")
-        {
-            if (!enemyFront.IsPlaying() && fireDelay <= 0)
-            {
-                PlayAnimation("Idle");
-                canShoot = true;
-                canMove = true;
-            }
-        }
-        // reload animation handler
-        if (enemyFront.Animation == "Reload")
-        {
-            if (!enemyFront.IsPlaying())
-            {
-                ammo = maxAmmo;
-                PlayAnimation("Idle");
-                canShoot = true;
-                canMove = true;
-
-                // postReloadDelay exists so the enemy at some point tries to get closer to the player
-                postReloadDelay = maxPostReloadDelay;
-            }
-        }
+        HandleAnimations();
     }
 
     public void FightTarget(CharacterBody3D target)
@@ -164,6 +145,10 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		// navigate to player
 		if (IsInstanceValid(target))
 		{
+            if (target is IDamageable && ((IDamageable) target).IsDead())
+            {
+                fighting = false;
+            }
 			// MOVE
 			Vector3 targetRelativePosition = target.GlobalPosition - this.GlobalPosition;
 
@@ -189,6 +174,7 @@ public partial class Enemy : CharacterBody3D, IDamageable
                 // face target
                 facingAngle = (new Vector2(targetRelativePosition.X, targetRelativePosition.Z)).Angle();
             }
+
 
 			// SHOOT
 			// fires gun when player is in sight and close enough to shoot
@@ -231,8 +217,6 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		// reset velocity
 		Velocity = Vector3.Zero;
 
-		Player player = GlobalWorldState.Instance.Player;
-
         // the cop will look for the closest thing to target
         CheckSurroundings();
 
@@ -265,40 +249,6 @@ public partial class Enemy : CharacterBody3D, IDamageable
                 // despawn the enemy
                 this.QueueFree();
             }
-        }
-
-        // HANDLE ANIMATION
-        if (Velocity.Length() > 0)
-        {
-            facingAngle = (new Vector2(Velocity.X, Velocity.Z)).Angle();
-        }
-        Vector2 relativeDirectionToPlayer2D = new Vector2(player.GlobalPosition.X - this.GlobalPosition.X,
-                                                            player.GlobalPosition.Z - this.GlobalPosition.Z);
-        AnimationUtil.Direction dir = AnimationUtil.GetDirection(relativeDirectionToPlayer2D.Angle(), facingAngle);
-        switch (dir)
-        {
-            case AnimationUtil.Direction.AWAY:
-                enemyFront.Hide();
-                enemySide.Hide();
-                enemyRear.Show();
-                break;
-            case AnimationUtil.Direction.RIGHT:
-                enemyFront.Hide();
-                enemySide.Show();
-                enemyRear.Hide();
-                enemySide.FlipH = false;
-                break;
-            case AnimationUtil.Direction.LEFT:
-                enemyFront.Hide();
-                enemySide.Show();
-                enemyRear.Hide();
-                enemySide.FlipH = true;
-                break;
-            case AnimationUtil.Direction.TOWARDS:
-                enemyFront.Show();
-                enemySide.Hide();
-                enemyRear.Hide();
-                break;
         }
     }
 
@@ -355,9 +305,9 @@ public partial class Enemy : CharacterBody3D, IDamageable
         Node3D closestCollision = null;
         foreach (var collision in allCollisions)
         {
-            if (collision is Hobo || collision is Player)
+            if (collision is Hobo)
             {
-                if (CheckCanSeeTarget(collision))
+                if (!((Hobo) collision).IsDead() && CheckCanSeeTarget(collision))
                 {
                     closestCollision = collision as CharacterBody3D;
                 }
@@ -401,10 +351,16 @@ public partial class Enemy : CharacterBody3D, IDamageable
             PlayAnimation("Death"); 
 			canMove = false;
 			canShoot = false;
-		}
+            dead = true;
+        }
 		// tell the gamemanager that enemy was hit
 		//gameManager.enemyHit(this);
 	}
+
+    public bool IsDead()
+    {
+        return dead;
+    }
 
     public void SetTarget(CharacterBody3D target)
     {
@@ -426,4 +382,65 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	{
 		calloutRandomizer.Play();
 	}
+
+    public void HandleAnimations()
+    {
+        // shoot animation handler
+        if (enemyFront.Animation == "Shoot")
+        {
+            if (!enemyFront.IsPlaying() && fireDelay <= 0)
+            {
+                PlayAnimation("Idle");
+                canShoot = true;
+                canMove = true;
+            }
+        }
+        // reload animation handler
+        if (enemyFront.Animation == "Reload")
+        {
+            if (!enemyFront.IsPlaying())
+            {
+                ammo = maxAmmo;
+                PlayAnimation("Idle");
+                canShoot = true;
+                canMove = true;
+
+                // postReloadDelay exists so the enemy at some point tries to get closer to the player
+                postReloadDelay = maxPostReloadDelay;
+            }
+        }
+
+        if (Velocity.Length() > 0)
+        {
+            facingAngle = (new Vector2(Velocity.X, Velocity.Z)).Angle();
+        }
+        Vector2 relativeDirectionToPlayer2D = new Vector2(player.GlobalPosition.X - this.GlobalPosition.X,
+                                                            player.GlobalPosition.Z - this.GlobalPosition.Z);
+        AnimationUtil.Direction dir = AnimationUtil.GetDirection(relativeDirectionToPlayer2D.Angle(), facingAngle);
+        switch (dir)
+        {
+            case AnimationUtil.Direction.AWAY:
+                enemyFront.Hide();
+                enemySide.Hide();
+                enemyRear.Show();
+                break;
+            case AnimationUtil.Direction.RIGHT:
+                enemyFront.Hide();
+                enemySide.Show();
+                enemyRear.Hide();
+                enemySide.FlipH = false;
+                break;
+            case AnimationUtil.Direction.LEFT:
+                enemyFront.Hide();
+                enemySide.Show();
+                enemyRear.Hide();
+                enemySide.FlipH = true;
+                break;
+            case AnimationUtil.Direction.TOWARDS:
+                enemyFront.Show();
+                enemySide.Hide();
+                enemyRear.Hide();
+                break;
+        }
+    }
 }

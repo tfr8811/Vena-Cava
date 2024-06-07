@@ -81,6 +81,8 @@ public partial class Player : CharacterBody3D, IDamageable
 
     private Hobo[] allies;
 
+    private bool dead = false;
+
     public override void _Ready()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -297,6 +299,7 @@ public partial class Player : CharacterBody3D, IDamageable
         health -= damage;
         hud.Update(this);
         if (health <= 0) {
+            dead = true;
             GlobalSceneManager.Instance.GameOver();
         } else
         {
@@ -305,6 +308,11 @@ public partial class Player : CharacterBody3D, IDamageable
         // emit the player hit signal
         EmitSignal("playerHit");
         hud.DamageFlash();
+    }
+
+    public bool IsDead()
+    {
+        return dead;
     }
 
     /// <summary>

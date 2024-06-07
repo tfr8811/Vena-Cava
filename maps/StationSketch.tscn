@@ -299,3 +299,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.0149, 3.41631, -1.73309)
 
 [node name="Hobo" parent="FuncGodotMap" instance=ExtResource("19_1xfsn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5446, 3.21754, -0.868753)
+
+[node name="Hobo2" parent="FuncGodotMap" instance=ExtResource("19_1xfsn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.536, 3.19611, 0)

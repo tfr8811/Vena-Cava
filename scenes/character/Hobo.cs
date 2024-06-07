@@ -89,8 +89,11 @@ public partial class Hobo : CharacterBody3D, IDamageable
     Enemy currentFightTarget;
     public bool fighting = false;
     public bool recruited = false;
+    private bool dead = false;
 
     private float facingAngle = 0.0f;
+
+    Player player;
 
     RandomNumberGenerator rng;
 
@@ -102,6 +105,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
         postReloadDelay = maxPostReloadDelay;
         PlayAnimation("Idle");
         ammo = maxAmmo;
+        player = GlobalWorldState.Instance.Player;
 
         rng = new RandomNumberGenerator();
     }
@@ -113,7 +117,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
         hoboRear.Play(name);
     }
 
-    public void FollowPlayer(Player player)
+    public void FollowPlayer()
     {
         // MOVE
         Vector2 targetRelativePosition = new Vector2(player.GlobalPosition.X, player.GlobalPosition.Z) - new Vector2(GlobalPosition.X, GlobalPosition.Z);
@@ -205,38 +209,13 @@ public partial class Hobo : CharacterBody3D, IDamageable
         {
             postReloadDelay -= delta;
         }
-        // shoot animation handler
-        if (hoboFront.Animation == "Shoot")
-        {
-            if (!hoboFront.IsPlaying() && fireDelay <= 0)
-            {
-                PlayAnimation("Idle");
-                canShoot = true;
-                canMove = true;
-            }
-        }
-        // reload animation handler
-        if (hoboFront.Animation == "Reload")
-        {
-            if (!hoboFront.IsPlaying())
-            {
-                ammo = maxAmmo;
-                PlayAnimation("Idle");
-                canShoot = true;
-                canMove = true;
-
-                // postReloadDelay exists so the enemy at some point tries to get closer to the player
-                postReloadDelay = maxPostReloadDelay;
-            }
-        }
+        HandleAnimations();
     }
 
     public override void _PhysicsProcess(double delta)
     {
         // reset velocity
         Velocity = Vector3.Zero;
-
-        Player player = GlobalWorldState.Instance.Player;
 
         if (!fighting)
         {
@@ -256,7 +235,7 @@ public partial class Hobo : CharacterBody3D, IDamageable
                 }
                 else
                 {
-                    FollowPlayer(player);
+                    FollowPlayer();
                 }
             }
         }
@@ -265,42 +244,6 @@ public partial class Hobo : CharacterBody3D, IDamageable
         if (canMove)
         {
             MoveAndSlide();
-        }
-
-
-
-        // HANDLE ANIMATION
-        if (Velocity.Length() > 0)
-        { 
-            facingAngle = (new Vector2(Velocity.X, Velocity.Z)).Angle(); 
-        }
-        Vector2 relativeDirectionToPlayer2D = new Vector2(player.GlobalPosition.X - this.GlobalPosition.X,
-                                                            player.GlobalPosition.Z - this.GlobalPosition.Z);
-        AnimationUtil.Direction dir = AnimationUtil.GetDirection(relativeDirectionToPlayer2D.Angle(), facingAngle);
-        switch (dir)
-        {
-            case AnimationUtil.Direction.AWAY:
-                hoboFront.Hide();
-                hoboSide.Hide();
-                hoboRear.Show();
-                break;
-            case AnimationUtil.Direction.RIGHT:
-                hoboFront.Hide();
-                hoboSide.Show();
-                hoboRear.Hide();
-                hoboSide.FlipH = false;
-                break;
-            case AnimationUtil.Direction.LEFT:
-                hoboFront.Hide();
-                hoboSide.Show();
-                hoboRear.Hide();
-                hoboSide.FlipH = true;
-                break;
-            case AnimationUtil.Direction.TOWARDS:
-                hoboFront.Show();
-                hoboSide.Hide();
-                hoboRear.Hide();
-                break;
         }
     }
 
@@ -395,18 +338,84 @@ public partial class Hobo : CharacterBody3D, IDamageable
     {
         //damageRandomizer.Play();
         health -= damage;
-        if (health <= 0)
+        if (health <= 0 && !dead)
         {
             PlayAnimation("Death");
             canMove = false;
             canShoot = false;
+            dead = true;
         }
 
+    }
+
+    public bool IsDead()
+    {
+        return dead;
     }
 
     public void SetTarget(Enemy target)
     {
         currentFightTarget = target;
         fighting = true;
+    }
+
+    public void HandleAnimations()
+    {
+        // shoot animation handler
+        if (hoboFront.Animation == "Shoot")
+        {
+            if (!hoboFront.IsPlaying() && fireDelay <= 0)
+            {
+                PlayAnimation("Idle");
+                canShoot = true;
+                canMove = true;
+            }
+        }
+        // reload animation handler
+        if (hoboFront.Animation == "Reload")
+        {
+            if (!hoboFront.IsPlaying())
+            {
+                ammo = maxAmmo;
+                PlayAnimation("Idle");
+                canShoot = true;
+                canMove = true;
+
+                // postReloadDelay exists so the enemy at some point tries to get closer to the player
+                postReloadDelay = maxPostReloadDelay;
+            }
+        }
+        if (Velocity.Length() > 0)
+        {
+            facingAngle = (new Vector2(Velocity.X, Velocity.Z)).Angle();
+        }
+        Vector2 relativeDirectionToPlayer2D = new Vector2(player.GlobalPosition.X - this.GlobalPosition.X,
+                                                            player.GlobalPosition.Z - this.GlobalPosition.Z);
+        AnimationUtil.Direction dir = AnimationUtil.GetDirection(relativeDirectionToPlayer2D.Angle(), facingAngle);
+        switch (dir)
+        {
+            case AnimationUtil.Direction.AWAY:
+                hoboFront.Hide();
+                hoboSide.Hide();
+                hoboRear.Show();
+                break;
+            case AnimationUtil.Direction.RIGHT:
+                hoboFront.Hide();
+                hoboSide.Show();
+                hoboRear.Hide();
+                hoboSide.FlipH = false;
+                break;
+            case AnimationUtil.Direction.LEFT:
+                hoboFront.Hide();
+                hoboSide.Show();
+                hoboRear.Hide();
+                hoboSide.FlipH = true;
+                break;
+            case AnimationUtil.Direction.TOWARDS:
+                hoboFront.Show();
+                hoboSide.Hide();
+                hoboRear.Hide();
+                break;
+        }
     }
 }
