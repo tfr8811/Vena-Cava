@@ -4,18 +4,25 @@ using System;
 /// <summary>
 /// Roman Noodles
 /// 5/01/2024
-/// Controls and Manages the cop enemy
+/// Controls and Manages the enemies
 /// </summary>
 
 public partial class Enemy : CharacterBody3D, IDamageable
 {
-	[Export]
-	private AnimatedSprite3D enemySprite;
+    // ANIMATIONS
+    [Export]
+    private AnimatedSprite3D enemyFront;
+    [Export]
+    private AnimatedSprite3D enemySide;
+    [Export]
+    private AnimatedSprite3D enemyRear;
 
     // navigation agent reference
     private NavigationAgent3D navAgent;
     [Export]
     private NodePath navPath;
+    [Export]
+    private Area3D nearbyDetection;
 
     // health
     [Export]
@@ -87,7 +94,16 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	// instance the bullet
 	PackedScene psBullet = GD.Load<PackedScene>("res://scenes/equipment/Bullet.tscn");
 
-	RandomNumberGenerator rng;
+    CharacterBody3D currentFightTarget;
+    public bool fighting = false;
+    public bool recruited = false;
+    private bool dead = false;
+
+    private float facingAngle = 0.0f;
+
+    Player player;
+
+    RandomNumberGenerator rng;
 
 	public override void _Ready()
 	{
@@ -95,13 +111,21 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		sightRaycast = (RayCast3D)GetNode(sightPath);
         fireDelay = maxFireDelay;
         postReloadDelay = maxPostReloadDelay;
-		enemySprite.Play("Idle");
+        PlayAnimation("Idle");
 		ammo = maxAmmo;
+        player = GlobalWorldState.Instance.Player;
 
         rng = new RandomNumberGenerator();
     }
 
-	public override void _Process(double delta)
+    public void PlayAnimation(StringName name)
+    {
+        enemyFront.Play(name);
+        enemySide.Play(name);
+        enemyRear.Play(name);
+    }
+
+    public override void _Process(double delta)
 	{
 		// decrease delay
 		if (fireDelay > 0)
@@ -112,6 +136,79 @@ public partial class Enemy : CharacterBody3D, IDamageable
         {
             postReloadDelay -= delta;
         }
+
+        HandleAnimations();
+    }
+
+    public void FightTarget(CharacterBody3D target)
+	{
+		// navigate to player
+		if (IsInstanceValid(target))
+		{
+            if (target is IDamageable && ((IDamageable) target).IsDead())
+            {
+                fighting = false;
+            }
+			// MOVE
+			Vector3 targetRelativePosition = target.GlobalPosition - this.GlobalPosition;
+
+            // chases player when they are in site or if they have already spotted the player
+            if (canMove)
+			{
+				if (standOffRadius < targetRelativePosition.Length())
+				{
+					// The enemy is moving:
+					PlayAnimation("Run");
+
+					navAgent.TargetPosition = target.GlobalTransform.Origin;
+					Vector3 nextNavPoint = navAgent.GetNextPathPosition();
+					Velocity = (nextNavPoint - GlobalTransform.Origin).Normalized() * speed;
+				}
+				else
+				{
+					// The enemy is not moving:
+					PlayAnimation("Idle");
+				}
+			} else
+            {
+                // face target
+                facingAngle = (new Vector2(targetRelativePosition.X, targetRelativePosition.Z)).Angle();
+            }
+
+
+			// SHOOT
+			// fires gun when player is in sight and close enough to shoot
+			if (canShoot && shootRadius > targetRelativePosition.Length() && CheckCanSeeTarget(target))
+			{
+                
+                if (ammo > 0)
+				{
+					if (postReloadDelay <= 0 && fireDelay <= 0)
+					{
+						// SHOOT THE BULLET
+						PlayAnimation("Shoot");
+						shootSound.Play();
+						ammo -= 1;
+						SpawnBullet(target, bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
+						canShoot = false;
+						canMove = false;
+						fireDelay = maxFireDelay;
+					}
+				}
+				else
+				{
+					// start the reload delay and reload the gun
+					PlayAnimation("Reload");
+					reloadSound.Play();
+					canShoot = false;
+					canMove = false;
+				}
+			}
+		}
+        else
+        {
+            fighting = false;
+        }
     }
 
 	public override void _PhysicsProcess(double delta)
@@ -120,159 +217,117 @@ public partial class Enemy : CharacterBody3D, IDamageable
 		// reset velocity
 		Velocity = Vector3.Zero;
 
-		Player player = GlobalWorldState.Instance.Player;
+        // the cop will look for the closest thing to target
+        CheckSurroundings();
 
-		// navigate to player
-		if (IsInstanceValid(player))
-		{
-			// FACE PLAYER - enemy always faces player as the sprites are 2d
-			LookAt(new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z), Vector3.Up);
-			
-			// MOVE
-			Vector3 playerRelativePosition = player.GlobalPosition - this.GlobalPosition;
-			// chases player when they are in site or if they have already spotted the player
-			if (canMove && (hasSeenPlayer || CheckCanSeeTarget(playerRelativePosition, player)))
-			{
-				if (standOffRadius < playerRelativePosition.Length())
-				{
-					// The enemy is moving:
-					enemySprite.Play("Run");
+        // handle movement
+        if (IsInstanceValid(player))
+        {
+            // FACE PLAYER - enemy always faces player as the sprites are 2d
+            LookAt(new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z), Vector3.Up);
+            if (fighting)
+            {
+                FightTarget(currentFightTarget);
+            } else if (CheckCanSeeTarget(player))
+            {
+                SetTarget(player);
+            }
+        }
 
-					// this enemy has noticed the player, and therefore, their detection radius should increase due to vigilance
-					if (!hasSeenPlayer)
-					{
-						commandRandomizer.Play();
-						hasSeenPlayer = true;
-					}
-					navAgent.TargetPosition = player.GlobalTransform.Origin;
-					Vector3 nextNavPoint = navAgent.GetNextPathPosition();
-					Velocity = (nextNavPoint - GlobalTransform.Origin).Normalized() * speed;
-				} else
-				{
-					// The enemy is not moving:
-					enemySprite.Play("Idle");
-				}
-			}
-
-			// SHOOT
-			// fires gun when player is in sight and close enough to shoot
-			if (canShoot && shootRadius > playerRelativePosition.Length() && CheckCanSeeTarget(playerRelativePosition, player))
-			{
-				if (ammo > 0)
-				{
-					if (postReloadDelay <= 0 && fireDelay <= 0)
-					{
-						// SHOOT THE BULLET
-						enemySprite.Play("Shoot");
-						shootSound.Play();
-						ammo -= 1;
-                        SpawnBullet(bulletSpeed, bulletDamage, projectileCount, projectileSpread, maxBulletLifespan);
-                        canShoot = false;
-						canMove = false;
-						fireDelay = maxFireDelay;
-					}
-				}
-				else
-				{
-					// start the reload delay and reload the gun
-					enemySprite.Play("Reload");
-					reloadSound.Play();
-					canShoot = false;
-					canMove = false;
-				}
-			}
-			// shoot animation handler
-			if (enemySprite.Animation == "Shoot")
-			{
-				if (!enemySprite.IsPlaying() && fireDelay <= 0)
-				{
-					enemySprite.Play("Idle");
-					canShoot = true;
-					canMove = true;
-				}
-			}
-			// reload animation handler
-			if (enemySprite.Animation == "Reload")
-			{
-				if (!enemySprite.IsPlaying())
-				{
-					ammo = maxAmmo;
-					enemySprite.Play("Idle");
-					canShoot = true;
-					canMove = true;
-
-                    // postReloadDelay exists so the enemy at some point tries to get closer to the player
-                    postReloadDelay = maxPostReloadDelay;
-				}
-			}
-
-			// death animation handler
-			if (enemySprite.Animation == "Death")
-			{
-				if (!enemySprite.IsPlaying())
-				{
-					// tell the gamemanager that this enemy was defeated
-					player.EmitSignal("enemyDefeated");
-					// despawn the enemy
-					this.QueueFree();
-				}
-			}
-		}
-
-		// move if the enemy is not doing an action that prevents them from moving
-		if (canMove) {
+        // move if the enemy is not doing an action that prevents them from moving
+        if (canMove) {
 			MoveAndSlide();
 		}
-	}
+
+        // death animation handler
+        if (enemyFront.Animation == "Death")
+        {
+            if (!enemyFront.IsPlaying())
+            {
+                // tell the gamemanager that this enemy was defeated
+                player.EmitSignal("enemyDefeated");
+                // despawn the enemy
+                this.QueueFree();
+            }
+        }
+    }
 
     /// <summary>
     /// Roman Noodles
     /// 5/01/2024
     /// Shoots a bullet in the direction the enemy is facing
     /// </summary>
-    private void SpawnBullet(float bSpeed, int damage, int count, float spread, double lifespan)
+    private void SpawnBullet(CharacterBody3D target, float bSpeed, int damage, int count, float spread, double lifespan)
     {
-		for (int i = 0; i < count; i++)
-		{
-			Bullet bullet = (Bullet)psBullet.Instantiate();
-			GetNode("/root/World").AddChild(bullet);
-			// calculate the bullets trajectory
-			Player player = GlobalWorldState.Instance.Player;
-			Vector3 pointVector = new Vector3(
-				player.GlobalPosition.X - GlobalPosition.X, 
-				player.GetHeadHeight() - (GlobalPosition.Y + shotHeight), 
-				player.GlobalPosition.Z - GlobalPosition.Z
-				);
-			pointVector = pointVector.Normalized();
-			bullet.GlobalPosition = GlobalPosition + new Vector3(0, shotHeight, 0);
-			// prevents point blank shots from failing
-			bullet.GlobalPosition -= pointVector * 1f;
-			// set the collision mask of the bullet to the player layer (2)
+        for (int i = 0; i < count; i++)
+        {
+            Bullet bullet = (Bullet)psBullet.Instantiate();
+            GetNode("/root/World").AddChild(bullet);
+
+            // calculate the bullets trajectory
+            Vector3 pointVector = new Vector3(
+                target.GlobalPosition.X - GlobalPosition.X,
+                target.GlobalPosition.Y - (GlobalPosition.Y + shotHeight),
+                target.GlobalPosition.Z - GlobalPosition.Z
+                );
+            pointVector = pointVector.Normalized();
+            bullet.GlobalPosition = GlobalPosition + new Vector3(0, shotHeight, 0);
+            // prevents point blank shots from failing
+            bullet.GlobalPosition -= pointVector * 1f;
+			// set the collision mask of the bullet to the player layer (2) and the hobo layer (5)
 			bullet.SetCollisionMaskValue(2, true);
+            bullet.SetCollisionMaskValue(5, true);
             // guns that shoot in bursts are stronger close up
             bullet.BulletTimer = lifespan * (((float)i + 1f) / (float)count);
             bullet.Damage = damage;
-			// apply spread
-			if (spread > 0)
-			{
-				Vector3 vSpread = new Vector3(rng.Randf() - 0.5f, rng.Randf() - 0.5f, rng.Randf() - 0.5f);
-				vSpread = vSpread.Normalized() * spread;
-				bullet.Velocity = (pointVector * bSpeed) + vSpread;
-			} else
-			{
-				bullet.Velocity = (pointVector * bSpeed);
+            // apply spread
+            if (spread > 0)
+            {
+                Vector3 vSpread = new Vector3(rng.Randf() - 0.5f, rng.Randf() - 0.5f, rng.Randf() - 0.5f);
+                vSpread = vSpread.Normalized() * spread;
+                bullet.Velocity = (pointVector * bSpeed) + vSpread;
             }
-		}
-	}
+            else
+            {
+                bullet.Velocity = (pointVector * bSpeed);
+            }
+        }
+    }
 
-	/// <summary>
-	/// Roman Noodles (Adapted from Impulse)
-	/// 5/01/2024
-	/// Checks if the player is in the line of sight of the enemy
-	/// </summary>
-	public bool CheckCanSeeTarget(Vector3 relativeTargetVector, Node3D target)
+    /// <summary>
+    /// Roman Noodles (Adapted from Impulse)
+    /// 6/05/2024
+    /// Checks surroundings for enemies and targets the closest one
+    /// </summary>
+    private void CheckSurroundings()
+    {
+        var allCollisions = nearbyDetection.GetOverlappingBodies();
+        Node3D closestCollision = null;
+        foreach (var collision in allCollisions)
+        {
+            if (collision is Hobo)
+            {
+                if (!((Hobo) collision).IsDead() && CheckCanSeeTarget(collision))
+                {
+                    closestCollision = collision as CharacterBody3D;
+                }
+            }
+        }
+        if (closestCollision != null)
+        {
+            this.SetTarget((CharacterBody3D)closestCollision);
+        }
+    }
+
+    /// <summary>
+    /// Roman Noodles (Adapted from Impulse)
+    /// 5/01/2024
+    /// Checks if the player is in the line of sight of the enemy
+    /// </summary>
+    public bool CheckCanSeeTarget(Node3D target)
 	{
-		bool inRadius = relativeTargetVector != Vector3.Zero && relativeTargetVector.Length() <= detectionRadius;
+        Vector3 relativeTargetVector = target.GlobalPosition - this.GlobalPosition;
+        bool inRadius = relativeTargetVector != Vector3.Zero && relativeTargetVector.Length() <= detectionRadius;
 		if (inRadius)
 		{
 			sightRaycast.Rotation = -this.GlobalRotation;
@@ -292,22 +347,100 @@ public partial class Enemy : CharacterBody3D, IDamageable
 	{
 		damageRandomizer.Play();
 		health -= damage;
-		if (health <= 0) { 
-			enemySprite.Play("Death"); 
+		if (health <= 0) {
+            PlayAnimation("Death"); 
 			canMove = false;
 			canShoot = false;
-		}
+            dead = true;
+        }
 		// tell the gamemanager that enemy was hit
 		//gameManager.enemyHit(this);
 	}
 
-	/// <summary>
-	/// Roman Noodles
-	/// 5/19/2024
-	/// Plays the callout sound when a fellow cop was hit
-	/// </summary>
-	public void Callout()
+    public bool IsDead()
+    {
+        return dead;
+    }
+
+    public void SetTarget(CharacterBody3D target)
+    {
+        // play the command when the combat encounter starts
+        if (!fighting)
+        {
+            commandRandomizer.Play();
+        }
+        currentFightTarget = target;
+        fighting = true;
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 5/19/2024
+    /// Plays the callout sound when a fellow cop was hit
+    /// </summary>
+    public void Callout()
 	{
 		calloutRandomizer.Play();
 	}
+
+    public void HandleAnimations()
+    {
+        // shoot animation handler
+        if (enemyFront.Animation == "Shoot")
+        {
+            if (!enemyFront.IsPlaying() && fireDelay <= 0)
+            {
+                PlayAnimation("Idle");
+                canShoot = true;
+                canMove = true;
+            }
+        }
+        // reload animation handler
+        if (enemyFront.Animation == "Reload")
+        {
+            if (!enemyFront.IsPlaying())
+            {
+                ammo = maxAmmo;
+                PlayAnimation("Idle");
+                canShoot = true;
+                canMove = true;
+
+                // postReloadDelay exists so the enemy at some point tries to get closer to the player
+                postReloadDelay = maxPostReloadDelay;
+            }
+        }
+
+        if (Velocity.Length() > 0)
+        {
+            facingAngle = (new Vector2(Velocity.X, Velocity.Z)).Angle();
+        }
+        Vector2 relativeDirectionToPlayer2D = new Vector2(player.GlobalPosition.X - this.GlobalPosition.X,
+                                                            player.GlobalPosition.Z - this.GlobalPosition.Z);
+        AnimationUtil.Direction dir = AnimationUtil.GetDirection(relativeDirectionToPlayer2D.Angle(), facingAngle);
+        switch (dir)
+        {
+            case AnimationUtil.Direction.AWAY:
+                enemyFront.Hide();
+                enemySide.Hide();
+                enemyRear.Show();
+                break;
+            case AnimationUtil.Direction.RIGHT:
+                enemyFront.Hide();
+                enemySide.Show();
+                enemyRear.Hide();
+                enemySide.FlipH = false;
+                break;
+            case AnimationUtil.Direction.LEFT:
+                enemyFront.Hide();
+                enemySide.Show();
+                enemyRear.Hide();
+                enemySide.FlipH = true;
+                break;
+            case AnimationUtil.Direction.TOWARDS:
+                enemyFront.Show();
+                enemySide.Hide();
+                enemyRear.Hide();
+                break;
+        }
+    }
 }

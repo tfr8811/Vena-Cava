@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Xml.Linq;
 
 /// <summary>
 /// Roman Noodles
@@ -24,7 +25,7 @@ public partial class Player : CharacterBody3D, IDamageable
     {
         get { return this.maxHealth; }
     }
-    private int health = 20;
+    private int health;
     public int Health
     {
         get { return this.health; }
@@ -43,6 +44,13 @@ public partial class Player : CharacterBody3D, IDamageable
     // setup the reference objects
     [Export]
     private Node3D head;
+    public Node3D Head
+    {
+        get
+        {
+            return this.head;
+        }
+    }
 
     [Export]
     private Camera3D camera;
@@ -71,12 +79,17 @@ public partial class Player : CharacterBody3D, IDamageable
 
     private bool headBonked = false;
 
+    private Hobo[] allies;
+
+    private bool dead = false;
+
     public override void _Ready()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
         hud = GetNode<Hud>("Hud");
-
+        allies = new Hobo[0];
         GlobalWorldState.Instance.Player = this;
+        health = maxHealth;
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -115,15 +128,52 @@ public partial class Player : CharacterBody3D, IDamageable
             var collider = interactionRay.GetCollider();
             if (collider is IInteractable)
             {
-                hud.ShowHand();
-
-                if (Input.IsActionJustPressed("Interact"))
+                float distanceToCollider = (((Node3D)collider).GlobalPosition - this.GlobalPosition).Length();
+                if (distanceToCollider < 10f)
                 {
-                    ((IInteractable)collider).Interact();
+                    hud.ShowHand();
+
+                    if (Input.IsActionJustPressed("Interact"))
+                    {
+                        ((IInteractable)collider).Interact();
+                    }
                 }
             }
-            else if (collider is IDamageable) {
 
+            else if (collider is Hobo)
+            {
+                if (!((Hobo)collider).recruited)
+                {
+                    float distanceToCollider = (((Node3D)collider).GlobalPosition - this.GlobalPosition).Length();
+                    if (distanceToCollider < 10f)
+                    {
+                        hud.ShowHand();
+                        if (Input.IsActionJustPressed("Interact"))
+                        {
+                            AddAlly((Hobo)collider);
+                        }
+                    }
+                    else
+                    {
+                        if (((Hobo)collider).fighting)
+                        {
+                            if (Input.IsActionJustPressed("Interact"))
+                            {
+                                ((Hobo)collider).fighting = false;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (collider is Enemy)
+            {
+                if (Input.IsActionJustPressed("Interact"))
+                {
+                    for (int i = 0; i < allies.Length; i++)
+                    {
+                        allies[i].SetTarget((Enemy) collider);
+                    }
+                }
             }
         }
 
@@ -249,6 +299,7 @@ public partial class Player : CharacterBody3D, IDamageable
         health -= damage;
         hud.Update(this);
         if (health <= 0) {
+            dead = true;
             GlobalSceneManager.Instance.GameOver();
         } else
         {
@@ -257,6 +308,11 @@ public partial class Player : CharacterBody3D, IDamageable
         // emit the player hit signal
         EmitSignal("playerHit");
         hud.DamageFlash();
+    }
+
+    public bool IsDead()
+    {
+        return dead;
     }
 
     /// <summary>
@@ -282,5 +338,25 @@ public partial class Player : CharacterBody3D, IDamageable
     public float GetHeadHeight()
     {
         return GlobalPosition.Y + ((CapsuleShape3D)playerCapsule.Shape).Height/2 - 0.3f;
+    }
+
+    /// <summary>
+    /// Roman Noodles
+    /// 6/3/2024
+    /// Adds an ally to the player's army
+    /// </summary>
+    public void AddAlly(Hobo ally)
+    {
+        ally.recruited = true;
+        // add the new hobo to the arrays
+        Hobo[] newAllies = new Hobo[allies.Length + 1];
+        for (int i = 0; i < allies.Length; i++)
+        {
+            newAllies[i] = allies[i];
+        }
+        newAllies[allies.Length] = ally;
+        allies = newAllies;
+        // swap to the new ally
+        // SwapToIndex(allies.Length - 1);
     }
 }

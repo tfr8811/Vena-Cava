@@ -1,39 +1,58 @@
-[gd_scene load_steps=41 format=3 uid="uid://bb67rvws5ekus"]
+[gd_scene load_steps=63 format=3 uid="uid://bb67rvws5ekus"]
 
 [ext_resource type="Script" path="res://scenes/character/Enemy.cs" id="1_1ybnn"]
-[ext_resource type="Texture2D" uid="uid://bbbbotk7dfwpp" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Death/IMG_1879.PNG" id="2_lsvgl"]
-[ext_resource type="Texture2D" uid="uid://cy5jjvj3i40ro" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Death/IMG_1880.PNG" id="3_ok1gv"]
-[ext_resource type="Texture2D" uid="uid://bsl8moh4p0rme" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Death/IMG_1881.PNG" id="4_fluu3"]
-[ext_resource type="Texture2D" uid="uid://dympfcqwsq0bc" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Death/IMG_1883.PNG" id="5_0gj86"]
-[ext_resource type="Texture2D" uid="uid://dnag7nwdypbxc" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1827.PNG" id="6_lkb34"]
-[ext_resource type="Texture2D" uid="uid://yytbvmipeieu" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1840.PNG" id="7_betxv"]
-[ext_resource type="Texture2D" uid="uid://6ka3hnqop77m" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1841.PNG" id="8_wxwj2"]
-[ext_resource type="Texture2D" uid="uid://ba0a0jpmmx7ax" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1842.PNG" id="9_fgbps"]
-[ext_resource type="Texture2D" uid="uid://dqbli20lowiah" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1843.PNG" id="10_noqis"]
-[ext_resource type="Texture2D" uid="uid://chpqmo0m6c23q" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1844.PNG" id="11_p3i0p"]
-[ext_resource type="Texture2D" uid="uid://speno7d2cjg7" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1832.PNG" id="12_yvhlj"]
-[ext_resource type="Texture2D" uid="uid://bv1djh2gytjwe" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1833.PNG" id="13_i6uvm"]
-[ext_resource type="Texture2D" uid="uid://dh163j40fp4gn" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1834.PNG" id="14_btxuu"]
-[ext_resource type="Texture2D" uid="uid://401e6lult3s5" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1835.PNG" id="15_wsveg"]
-[ext_resource type="Texture2D" uid="uid://ccav2x4rfg67f" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1836.PNG" id="16_1muti"]
-[ext_resource type="Texture2D" uid="uid://0vnd3ftiixpt" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1837.PNG" id="17_66e5a"]
-[ext_resource type="Texture2D" uid="uid://bnf814lfpog0v" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1838.PNG" id="18_o12bp"]
+[ext_resource type="Texture2D" uid="uid://qqcmdjnn1s0b" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Death/DEATH 1.PNG" id="2_4w5rf"]
+[ext_resource type="Texture2D" uid="uid://c5kr1kcup8mrk" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Death/DEATH 2.PNG" id="3_wg16a"]
+[ext_resource type="Texture2D" uid="uid://boqe5w8xsfone" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Death/DEATH 3.PNG" id="4_pomfx"]
+[ext_resource type="Texture2D" uid="uid://dfsi2euewkjfv" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Death/DEATH 4.PNG" id="5_uwd2x"]
+[ext_resource type="Texture2D" uid="uid://d8mppv50rdrs" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IDLE.PNG" id="6_vchvs"]
+[ext_resource type="Texture2D" uid="uid://jerv3ash3u0o" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RELOAD 1.PNG" id="7_5w65c"]
+[ext_resource type="Texture2D" uid="uid://bnyghaesa8adu" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RELOAD 2.PNG" id="8_xmoyf"]
+[ext_resource type="Texture2D" uid="uid://xy6kteacnemv" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RELOAD 3.PNG" id="9_w743x"]
+[ext_resource type="Texture2D" uid="uid://bh5khfia5x0ny" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RELOAD 4.PNG" id="10_y070h"]
+[ext_resource type="Texture2D" uid="uid://t7120g47mhfo" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RELOAD 5.PNG" id="11_0nfls"]
+[ext_resource type="Texture2D" uid="uid://bl0s3y8rx8lpj" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RUN 1.PNG" id="12_a3qdo"]
+[ext_resource type="Texture2D" uid="uid://wx42b74w2tin" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RUN 2.PNG" id="13_hy2r5"]
+[ext_resource type="Texture2D" uid="uid://502v1rsecuqv" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RUN 3.PNG" id="14_eommu"]
+[ext_resource type="Texture2D" uid="uid://ctah52y0wayk1" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RUN 4.PNG" id="15_02xdt"]
+[ext_resource type="Texture2D" uid="uid://qi3x4i2kds4i" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/RUN 5.PNG" id="16_gmb71"]
+[ext_resource type="Texture2D" uid="uid://chkp2hg8td5xq" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/SHOOT 1.PNG" id="17_02wwv"]
+[ext_resource type="Texture2D" uid="uid://06oklel3plhe" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/SHOOT 2.PNG" id="18_bfoc5"]
 [ext_resource type="AudioStream" uid="uid://brry21wlxlfum" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_DROP THE GUN.mp3" id="19_8injo"]
-[ext_resource type="Texture2D" uid="uid://b3qfpnq2kmt3v" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/IMG_1839.PNG" id="19_lovnh"]
+[ext_resource type="Texture2D" uid="uid://do6h5onwx0ny5" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Front/SHOOT 3.PNG" id="19_qlgtg"]
 [ext_resource type="AudioStream" uid="uid://dcbfoh11q0kry" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_HANDS UP 2.mp3" id="20_dlfx6"]
+[ext_resource type="Texture2D" uid="uid://b5whmccuwmegp" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Rear/IDLE.PNG" id="20_dpjmv"]
+[ext_resource type="Texture2D" uid="uid://cc6vk4hb1mann" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Rear/RELOAD 1.PNG" id="21_xrc4w"]
 [ext_resource type="AudioStream" uid="uid://bvh37svx7b3qt" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_HANDS UP.mp3" id="21_xvwt6"]
+[ext_resource type="Texture2D" uid="uid://coxjvu54sxe08" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Rear/RELOAD 2.PNG" id="22_xcysp"]
 [ext_resource type="AudioStream" uid="uid://bppe7414bhxcy" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_STOP.mp3" id="23_7pufh"]
+[ext_resource type="Texture2D" uid="uid://6u4aokpa4rcu" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Rear/RELOAD 3.PNG" id="23_pn2p4"]
 [ext_resource type="AudioStream" uid="uid://ilvignhxstuy" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_UNDER ARREST 2.mp3" id="24_rqfhb"]
+[ext_resource type="Texture2D" uid="uid://dyu4arphbepl4" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Rear/RUN 1.PNG" id="24_v5ww1"]
+[ext_resource type="Texture2D" uid="uid://dloi2cclundud" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Rear/RUN 2.PNG" id="25_g77ui"]
 [ext_resource type="AudioStream" uid="uid://cs2p1nj46spt0" path="res://assets/Audio/SFX/Enemies/Cop/Commands/COM_UNDER ARREST.mp3" id="25_xtscf"]
 [ext_resource type="AudioStream" uid="uid://rgp7kkjf77rp" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 2.mp3" id="26_flkbd"]
+[ext_resource type="Texture2D" uid="uid://d2qh02660767e" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Rear/RUN 3.PNG" id="26_ng3v4"]
 [ext_resource type="AudioStream" uid="uid://c2447r8h66btu" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL_FIRE_2.wav" id="26_q137x"]
 [ext_resource type="AudioStream" uid="uid://dtf65vv66q2be" path="res://assets/Audio/SFX/Weapons/Pistol/PISTOL RELOAD.wav" id="27_2qpok"]
+[ext_resource type="Texture2D" uid="uid://c82lcstlwmfl5" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Rear/RUN 4.PNG" id="27_maoq2"]
 [ext_resource type="AudioStream" uid="uid://br1aa8mapaua" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 3.mp3" id="27_qyfoc"]
 [ext_resource type="AudioStream" uid="uid://21ucbt4rgx2q" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 4.mp3" id="28_pm6jg"]
+[ext_resource type="Texture2D" uid="uid://vsdahr2ccfor" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/IDLE.PNG" id="28_qqppp"]
+[ext_resource type="Texture2D" uid="uid://dg3g0a55arlbj" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/RELOAD 1.PNG" id="29_i6460"]
 [ext_resource type="AudioStream" uid="uid://d328ipm21komy" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT 5.mp3" id="29_thqg6"]
 [ext_resource type="AudioStream" uid="uid://xsjwdtpbq6yy" path="res://assets/Audio/SFX/Enemies/Cop/Damage/DAM_GRUNT.mp3" id="30_7r368"]
+[ext_resource type="Texture2D" uid="uid://bae3e7lh4yjcc" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/RELOAD 2.PNG" id="30_nf3gb"]
+[ext_resource type="Texture2D" uid="uid://0vfyiwpv4jdb" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/RELOAD 3.PNG" id="31_0makt"]
+[ext_resource type="Texture2D" uid="uid://dgicrup15hvlt" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/RUN 1.PNG" id="32_45m4v"]
 [ext_resource type="AudioStream" uid="uid://cthmkhtgp12xo" path="res://assets/Audio/SFX/Enemies/Cop/Callouts/CO_SHOTS FIRED 2.mp3" id="33_m0wqc"]
+[ext_resource type="Texture2D" uid="uid://6hgpamba7vv8" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/RUN 2.PNG" id="33_uqy64"]
 [ext_resource type="AudioStream" uid="uid://cuqmcdbhqrfvs" path="res://assets/Audio/SFX/Enemies/Cop/Callouts/CO_SHOTS FIRED.mp3" id="34_dag1l"]
+[ext_resource type="Texture2D" uid="uid://c3bo7nnavckjy" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/RUN 3.PNG" id="34_ugl52"]
+[ext_resource type="Texture2D" uid="uid://dr5iht0xe3iaq" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/RUN 4.PNG" id="35_cbovh"]
+[ext_resource type="Texture2D" uid="uid://crahfw2cs0rci" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/SHOOT 1.PNG" id="36_osjth"]
+[ext_resource type="Texture2D" uid="uid://d0mhispwxtrak" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/SHOOT 2.PNG" id="37_ns58q"]
+[ext_resource type="Texture2D" uid="uid://cy05ta1j6csrs" path="res://assets/Sprites/CHARACTERS/Pistol Cop/Side/SHOOT 3.PNG" id="38_t1iae"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_m5u7q"]
 
@@ -43,16 +62,16 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_lsvgl")
+"texture": ExtResource("2_4w5rf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_ok1gv")
+"texture": ExtResource("3_wg16a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_fluu3")
+"texture": ExtResource("4_pomfx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_0gj86")
+"texture": ExtResource("5_uwd2x")
 }],
 "loop": false,
 "name": &"Death",
@@ -60,7 +79,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_lkb34")
+"texture": ExtResource("6_vchvs")
 }],
 "loop": false,
 "name": &"Idle",
@@ -68,51 +87,51 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("7_betxv")
+"texture": ExtResource("7_5w65c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_wxwj2")
+"texture": ExtResource("8_xmoyf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_fgbps")
+"texture": ExtResource("9_w743x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_noqis")
+"texture": ExtResource("10_y070h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_p3i0p")
+"texture": ExtResource("11_0nfls")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_noqis")
+"texture": ExtResource("10_y070h")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_fgbps")
+"texture": ExtResource("9_w743x")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_wxwj2")
+"texture": ExtResource("8_xmoyf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_betxv")
+"texture": ExtResource("7_5w65c")
 }],
 "loop": false,
 "name": &"Reload",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("12_yvhlj")
+"texture": ExtResource("12_a3qdo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_i6uvm")
+"texture": ExtResource("13_hy2r5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_btxuu")
+"texture": ExtResource("14_eommu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_wsveg")
+"texture": ExtResource("15_02xdt")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_1muti")
+"texture": ExtResource("16_gmb71")
 }],
 "loop": true,
 "name": &"Run",
@@ -120,13 +139,177 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("17_66e5a")
+"texture": ExtResource("17_02wwv")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_o12bp")
+"texture": ExtResource("18_bfoc5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("19_lovnh")
+"texture": ExtResource("19_qlgtg")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t7hyc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4w5rf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wg16a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pomfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uwd2x")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_dpjmv")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("21_xrc4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_xcysp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_pn2p4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_pn2p4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_xcysp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_xrc4w")
+}],
+"loop": false,
+"name": &"Reload",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_v5ww1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_g77ui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ng3v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_maoq2")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_dpjmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_dpjmv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_dpjmv")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_27mvc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_4w5rf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wg16a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pomfx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uwd2x")
+}],
+"loop": false,
+"name": &"Death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_qqppp")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("29_i6460")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_nf3gb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_0makt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_0makt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_nf3gb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_i6460")
+}],
+"loop": false,
+"name": &"Reload",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_45m4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_uqy64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ugl52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_cbovh")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("36_osjth")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ns58q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_t1iae")
 }],
 "loop": false,
 "name": &"Shoot",
@@ -168,17 +351,23 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("34_dag1l")
 stream_1/weight = 1.0
 
-[node name="Cop" type="CharacterBody3D" node_paths=PackedStringArray("enemySprite", "commandRandomizer", "damageRandomizer", "calloutRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_t0ol6"]
+radius = 15.0
+
+[node name="Cop" type="CharacterBody3D" node_paths=PackedStringArray("enemyFront", "enemySide", "enemyRear", "nearbyDetection", "commandRandomizer", "damageRandomizer", "calloutRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_1ybnn")
-enemySprite = NodePath("AnimatedSprite3D")
+enemyFront = NodePath("FrontalMovement")
+enemySide = NodePath("Side Movement")
+enemyRear = NodePath("RearMovement")
 navPath = NodePath("NavigationAgent3D")
+nearbyDetection = NodePath("NearbyDetection")
 health = 3
 speed = 6.0
 bulletSpeed = 120.0
-shotHeight = 0.5
+shotHeight = 0.6
 maxAmmo = 8
 bulletDamage = 1
 projectileCount = 1
@@ -205,12 +394,27 @@ shape = SubResource("CapsuleShape3D_7hmt8")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-collision_mask = 3
+collision_mask = 19
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+[node name="FrontalMovement" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, -0.122445, 0)
 sprite_frames = SubResource("SpriteFrames_0wgee")
 animation = &"Shoot"
+
+[node name="RearMovement" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.175, 0, 0, 0, 0.175, 0, 0, 0, 0.175, 0, 0.380657, 0)
+visible = false
+sprite_frames = SubResource("SpriteFrames_t7hyc")
+animation = &"Reload"
+frame = 5
+frame_progress = 1.0
+
+[node name="Side Movement" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.220008, 0, 0, 0, 0.220008, 0, 0, 0, 0.220008, 0, 0.0634625, 0)
+visible = false
+sprite_frames = SubResource("SpriteFrames_27mvc")
+animation = &"Run"
+frame_progress = 0.294127
 
 [node name="CommandRandomizer" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_30ghv")
@@ -226,3 +430,11 @@ stream = ExtResource("27_2qpok")
 
 [node name="CalloutRandomizer" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_tieek")
+
+[node name="NearbyDetection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 18
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NearbyDetection"]
+shape = SubResource("SphereShape3D_t0ol6")

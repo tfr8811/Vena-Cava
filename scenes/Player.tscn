@@ -55,7 +55,8 @@ script = ExtResource("2_eopid")
 inventory = Array[PackedScene]([ExtResource("3_y43p8")])
 
 [node name="InteractionRay" type="RayCast3D" parent="Head/Camera3D"]
-target_position = Vector3(0, 0, -10)
+target_position = Vector3(0, 0, -50)
+collision_mask = 21
 
 [node name="CeilingChecker" type="RayCast3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
