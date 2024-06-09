@@ -70,7 +70,7 @@ animations = [{
 
 [node name="Rifle" type="Node3D" node_paths=PackedStringArray("gunSprite", "ammoCounter", "shootSound", "reloadSound", "equipSound")]
 script = ExtResource("1_en0qc")
-bulletSpeed = 120.0
+bulletSpeed = 80.0
 maxAmmo = 30
 bulletDamage = 1
 projectileCount = 1

@@ -305,11 +305,22 @@ public partial class Enemy : CharacterBody3D, IDamageable
         Node3D closestCollision = null;
         foreach (var collision in allCollisions)
         {
-            if (collision is Hobo)
+            if ((collision is Hobo && !((Hobo)collision).IsDead()) || collision is Player)
             {
-                if (!((Hobo) collision).IsDead() && CheckCanSeeTarget(collision))
+                if (CheckCanSeeTarget(collision))
                 {
-                    closestCollision = collision as CharacterBody3D;
+                    if (closestCollision != null)
+                    {
+                        Vector3 collisionDist = this.GlobalPosition - collision.GlobalPosition;
+                        Vector3 closestCollisionDist = this.GlobalPosition - closestCollision.GlobalPosition;
+                        if (collisionDist.Length() < closestCollisionDist.Length())
+                        {
+                            closestCollision = collision as CharacterBody3D;
+                        }
+                    } else
+                    {
+                        closestCollision = collision as CharacterBody3D;
+                    }
                 }
             }
         }

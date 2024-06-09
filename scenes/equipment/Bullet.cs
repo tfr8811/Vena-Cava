@@ -8,6 +8,8 @@ using System;
 /// </summary>
 public partial class Bullet : RayCast3D
 {
+    [Export]
+    PackedScene psBulletHole;
     // destroy the bullet after 3 seconds
     private double bulletTimer = 3.0f;
     public double BulletTimer
@@ -55,6 +57,16 @@ public partial class Bullet : RayCast3D
             if (collider is IDamageable)
             {
                 ((IDamageable)collider).TakeDamage(damage);
+            } else
+            {
+                // Display a bullet hole decal at the collision point
+                Node3D bulletHole = (Node3D)psBulletHole.Instantiate();
+                GetNode("/root/World").AddChild(bulletHole);
+                bulletHole.GlobalPosition = GetCollisionPoint();
+                if (GetCollisionNormal() != Vector3.Zero)
+                {
+                    bulletHole.LookAt(GetCollisionPoint() + GetCollisionNormal() + new Vector3(0.001f, 0.001f, 0.001f));
+                }
             }
             this.QueueFree();
         }

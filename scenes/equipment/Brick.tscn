@@ -39,6 +39,9 @@ animations = [{
 "texture": ExtResource("7_0saba")
 }, {
 "duration": 1.0,
+"texture": ExtResource("7_0saba")
+}, {
+"duration": 1.0,
 "texture": ExtResource("8_wte6j")
 }, {
 "duration": 1.0,
@@ -79,8 +82,6 @@ rotation = 3.14159
 scale = Vector2(0.996834, 0.996834)
 sprite_frames = SubResource("SpriteFrames_26jbt")
 animation = &"Shoot"
-frame = 6
-frame_progress = 1.0
 centered = false
 flip_h = true
 flip_v = true
