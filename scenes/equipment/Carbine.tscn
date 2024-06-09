@@ -86,7 +86,7 @@ animations = [{
 
 [node name="Carbine" type="Node3D" node_paths=PackedStringArray("gunSprite", "ammoCounter", "shootSound", "reloadSound", "equipSound")]
 script = ExtResource("1_jq4hc")
-bulletSpeed = 100.0
+bulletSpeed = 180.0
 maxAmmo = 10
 bulletDamage = 3
 projectileCount = 1

@@ -272,8 +272,6 @@ public partial class Enemy : CharacterBody3D, IDamageable
                 );
             pointVector = pointVector.Normalized();
             bullet.GlobalPosition = GlobalPosition + new Vector3(0, shotHeight, 0);
-            // prevents point blank shots from failing
-            bullet.GlobalPosition -= pointVector * 1f;
 			// set the collision mask of the bullet to the player layer (2) and the hobo layer (5)
 			bullet.SetCollisionMaskValue(2, true);
             bullet.SetCollisionMaskValue(5, true);

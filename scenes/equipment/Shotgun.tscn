@@ -105,7 +105,7 @@ animations = [{
 
 [node name="Shotgun" type="Node3D" node_paths=PackedStringArray("gunSprite", "ammoCounter", "shootSound", "reloadSound", "equipSound")]
 script = ExtResource("1_xp2rs")
-bulletSpeed = 80.0
+bulletSpeed = 120.0
 maxAmmo = 4
 bulletDamage = 1
 projectileCount = 9
