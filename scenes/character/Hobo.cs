@@ -300,7 +300,19 @@ public partial class Hobo : CharacterBody3D, IDamageable
             {
                 if (CheckCanSeeTarget(collision))
                 {
-                    closestCollision = collision as Enemy;
+                    if (closestCollision != null)
+                    {
+                        Vector3 collisionDist = this.GlobalPosition - collision.GlobalPosition;
+                        Vector3 closestCollisionDist = this.GlobalPosition - closestCollision.GlobalPosition;
+                        if (collisionDist.Length() < closestCollisionDist.Length())
+                        {
+                            closestCollision = collision as Enemy;
+                        }
+                    }
+                    else
+                    {
+                        closestCollision = collision as Enemy;
+                    }
                 }
             }
         }

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://nmqke73vs4lx"]
+
+[ext_resource type="Texture2D" uid="uid://dugd64pfh2h6f" path="res://assets/Sprites/WEAPONS/bullet_hole.png" id="1_1p8dm"]
+[ext_resource type="Script" path="res://scenes/equipment/BulletHole.cs" id="1_fxdk0"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_5gcqt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ad0hg"]
+transparency = 1
+albedo_texture = ExtResource("1_1p8dm")
+texture_filter = 0
+
+[node name="BulletDecal" type="Node3D"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+script = ExtResource("1_fxdk0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.02)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_5gcqt")
+surface_material_override/0 = SubResource("StandardMaterial3D_ad0hg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

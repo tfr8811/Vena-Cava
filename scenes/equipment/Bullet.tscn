@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bdil4hjv4wrwy"]
+[gd_scene load_steps=4 format=3 uid="uid://bdil4hjv4wrwy"]
 
 [ext_resource type="Script" path="res://scenes/equipment/Bullet.cs" id="1_v0f7a"]
+[ext_resource type="PackedScene" uid="uid://nmqke73vs4lx" path="res://scenes/equipment/BulletHole.tscn" id="2_h8km0"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_pkyjc"]
 
@@ -8,6 +9,7 @@
 target_position = Vector3(0, 0, 0)
 hit_from_inside = true
 script = ExtResource("1_v0f7a")
+psBulletHole = ExtResource("2_h8km0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

@@ -6,7 +6,7 @@ using System;
 /// 5/09/2024
 /// Controls the behavior of the players guns
 /// </summary>
-public partial class Gun : Node3D
+public partial class Gun : Node3D, IEquippable
 {
     // Gun parameters
     [Export]
@@ -132,7 +132,7 @@ public partial class Gun : Node3D
             Vector3 pointVector = -this.GlobalTransform.Basis.Z;
             bullet.GlobalPosition = this.GlobalPosition;
             // prevents point blank shots from failing
-            bullet.GlobalPosition -= pointVector * 0.1f;
+            bullet.GlobalPosition -= pointVector * 0.2f;
             // set the collision mask of the bullet to the enemy layer (3)
             bullet.SetCollisionMaskValue(3, true);
             // guns that shoot in bursts are stronger close up

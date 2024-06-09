@@ -83,9 +83,9 @@ public partial class Items : Node3D
         RemoveChild(loadedItems[currentIndex]);
         currentIndex = index;
         AddChild(loadedItems[currentIndex]);
-        if (loadedItems[currentIndex] is Gun)
+        if (loadedItems[currentIndex] is IEquippable)
         {
-            ((Gun)loadedItems[currentIndex]).Equip();
+            ((IEquippable)loadedItems[currentIndex]).Equip();
         }
     }
 
