@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cjc13em5od4qa"]
+[gd_scene load_steps=18 format=3 uid="uid://cjc13em5od4qa"]
 
 [ext_resource type="Script" path="res://scenes/Player.cs" id="1_clxhf"]
 [ext_resource type="Script" path="res://scenes/equipment/Items.cs" id="2_eopid"]
@@ -31,7 +31,10 @@ stream_3/weight = 1.0
 stream_4/stream = ExtResource("7_raieu")
 stream_4/weight = 1.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "camera", "damageSound", "playerCapsule", "ceilingChecker", "interactionRay")]
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_qbaul"]
+length = 0.5
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("head", "camera", "damageSound", "playerCapsule", "ceilingChecker", "interactionRay", "stairBelowCheck", "separationRayF", "slopeCheckF", "separationRayL", "slopeCheckL", "separationRayR", "slopeCheckR")]
 collision_layer = 2
 collision_mask = 15
 script = ExtResource("1_clxhf")
@@ -41,6 +44,13 @@ damageSound = NodePath("DamageRandomizer")
 playerCapsule = NodePath("CollisionShape3D")
 ceilingChecker = NodePath("Head/CeilingChecker")
 interactionRay = NodePath("Head/Camera3D/InteractionRay")
+stairBelowCheck = NodePath("StairBelowCheck")
+separationRayF = NodePath("StepUpSeperationRay_F")
+slopeCheckF = NodePath("StepUpSeperationRay_F/RayCast3D")
+separationRayL = NodePath("StepUpSeperationRay_L")
+slopeCheckL = NodePath("StepUpSeperationRay_L/RayCast3D")
+separationRayR = NodePath("StepUpSeperationRay_R")
+slopeCheckR = NodePath("StepUpSeperationRay_R/RayCast3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_r1fmd")
@@ -70,3 +80,34 @@ target_position = Vector3(0, 1, 0)
 stream = SubResource("AudioStreamRandomizer_mltti")
 
 [node name="Hud" parent="." instance=ExtResource("8_jgp5l")]
+
+[node name="StairBelowCheck" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.997631, 0)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="StepUpSeperationRay_F" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.5, -0.57)
+shape = SubResource("SeparationRayShape3D_qbaul")
+
+[node name="RayCast3D" type="RayCast3D" parent="StepUpSeperationRay_F"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, -0.55, 0)
+
+[node name="StepUpSeperationRay_L" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.5, -0.57)
+shape = SubResource("SeparationRayShape3D_qbaul")
+
+[node name="RayCast3D" type="RayCast3D" parent="StepUpSeperationRay_L"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, -0.55, 0)
+
+[node name="StepUpSeperationRay_R" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.5, -0.57)
+shape = SubResource("SeparationRayShape3D_qbaul")
+
+[node name="RayCast3D" type="RayCast3D" parent="StepUpSeperationRay_R"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+enabled = false
+target_position = Vector3(0, -0.55, 0)
