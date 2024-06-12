@@ -7,7 +7,7 @@
 script = ExtResource("2_ref5k")
 scene_file = ExtResource("1_xo7ji")
 apply_rotation_on_map_build = true
-classname = "pickups_blobguy"
+classname = "character_blobguy"
 description = ""
 func_godot_internal = false
 base_classes = Array[Resource]([])

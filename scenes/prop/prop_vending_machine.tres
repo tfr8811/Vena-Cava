@@ -20,7 +20,8 @@ class_properties = {}
 class_property_descriptions = {}
 meta_properties = {
 "color": Color(0.8, 0.8, 0.8, 1),
-"size": AABB(-8, -8, -8, 8, 8, 8)
+"size": AABB(-8, -8, -8, 8, 8, 8),
+"studio": "\"models/prop_vending_machine.glb\""
 }
 node_class = ""
 name_property = ""
