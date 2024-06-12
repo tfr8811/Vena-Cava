@@ -39,7 +39,7 @@ sky_material = SubResource("ProceduralSkyMaterial_x2mcg")
 sky = SubResource("Sky_ubibv")
 ambient_light_source = 3
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_l6u2d"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_d3he1"]
 _surfaces = [{
 "aabb": AABB(-13, 0, -10, 17, 2.00001, 48),
 "attribute_data": PackedByteArray(0, 0, 80, 64, 0, 0, 128, 190, 0, 0, 80, 64, 0, 0, 128, 62, 0, 0, 128, 191, 0, 0, 128, 62, 0, 0, 128, 191, 0, 0, 128, 190, 0, 0, 16, 192, 0, 0, 128, 190, 0, 0, 28, 65, 0, 0, 128, 190, 0, 0, 28, 65, 0, 0, 128, 62, 0, 0, 16, 192, 0, 0, 128, 62, 0, 0, 16, 64, 0, 0, 128, 191, 0, 0, 16, 64, 0, 0, 80, 64, 0, 0, 28, 193, 0, 0, 80, 64, 0, 0, 28, 193, 0, 0, 128, 191, 0, 0, 16, 192, 0, 0, 128, 191, 0, 0, 28, 65, 0, 0, 128, 191, 0, 0, 28, 65, 0, 0, 80, 64, 0, 0, 16, 192, 0, 0, 80, 64, 0, 0, 16, 64, 0, 0, 128, 190, 0, 0, 16, 64, 0, 0, 128, 62, 0, 0, 28, 193, 0, 0, 128, 62, 0, 0, 28, 193, 0, 0, 128, 190, 0, 0, 80, 192, 0, 0, 128, 190, 0, 0, 128, 63, 0, 0, 128, 190, 0, 0, 128, 63, 0, 0, 128, 62, 0, 0, 80, 192, 0, 0, 128, 62),
@@ -54,14 +54,14 @@ _surfaces = [{
 "vertex_data": PackedByteArray(0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 24, 66, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 24, 66, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 24, 66, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 24, 66, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 24, 66, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 24, 66, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 32, 193, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 24, 66, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 24, 66, 0, 0, 80, 193, 0, 0, 0, 64, 0, 0, 24, 66, 0, 0, 128, 64, 0, 0, 0, 64, 0, 0, 24, 66, 0, 0, 128, 64, 0, 0, 0, 0, 0, 0, 24, 66, 0, 0, 80, 193, 0, 0, 0, 0, 0, 0, 24, 66, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 255, 255, 255, 255, 0, 0, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 0, 0, 255, 127, 255, 127, 255, 191, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 0, 0, 255, 255, 255, 255, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 127, 255, 255, 255, 127, 255, 191, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 255, 255, 127, 255, 255, 255, 255, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191, 255, 127, 255, 127, 255, 255, 255, 191)
 }]
 
-[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_608s6"]
+[sub_resource type="ArrayOccluder3D" id="ArrayOccluder3D_toy04"]
 vertices = PackedVector3Array(-13, 2, -10, -13, 0, -10, 4, 0, -10, 4, 2, -10, -13, 2, -10, -13, 2, 38, -13, 0, 38, -13, 0, -10, 4, 0, -10, -13, 0, -10, -13, 0, 38, 4, 0, 38, 4, 2, -10, 4, 2, 38, -13, 2, 38, -13, 2, -10, 4, 2, -10, 4, 0, -10, 4, 0, 38, 4, 2, 38, -13, 2, 38, 4, 2, 38, 4, 0, 38, -13, 0, 38)
 indices = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6nbiy"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1pb6c"]
 points = PackedVector3Array(-13, 2, -10, -13, 0, -10, 4, 0, -10, 4, 2, -10, -13, 2, 38, -13, 0, 38, 4, 0, 38, 4, 2, 38)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lceh7"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wlsaq"]
 points = PackedVector3Array(-1.5, 1, -1.5, -1.5, -1, -1.5, 1.5, -1, -1.5, 1.5, 1, -1.5, -1.5, 1, 1.5, -1.5, -1, 1.5, 1.5, -1, 1.5, 1.5, 1, 1.5)
 
 [node name="World" type="Node3D"]
@@ -77,13 +77,13 @@ map_settings = ExtResource("2_bd6s5")
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
 
 [node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
-mesh = SubResource("ArrayMesh_l6u2d")
+mesh = SubResource("ArrayMesh_d3he1")
 
 [node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
-occluder = SubResource("ArrayOccluder3D_608s6")
+occluder = SubResource("ArrayOccluder3D_toy04")
 
 [node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
-shape = SubResource("ConvexPolygonShape3D_6nbiy")
+shape = SubResource("ConvexPolygonShape3D_1pb6c")
 
 [node name="entity_1_prop_cop_car" parent="FuncGodotMap" instance=ExtResource("4_l6bxo")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.1875, 2.6875, 4.25)
@@ -98,7 +98,7 @@ script = ExtResource("6_xiuvo")
 path = "res://assets/Audio/ambient/tones/TF2_Halloween_music.mp3"
 
 [node name="entity_3_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_3_env_tone"]
-shape = SubResource("ConvexPolygonShape3D_lceh7")
+shape = SubResource("ConvexPolygonShape3D_wlsaq")
 
 [node name="entity_4_prop_flag_pole" parent="FuncGodotMap" instance=ExtResource("7_pafqj")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -9.5, 1.9375, 5.5)
