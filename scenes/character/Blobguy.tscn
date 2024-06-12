@@ -1,20 +1,20 @@
 [gd_scene load_steps=24 format=3 uid="uid://cdu2p5khiiqfp"]
 
-[ext_resource type="Script" path="res://scenes/character/Enemy.cs" id="1_y1hb0"]
-[ext_resource type="Texture2D" uid="uid://7sq0qqhqwlb7" path="res://assets/Sprites/CHARACTERS/blobguy.png" id="2_ukopg"]
-[ext_resource type="AudioStream" uid="uid://dwgsjurgmw4dm" path="res://assets/Audio/SFX/Enemies/Creature/creatureCommand1.wav" id="3_uowa5"]
-[ext_resource type="AudioStream" uid="uid://bqgiut5ryf7u" path="res://assets/Audio/SFX/Enemies/Creature/creatureCommand2.wav" id="4_i6vjq"]
-[ext_resource type="AudioStream" uid="uid://fd3dlesxa2vs" path="res://assets/Audio/SFX/Enemies/Creature/creatureCommand3.wav" id="5_0opbv"]
-[ext_resource type="AudioStream" uid="uid://brytie27nubr" path="res://assets/Audio/SFX/Enemies/Creature/creatureCommand4.wav" id="6_f03yd"]
-[ext_resource type="AudioStream" uid="uid://d0ranaw5yu7xw" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit1.wav" id="7_ratl1"]
-[ext_resource type="AudioStream" uid="uid://buxqod7uev2nd" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit2.wav" id="8_6e4ia"]
-[ext_resource type="AudioStream" uid="uid://bnd6ogxt4f856" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit3.wav" id="9_g40yv"]
-[ext_resource type="AudioStream" uid="uid://dsecjf571je7j" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit4.wav" id="10_ax1og"]
-[ext_resource type="AudioStream" uid="uid://3kh8lnnfor3k" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit5.wav" id="11_uus78"]
-[ext_resource type="AudioStream" uid="uid://bjchhs2pf31ai" path="res://assets/Audio/SFX/Enemies/Creature/creatureAttack.wav" id="12_u67e8"]
-[ext_resource type="AudioStream" uid="uid://scy1n06q4lg7" path="res://assets/Audio/SFX/Enemies/Creature/creatureRecharge.wav" id="13_kf3b7"]
-[ext_resource type="AudioStream" uid="uid://bs73rlfxove4j" path="res://assets/Audio/SFX/Enemies/Creature/creatureCallout1.wav" id="14_wqkl8"]
-[ext_resource type="AudioStream" uid="uid://gti3kfaxlr1r" path="res://assets/Audio/SFX/Enemies/Creature/creatureCallout2.wav" id="15_e22y3"]
+[ext_resource type="Script" path="res://scenes/character/Enemy.cs" id="1_emxri"]
+[ext_resource type="Texture2D" uid="uid://7sq0qqhqwlb7" path="res://assets/Sprites/CHARACTERS/blobguy.png" id="2_ee8rs"]
+[ext_resource type="AudioStream" uid="uid://dwgsjurgmw4dm" path="res://assets/Audio/SFX/Enemies/Creature/creatureCommand1.wav" id="3_20hel"]
+[ext_resource type="AudioStream" uid="uid://bqgiut5ryf7u" path="res://assets/Audio/SFX/Enemies/Creature/creatureCommand2.wav" id="4_fpd8j"]
+[ext_resource type="AudioStream" uid="uid://fd3dlesxa2vs" path="res://assets/Audio/SFX/Enemies/Creature/creatureCommand3.wav" id="5_iocuf"]
+[ext_resource type="AudioStream" uid="uid://brytie27nubr" path="res://assets/Audio/SFX/Enemies/Creature/creatureCommand4.wav" id="6_uosxp"]
+[ext_resource type="AudioStream" uid="uid://d0ranaw5yu7xw" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit1.wav" id="7_i3538"]
+[ext_resource type="AudioStream" uid="uid://buxqod7uev2nd" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit2.wav" id="8_rco3p"]
+[ext_resource type="AudioStream" uid="uid://bnd6ogxt4f856" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit3.wav" id="9_knx4l"]
+[ext_resource type="AudioStream" uid="uid://dsecjf571je7j" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit4.wav" id="10_u33j7"]
+[ext_resource type="AudioStream" uid="uid://3kh8lnnfor3k" path="res://assets/Audio/SFX/Enemies/Creature/creatureHit5.wav" id="11_ur252"]
+[ext_resource type="AudioStream" uid="uid://bjchhs2pf31ai" path="res://assets/Audio/SFX/Enemies/Creature/creatureAttack.wav" id="12_y5yao"]
+[ext_resource type="AudioStream" uid="uid://scy1n06q4lg7" path="res://assets/Audio/SFX/Enemies/Creature/creatureRecharge.wav" id="13_4po53"]
+[ext_resource type="AudioStream" uid="uid://bs73rlfxove4j" path="res://assets/Audio/SFX/Enemies/Creature/creatureCallout1.wav" id="14_ly4kb"]
+[ext_resource type="AudioStream" uid="uid://gti3kfaxlr1r" path="res://assets/Audio/SFX/Enemies/Creature/creatureCallout2.wav" id="15_p41s3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_i5jy5"]
 
@@ -22,10 +22,10 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Death",
@@ -33,7 +33,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Idle",
@@ -41,31 +41,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Reload",
@@ -73,7 +73,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": true,
 "name": &"Run",
@@ -81,31 +81,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Shoot",
@@ -116,10 +116,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Death",
@@ -127,7 +127,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Idle",
@@ -135,31 +135,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Reload",
@@ -167,7 +167,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": true,
 "name": &"Run",
@@ -175,31 +175,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Shoot",
@@ -210,10 +210,10 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Death",
@@ -221,7 +221,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Idle",
@@ -229,31 +229,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Reload",
@@ -261,7 +261,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": true,
 "name": &"Run",
@@ -269,31 +269,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_ukopg")
+"texture": ExtResource("2_ee8rs")
 }],
 "loop": false,
 "name": &"Shoot",
@@ -302,43 +302,43 @@ animations = [{
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_30ghv"]
 streams_count = 4
-stream_0/stream = ExtResource("3_uowa5")
+stream_0/stream = ExtResource("3_20hel")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("4_i6vjq")
+stream_1/stream = ExtResource("4_fpd8j")
 stream_1/weight = 1.0
-stream_2/stream = ExtResource("5_0opbv")
+stream_2/stream = ExtResource("5_iocuf")
 stream_2/weight = 1.0
-stream_3/stream = ExtResource("6_f03yd")
+stream_3/stream = ExtResource("6_uosxp")
 stream_3/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fcetk"]
 streams_count = 5
-stream_0/stream = ExtResource("7_ratl1")
+stream_0/stream = ExtResource("7_i3538")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("8_6e4ia")
+stream_1/stream = ExtResource("8_rco3p")
 stream_1/weight = 1.0
-stream_2/stream = ExtResource("9_g40yv")
+stream_2/stream = ExtResource("9_knx4l")
 stream_2/weight = 1.0
-stream_3/stream = ExtResource("10_ax1og")
+stream_3/stream = ExtResource("10_u33j7")
 stream_3/weight = 1.0
-stream_4/stream = ExtResource("11_uus78")
+stream_4/stream = ExtResource("11_ur252")
 stream_4/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tieek"]
 streams_count = 2
-stream_0/stream = ExtResource("14_wqkl8")
+stream_0/stream = ExtResource("14_ly4kb")
 stream_0/weight = 1.0
-stream_1/stream = ExtResource("15_e22y3")
+stream_1/stream = ExtResource("15_p41s3")
 stream_1/weight = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_wb7hx"]
 radius = 10.0
 
-[node name="FreakyBro" type="CharacterBody3D" node_paths=PackedStringArray("enemyFront", "enemySide", "enemyRear", "nearbyDetection", "commandRandomizer", "damageRandomizer", "calloutRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
+[node name="Blobguy" type="CharacterBody3D" node_paths=PackedStringArray("enemyFront", "enemySide", "enemyRear", "nearbyDetection", "commandRandomizer", "damageRandomizer", "calloutRandomizer", "shootSound", "reloadSound") groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 4
 collision_mask = 7
-script = ExtResource("1_y1hb0")
+script = ExtResource("1_emxri")
 enemyFront = NodePath("FrontAnimation")
 enemySide = NodePath("SideAnimation")
 enemyRear = NodePath("RearAnimation")
@@ -393,10 +393,10 @@ stream = SubResource("AudioStreamRandomizer_30ghv")
 stream = SubResource("AudioStreamRandomizer_fcetk")
 
 [node name="ShootSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("12_u67e8")
+stream = ExtResource("12_y5yao")
 
 [node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("13_kf3b7")
+stream = ExtResource("13_4po53")
 
 [node name="CalloutRandomizer" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_tieek")

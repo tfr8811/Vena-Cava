@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FuncGodotFGDPointClass" load_steps=3 format=3 uid="uid://bh36h3o8y6bmo"]
+
+[ext_resource type="PackedScene" uid="uid://cdu2p5khiiqfp" path="res://scenes/character/Blobguy.tscn" id="1_xo7ji"]
+[ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_point_class.gd" id="2_ref5k"]
+
+[resource]
+script = ExtResource("2_ref5k")
+scene_file = ExtResource("1_xo7ji")
+apply_rotation_on_map_build = true
+classname = "pickups_blobguy"
+description = ""
+func_godot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+name_property = ""

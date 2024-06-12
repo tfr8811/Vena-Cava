@@ -13,7 +13,7 @@ billboard_mode = 1
 billboard_keep_scale = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_41bg4"]
-size = Vector3(0.7, 0.18, 0.7)
+size = Vector3(1.4, 0.36, 1.4)
 
 [node name="PistolPickup" type="Node3D"]
 script = ExtResource("1_3o4yj")
@@ -21,11 +21,12 @@ name = "Pistol"
 psPickup = ExtResource("2_hxmb4")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0.447782, 0)
 material_override = SubResource("StandardMaterial3D_jlcyw")
 texture = ExtResource("3_s4tau")
 
 [node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447782, 0)
 collision_layer = 0
 collision_mask = 2
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=13 format=3 uid="uid://qn0n1a7gi460"]
+[gd_resource type="Resource" script_class="FuncGodotFGDFile" load_steps=20 format=3 uid="uid://qn0n1a7gi460"]
 
 [ext_resource type="Script" path="res://addons/func_godot/src/fgd/func_godot_fgd_file.gd" id="1_e8db0"]
 [ext_resource type="Resource" uid="uid://crgpdahjaj" path="res://addons/func_godot/fgd/func_godot_fgd.tres" id="1_s7wxg"]
@@ -9,9 +9,16 @@
 [ext_resource type="Resource" uid="uid://dutu7h5xra58s" path="res://trenchbroom/FgdMappings/env_tone.tres" id="4_8fcha"]
 [ext_resource type="Resource" uid="uid://cf2a1b3yito20" path="res://scenes/environment/EnvFGD.tres" id="4_swv5t"]
 [ext_resource type="Resource" uid="uid://brm7tgc17gqxe" path="res://scenes/info/InfoFGD.tres" id="5_1uqhj"]
+[ext_resource type="Resource" uid="uid://bh36h3o8y6bmo" path="res://trenchbroom/FgdMappings/character_blobguy.tres" id="12_0cpt8"]
 [ext_resource type="Resource" uid="uid://b6ds0k7w68omm" path="res://trenchbroom/FgdMappings/character_cop.tres" id="12_oide5"]
+[ext_resource type="Resource" uid="uid://bo10t1ssfj0ay" path="res://trenchbroom/FgdMappings/character_hobo.tres" id="13_d3sf2"]
 [ext_resource type="Resource" uid="uid://cjisadvescbmw" path="res://trenchbroom/FgdMappings/func_trigger.tres" id="14_eipyp"]
+[ext_resource type="Resource" uid="uid://tqlso0vd6ly0" path="res://trenchbroom/FgdMappings/pickups_carbine.tres" id="14_hj3vq"]
 [ext_resource type="Resource" uid="uid://12lrv30vaopp" path="res://trenchbroom/FgdMappings/info_spawner.tres" id="15_30uga"]
+[ext_resource type="Resource" uid="uid://l606yvaju5da" path="res://trenchbroom/FgdMappings/pickups_health.tres" id="15_g0nub"]
+[ext_resource type="Resource" uid="uid://pxtr4vhgqcmc" path="res://trenchbroom/FgdMappings/pickups_machinegun.tres" id="16_s3qvl"]
+[ext_resource type="Resource" uid="uid://c428oqina3vb7" path="res://trenchbroom/FgdMappings/pickups_pistol.tres" id="17_ipfjs"]
+[ext_resource type="Resource" uid="uid://bjmq381arm2kg" path="res://trenchbroom/FgdMappings/pickups_shotgun.tres" id="18_qan1r"]
 
 [resource]
 script = ExtResource("1_e8db0")
@@ -19,4 +26,4 @@ export_file = false
 model_key_word_supported = true
 fgd_name = "FuncGodot"
 base_fgd_files = Array[Resource]([ExtResource("1_s7wxg"), ExtResource("2_7y8mq"), ExtResource("3_bnjan"), ExtResource("4_swv5t"), ExtResource("5_1uqhj")])
-entity_definitions = Array[Resource]([ExtResource("2_7nd4e"), ExtResource("3_mtqxd"), ExtResource("4_8fcha"), ExtResource("12_oide5"), ExtResource("14_eipyp"), ExtResource("15_30uga")])
+entity_definitions = Array[Resource]([ExtResource("2_7nd4e"), ExtResource("3_mtqxd"), ExtResource("4_8fcha"), ExtResource("12_oide5"), ExtResource("14_eipyp"), ExtResource("15_30uga"), ExtResource("12_0cpt8"), ExtResource("13_d3sf2"), ExtResource("14_hj3vq"), ExtResource("15_g0nub"), ExtResource("16_s3qvl"), ExtResource("17_ipfjs"), ExtResource("18_qan1r")])
