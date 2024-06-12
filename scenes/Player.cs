@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading;
 using System.Xml.Linq;
 
 /// <summary>
@@ -17,6 +18,7 @@ public partial class Player : CharacterBody3D, IDamageable
     const float PLAYER_HEIGHT = 2f;
     const float CROUCH_SPEED = 20f;
     const float CROUCH_HEIGHT = 0.75f;
+    const float STEP_HEIGHT = 0.5f;
     private float speed;
 
     // health
@@ -75,6 +77,25 @@ public partial class Player : CharacterBody3D, IDamageable
     [Export]
     private RayCast3D interactionRay;
 
+    [Export]
+    private RayCast3D stairBelowCheck;
+
+    // handles climbing stairs
+    [Export]
+    CollisionShape3D separationRayF;
+    [Export]
+    RayCast3D slopeCheckF;
+    [Export]
+    CollisionShape3D separationRayL;
+    [Export]
+    RayCast3D slopeCheckL;
+    [Export]
+    CollisionShape3D separationRayR;
+    [Export]
+    RayCast3D slopeCheckR;
+
+    float initialSeperationRayDist;
+
     private Hud hud;
 
     private bool headBonked = false;
@@ -83,6 +104,10 @@ public partial class Player : CharacterBody3D, IDamageable
 
     private bool dead = false;
 
+    private bool wasOnFloorLastFrame = false;
+    private bool snappedToStairsLastFrame = false;
+    private Vector3 lastXZVel;
+
     public override void _Ready()
     {
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -90,6 +115,8 @@ public partial class Player : CharacterBody3D, IDamageable
         allies = new Hobo[0];
         GlobalWorldState.Instance.Player = this;
         health = maxHealth;
+        initialSeperationRayDist = Math.Abs(separationRayF.Position.Z);
+        lastXZVel = Vector3.Zero;
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -205,6 +232,11 @@ public partial class Player : CharacterBody3D, IDamageable
 
             // crouch height adjustment
             ((CapsuleShape3D)playerCapsule.Shape).Height -= CROUCH_SPEED * (float) delta;
+
+            // disable stair stepping
+            separationRayF.Disabled = true;
+            separationRayL.Disabled = true;
+            separationRayR.Disabled = true;
         } else if (!headBonked)
         {
             speed = RUN_SPEED;
@@ -216,6 +248,13 @@ public partial class Player : CharacterBody3D, IDamageable
             speed = CROUCH_MOVE_SPEED;
         }
         ((CapsuleShape3D)playerCapsule.Shape).Height = Math.Clamp(((CapsuleShape3D)playerCapsule.Shape).Height, CROUCH_HEIGHT, PLAYER_HEIGHT);
+        // enable stair stepping when player is standing
+        if (((CapsuleShape3D)playerCapsule.Shape).Height == PLAYER_HEIGHT)
+        {
+            separationRayF.Disabled = false;
+            separationRayL.Disabled = false;
+            separationRayR.Disabled = false;
+        }
 
         // movement
         // get the movement direction from the input data
@@ -271,7 +310,92 @@ public partial class Player : CharacterBody3D, IDamageable
         camera.Fov = (float) Mathf.Lerp(camera.Fov, targetFOV, delta * 8.0);
 
         // apply the movement
+        RotateSeperationRay();
         MoveAndSlide();
+        SnapDownStairs();
+
+        if (IsOnFloor())
+        {
+            wasOnFloorLastFrame = true;
+        } else
+        {
+            wasOnFloorLastFrame = false;
+        }
+    }
+
+    /// <summary>
+    /// Roman Noodles (Adapted from Majikayo Games)
+    /// 6/10/2024
+    /// </summary>
+    private void SnapDownStairs()
+    {
+        bool didSnap = false;
+        if (!IsOnFloor() && Velocity.Y <= 0 && (wasOnFloorLastFrame || snappedToStairsLastFrame) && stairBelowCheck.IsColliding())
+        {
+            PhysicsTestMotionResult3D motionResult = new PhysicsTestMotionResult3D();
+            PhysicsTestMotionParameters3D motionParameters = new PhysicsTestMotionParameters3D();
+            motionParameters.From = this.GlobalTransform;
+            motionParameters.Motion = new Vector3(0, -STEP_HEIGHT, 0);
+            if (PhysicsServer3D.BodyTestMotion(this.GetRid(), motionParameters, motionResult))
+            {
+                float translateY = motionResult.GetTravel().Y;
+                this.Position = new Vector3(this.Position.X, this.Position.Y + translateY, this.Position.Z);
+                ApplyFloorSnap();
+                didSnap = true;
+            }
+        }
+        snappedToStairsLastFrame = didSnap;
+    }
+
+    /// <summary>
+    /// Roman Noodles (Adapted from Majikayo Games)
+    /// 6/10/2024
+    /// </summary>
+    private void RotateSeperationRay()
+    {
+        Vector3 xzVel = Velocity * new Vector3(1, 0, 1);
+
+        if (xzVel.Length() < 0.1f)
+        {
+            xzVel = lastXZVel;
+        } else
+        {
+            lastXZVel = xzVel;
+        }
+
+        Vector3 xzRayPosF = xzVel.Normalized() * initialSeperationRayDist;
+        separationRayF.GlobalPosition = new Vector3(GlobalPosition.X + xzRayPosF.X, separationRayF.GlobalPosition.Y, GlobalPosition.Z + xzRayPosF.Z);
+
+        Vector3 xzRayPosL = xzRayPosF.Rotated(new Vector3(0, 1.0f, 0), Mathf.DegToRad(50));
+        separationRayL.GlobalPosition = new Vector3(GlobalPosition.X + xzRayPosL.X, separationRayL.GlobalPosition.Y, GlobalPosition.Z + xzRayPosL.Z);
+
+        Vector3 xzRayPosR = xzRayPosF.Rotated(new Vector3(0,1.0f,0), Mathf.DegToRad(-50));
+        separationRayR.GlobalPosition = new Vector3(GlobalPosition.X + xzRayPosR.X, separationRayR.GlobalPosition.Y, GlobalPosition.Z + xzRayPosR.Z);
+
+        slopeCheckF.ForceRaycastUpdate();
+        slopeCheckL.ForceRaycastUpdate();
+        slopeCheckR.ForceRaycastUpdate();
+
+        float maxSlopeDot = new Vector3(0, 1, 0).Rotated(new Vector3(1, 0, 0), this.FloorMaxAngle).Dot(new Vector3(0, 1, 0));
+        bool anyTooSteep = false;
+        if (slopeCheckF.IsColliding() && slopeCheckF.GetCollisionNormal().Dot(new Vector3(0, 1, 0)) < maxSlopeDot) {
+            anyTooSteep = true;
+        }
+        if (slopeCheckL.IsColliding() && slopeCheckL.GetCollisionNormal().Dot(new Vector3(0, 1, 0)) < maxSlopeDot)
+        {
+            anyTooSteep = true;
+        }
+        if (slopeCheckR.IsColliding() && slopeCheckR.GetCollisionNormal().Dot(new Vector3(0, 1, 0)) < maxSlopeDot)
+        {
+            anyTooSteep = true;
+        }
+
+        if (anyTooSteep)
+        {
+            separationRayF.Disabled = true;
+            separationRayL.Disabled = true;
+            separationRayR.Disabled = true;
+        }
     }
 
     /// <summary>
