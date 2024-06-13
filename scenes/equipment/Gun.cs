@@ -99,7 +99,7 @@ public partial class Gun : Node3D, IEquippable
         }
 
         // RELOAD - It's automatic rn but can also be done by pressing "R"
-        if (canShoot && fireDelay <= 0 && (ammo == 0 || Input.IsActionJustPressed("Reload")))
+        if (canShoot && fireDelay <= 0 && (ammo == 0 || (Input.IsActionJustPressed("Reload") && ammo < maxAmmo)))
         {
             gunSprite.Play("Reload");
             reloadSound.Play();
