@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b0m3qyuef76nj"]
-
-[ext_resource type="Texture2D" uid="uid://dplsfenpgq1st" path="res://assets/models/Props/Vending Machine/Vending_part_2.png" id="1_qwktd"]
-
-[resource]
-albedo_texture = ExtResource("1_qwktd")
-texture_filter = 0

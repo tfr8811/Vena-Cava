@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dyiayd2tgr57u"]
-
-[ext_resource type="Texture2D" uid="uid://dni1onpm6b41j" path="res://assets/models/Props/Bench/Bench_saturated.png" id="1_w0u70"]
-
-[resource]
-albedo_texture = ExtResource("1_w0u70")
-texture_filter = 0

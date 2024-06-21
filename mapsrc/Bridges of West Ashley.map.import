@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cgi2wdyne0i5j"
+path="res://.godot/imported/Bridges of West Ashley.map-61f20e82e13486f807cc1a9e040c47c9.tres"
+
+[deps]
+
+source_file="res://mapsrc/Bridges of West Ashley.map"
+dest_files=["res://.godot/imported/Bridges of West Ashley.map-61f20e82e13486f807cc1a9e040c47c9.tres"]
+
+[params]
+

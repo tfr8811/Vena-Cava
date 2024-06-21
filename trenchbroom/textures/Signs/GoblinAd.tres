@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cyob56do11ur"]
+
+[ext_resource type="Texture2D" uid="uid://7gcryk7bvgj7" path="res://trenchbroom/textures/Signs/GoblinAd.png" id="1_vv1v6"]
+
+[resource]
+albedo_texture = ExtResource("1_vv1v6")
+metallic_specular = 0.0
+texture_filter = 2

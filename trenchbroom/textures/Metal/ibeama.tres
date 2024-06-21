@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bhoqai8nd041n"]
+
+[ext_resource type="Texture2D" uid="uid://dikfsrkk2v0aw" path="res://trenchbroom/textures/Metal/ibeama.png" id="1_bcqjq"]
+
+[resource]
+albedo_texture = ExtResource("1_bcqjq")
+metallic_specular = 0.0
+texture_filter = 2

@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bndc1w07yxetp"]
+
+[ext_resource type="Texture2D" uid="uid://4ipyfx3o8nwl" path="res://trenchbroom/textures/decal/sludgesmall.png" id="1_gj0mm"]
+
+[resource]
+albedo_texture = ExtResource("1_gj0mm")
+metallic_specular = 0.0
+texture_filter = 2

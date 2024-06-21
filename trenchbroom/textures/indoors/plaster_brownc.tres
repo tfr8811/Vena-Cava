@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ds8jcxtrcmdad"]
+
+[ext_resource type="Texture2D" uid="uid://c4tuulca87ov" path="res://trenchbroom/textures/indoors/plaster_brownc.jpg" id="1_tw0vn"]
+
+[resource]
+albedo_texture = ExtResource("1_tw0vn")
+metallic_specular = 0.0
+texture_filter = 2

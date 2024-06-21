@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ddi01t74qluko"]
+
+[ext_resource type="Shader" path="res://trenchbroom/textures/Water/water.gdshader" id="1_sgqju"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kwrrg"]
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pyoy7"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_kwrrg")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_sgqju")
+shader_parameter/water_color = Color(4.51226e-09, 0.0973804, 0.0519365, 1)
+shader_parameter/time_scale = 1.0
+shader_parameter/water_normal_noise = SubResource("NoiseTexture2D_pyoy7")

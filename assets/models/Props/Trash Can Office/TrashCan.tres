@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://lrh1kp8ln003"]
-
-[ext_resource type="Texture2D" uid="uid://bauf1f5hh833w" path="res://assets/models/Props/Trash Can Office/Trashcan_office.png" id="1_546rh"]
-
-[resource]
-transparency = 1
-albedo_texture = ExtResource("1_546rh")
-texture_filter = 0

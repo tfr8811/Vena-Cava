@@ -1,8 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b0ypmn4qo6okj"]
-
-[ext_resource type="Texture2D" uid="uid://bikeochks40wd" path="res://assets/models/Props/Street Light/street_lamp.png" id="1_7sx7n"]
-
-[resource]
-albedo_texture = ExtResource("1_7sx7n")
-emission = Color(0.411765, 0.411765, 0.411765, 1)
-texture_filter = 0

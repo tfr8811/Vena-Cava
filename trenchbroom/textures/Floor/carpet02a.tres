@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b44t07huc6cxa"]
+
+[ext_resource type="Texture2D" uid="uid://b4krrhrlflg35" path="res://trenchbroom/textures/Floor/carpet02a.jpg" id="1_15c03"]
+
+[resource]
+albedo_texture = ExtResource("1_15c03")
+metallic_specular = 0.0
+texture_filter = 2

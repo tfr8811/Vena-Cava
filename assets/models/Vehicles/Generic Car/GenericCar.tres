@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c21rn2x7vuw8i"]
-
-[ext_resource type="Texture2D" uid="uid://cc0eawxe7fegd" path="res://assets/models/Vehicles/Generic Car/Generic_Modern_Car.png" id="1_p4lhe"]
-
-[resource]
-albedo_texture = ExtResource("1_p4lhe")
-texture_filter = 0

@@ -14,7 +14,7 @@ public partial class GlobalChapterManager : Node
 
     private Chapter[] chapters = new Chapter[]
             {
-            new Chapter() { name = "Chapter 1", description = "The beginning of the adventure.", map = "testroom" },
+            new Chapter() { name = "Chapter 1", description = "The beginning of the adventure.", map = "BridgesOfWestAshley" },
             new Chapter() { name = "Chapter 2", description = "The journey continues.", map = "Map2" },
             new Chapter() { name = "Chapter 3", description = "The epic conclusion.", map = "Map3" }
             };

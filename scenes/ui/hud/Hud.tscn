@@ -42,6 +42,7 @@ pivot_offset = Vector2(620, 0)
 texture = ExtResource("2_j1wa3")
 
 [node name="CopCount" type="Label" parent="Hud"]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

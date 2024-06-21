@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ca14pbnadm5wc"]
+
+[ext_resource type="Texture2D" uid="uid://drr0gmqprfp1c" path="res://assets/_Work/2D/vehicleTextures/Tires.png" id="1_2t77b"]
+
+[resource]
+albedo_texture = ExtResource("1_2t77b")
+texture_filter = 0

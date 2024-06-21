@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dyaeos21p06bt"
+path="res://.godot/imported/Gas_Station-col.obj-4b8e7f6bb0c5e5fc81c0da91b20b8fad.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Gas_Station-col.obj-4b8e7f6bb0c5e5fc81c0da91b20b8fad.mesh"]
+
+source_file="res://assets/models-old/Gas Station Arena/CollisionMap/Gas_Station-col.obj"
+dest_files=["res://.godot/imported/Gas_Station-col.obj-4b8e7f6bb0c5e5fc81c0da91b20b8fad.mesh", "res://.godot/imported/Gas_Station-col.obj-4b8e7f6bb0c5e5fc81c0da91b20b8fad.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

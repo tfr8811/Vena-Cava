@@ -1,7 +1,0 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c6k2hguenr2fy"]
-
-[ext_resource type="Texture2D" uid="uid://2xu1umwgodb7" path="res://assets/models/Props/Hydrant/hydrant.png" id="1_5jcqs"]
-
-[resource]
-albedo_texture = ExtResource("1_5jcqs")
-texture_filter = 0

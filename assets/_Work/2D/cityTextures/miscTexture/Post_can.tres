@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bqkvisu4bmcya"]
+
+[ext_resource type="Texture2D" uid="uid://cj323mlj8blux" path="res://assets/_Work/2D/cityTextures/miscTexture/Post_can.png" id="1_ap5de"]
+
+[resource]
+albedo_texture = ExtResource("1_ap5de")
+texture_filter = 0
