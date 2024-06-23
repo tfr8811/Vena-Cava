@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cjc13em5od4qa"]
+[gd_scene load_steps=18 format=3 uid="uid://cjc13em5od4qa"]
 
 [ext_resource type="Script" path="res://scenes/Player.cs" id="1_clxhf"]
 [ext_resource type="Script" path="res://scenes/equipment/Items.cs" id="2_eopid"]
@@ -6,8 +6,11 @@
 [ext_resource type="AudioStream" uid="uid://dm0fodtlit7wn" path="res://assets/Audio/SFX/Player/Damage/damage_2.wav" id="4_jnwsk"]
 [ext_resource type="PackedScene" uid="uid://dnhcdoqsul3ob" path="res://scenes/equipment/Pistol.tscn" id="4_kvouv"]
 [ext_resource type="PackedScene" uid="uid://cs7cm301ccant" path="res://scenes/equipment/Brick.tscn" id="4_tk48j"]
+[ext_resource type="PackedScene" uid="uid://c8oqmn7ehj8p" path="res://scenes/equipment/Shotgun.tscn" id="5_0a6en"]
 [ext_resource type="AudioStream" uid="uid://dm6ol4qw7gga5" path="res://assets/Audio/SFX/Player/Damage/damage_3.wav" id="5_4bytc"]
 [ext_resource type="AudioStream" uid="uid://bj2gbrb538yk6" path="res://assets/Audio/SFX/Player/Damage/damage_4.wav" id="6_h7vh8"]
+[ext_resource type="PackedScene" uid="uid://duqp3ldprpavg" path="res://scenes/equipment/Rifle.tscn" id="6_jrnir"]
+[ext_resource type="PackedScene" uid="uid://dhs7hpp1c4jyq" path="res://scenes/equipment/Carbine.tscn" id="7_6p6cy"]
 [ext_resource type="AudioStream" uid="uid://di75cxun7w8g1" path="res://assets/Audio/SFX/Player/Damage/damage_5.wav" id="7_raieu"]
 [ext_resource type="PackedScene" uid="uid://diqe8bhhvnts5" path="res://scenes/ui/hud/Hud.tscn" id="8_jgp5l"]
 
@@ -63,7 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606531, 0)
 
 [node name="Items" type="Node3D" parent="Head/Camera3D"]
 script = ExtResource("2_eopid")
-inventory = Array[PackedScene]([ExtResource("4_tk48j"), ExtResource("4_kvouv")])
+inventory = Array[PackedScene]([ExtResource("4_tk48j"), ExtResource("4_kvouv"), ExtResource("5_0a6en"), ExtResource("6_jrnir"), ExtResource("7_6p6cy")])
 
 [node name="InteractionRay" type="RayCast3D" parent="Head/Camera3D"]
 target_position = Vector3(0, 0, -50)

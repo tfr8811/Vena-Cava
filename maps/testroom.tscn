@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://scenes/logic/InfoSpawner.cs" id="16_f8p50"]
 [ext_resource type="Script" path="res://scenes/logic/LogicRelay.cs" id="18_ytvke"]
 [ext_resource type="PackedScene" uid="uid://bhuwrimmq1wv4" path="res://scenes/info/InfoLabel.tscn" id="19_rki05"]
-[ext_resource type="PackedScene" uid="uid://bq67v1g0mmukg" path="res://scenes/prop/Pickup_Truck.tscn" id="20_whu4g"]
+[ext_resource type="PackedScene" uid="uid://nhah2vmyo1c" path="res://scenes/prop/Pickup_Truck.tscn" id="20_whu4g"]
 [ext_resource type="PackedScene" uid="uid://c2rijwpj6su1w" path="res://scenes/prop/trash_can.tscn" id="21_p78wh"]
 [ext_resource type="Script" path="res://scenes/logic/LogicEnabler.cs" id="22_agwse"]
 [ext_resource type="PackedScene" uid="uid://c54aqd5ntgbgm" path="res://scenes/environment/EnvSpotlight.tscn" id="22_wlbq6"]
