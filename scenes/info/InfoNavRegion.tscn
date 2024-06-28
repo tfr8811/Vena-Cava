@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2hipue0blxrr"]
+[gd_scene load_steps=3 format=3 uid="uid://d2hipue0blxrr"]
 
 [ext_resource type="Script" path="res://scenes/info/InfoNavRegion.cs" id="1_y4vln"]
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_so5cv"]
+agent_radius = 0.75
+agent_max_slope = 25.0
+
 [node name="InfoNavRegion" type="NavigationRegion3D"]
+navigation_mesh = SubResource("NavigationMesh_so5cv")
 script = ExtResource("1_y4vln")

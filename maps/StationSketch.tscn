@@ -28,11 +28,11 @@
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7rh5p"]
 
-[sub_resource type="Sky" id="Sky_4d4uh"]
+[sub_resource type="Sky" id="Sky_hmqcb"]
 sky_material = SubResource("ProceduralSkyMaterial_7rh5p")
 
 [sub_resource type="Environment" id="Environment_t4ib3"]
-sky = SubResource("Sky_4d4uh")
+sky = SubResource("Sky_hmqcb")
 ambient_light_source = 3
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_igix0"]
