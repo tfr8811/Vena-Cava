@@ -97,6 +97,27 @@ public partial class Hobo : CharacterBody3D, IDamageable
 
     RandomNumberGenerator rng;
 
+    // handles climbing stairs
+    const float STEP_HEIGHT = 0.5f;
+    [Export]
+    private RayCast3D stairBelowCheck;
+    [Export]
+    CollisionShape3D separationRayF;
+    [Export]
+    RayCast3D slopeCheckF;
+    [Export]
+    CollisionShape3D separationRayL;
+    [Export]
+    RayCast3D slopeCheckL;
+    [Export]
+    CollisionShape3D separationRayR;
+    [Export]
+    RayCast3D slopeCheckR;
+    float initialSeperationRayDist;
+    private bool wasOnFloorLastFrame = false;
+    private bool snappedToStairsLastFrame = false;
+    private Vector3 lastXZVel;
+
     public override void _Ready()
     {
         navAgent = (NavigationAgent3D)GetNode(navPath);
@@ -108,6 +129,9 @@ public partial class Hobo : CharacterBody3D, IDamageable
         player = GlobalWorldState.Instance.Player;
 
         rng = new RandomNumberGenerator();
+
+        initialSeperationRayDist = Math.Abs(separationRayF.Position.Z);
+        lastXZVel = Vector3.Zero;
     }
 
     public void PlayAnimation(StringName name)
@@ -243,7 +267,96 @@ public partial class Hobo : CharacterBody3D, IDamageable
         // move if the hobo is not doing an action that prevents them from moving
         if (canMove)
         {
+            // apply the movement
+            RotateSeperationRay();
             MoveAndSlide();
+            SnapDownStairs();
+
+            if (IsOnFloor())
+            {
+                wasOnFloorLastFrame = true;
+            }
+            else
+            {
+                wasOnFloorLastFrame = false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Roman Noodles (Adapted from Majikayo Games)
+    /// 6/10/2024
+    /// </summary>
+    private void SnapDownStairs()
+    {
+        bool didSnap = false;
+        if (!IsOnFloor() && Velocity.Y <= 0 && (wasOnFloorLastFrame || snappedToStairsLastFrame) && stairBelowCheck.IsColliding())
+        {
+            PhysicsTestMotionResult3D motionResult = new PhysicsTestMotionResult3D();
+            PhysicsTestMotionParameters3D motionParameters = new PhysicsTestMotionParameters3D();
+            motionParameters.From = this.GlobalTransform;
+            motionParameters.Motion = new Vector3(0, -STEP_HEIGHT, 0);
+            if (PhysicsServer3D.BodyTestMotion(this.GetRid(), motionParameters, motionResult))
+            {
+                float translateY = motionResult.GetTravel().Y;
+                this.Position = new Vector3(this.Position.X, this.Position.Y + translateY, this.Position.Z);
+                ApplyFloorSnap();
+                didSnap = true;
+            }
+        }
+        snappedToStairsLastFrame = didSnap;
+    }
+
+    /// <summary>
+    /// Roman Noodles (Adapted from Majikayo Games)
+    /// 6/10/2024
+    /// </summary>
+    private void RotateSeperationRay()
+    {
+        Vector3 xzVel = Velocity * new Vector3(1, 0, 1);
+
+        if (xzVel.Length() < 0.1f)
+        {
+            xzVel = lastXZVel;
+        }
+        else
+        {
+            lastXZVel = xzVel;
+        }
+
+        Vector3 xzRayPosF = xzVel.Normalized() * initialSeperationRayDist;
+        separationRayF.GlobalPosition = new Vector3(GlobalPosition.X + xzRayPosF.X, separationRayF.GlobalPosition.Y, GlobalPosition.Z + xzRayPosF.Z);
+
+        Vector3 xzRayPosL = xzRayPosF.Rotated(new Vector3(0, 1.0f, 0), Mathf.DegToRad(50));
+        separationRayL.GlobalPosition = new Vector3(GlobalPosition.X + xzRayPosL.X, separationRayL.GlobalPosition.Y, GlobalPosition.Z + xzRayPosL.Z);
+
+        Vector3 xzRayPosR = xzRayPosF.Rotated(new Vector3(0, 1.0f, 0), Mathf.DegToRad(-50));
+        separationRayR.GlobalPosition = new Vector3(GlobalPosition.X + xzRayPosR.X, separationRayR.GlobalPosition.Y, GlobalPosition.Z + xzRayPosR.Z);
+
+        slopeCheckF.ForceRaycastUpdate();
+        slopeCheckL.ForceRaycastUpdate();
+        slopeCheckR.ForceRaycastUpdate();
+
+        float maxSlopeDot = new Vector3(0, 1, 0).Rotated(new Vector3(1, 0, 0), this.FloorMaxAngle).Dot(new Vector3(0, 1, 0));
+        bool anyTooSteep = false;
+        if (slopeCheckF.IsColliding() && slopeCheckF.GetCollisionNormal().Dot(new Vector3(0, 1, 0)) < maxSlopeDot)
+        {
+            anyTooSteep = true;
+        }
+        if (slopeCheckL.IsColliding() && slopeCheckL.GetCollisionNormal().Dot(new Vector3(0, 1, 0)) < maxSlopeDot)
+        {
+            anyTooSteep = true;
+        }
+        if (slopeCheckR.IsColliding() && slopeCheckR.GetCollisionNormal().Dot(new Vector3(0, 1, 0)) < maxSlopeDot)
+        {
+            anyTooSteep = true;
+        }
+
+        if (anyTooSteep)
+        {
+            separationRayF.Disabled = true;
+            separationRayL.Disabled = true;
+            separationRayR.Disabled = true;
         }
     }
 
